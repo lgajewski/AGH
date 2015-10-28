@@ -1,0 +1,20 @@
+Zadania - Zestaw 5
+Potoki nazwane i nienazwane
+Zadanie 1
+Napisz program, który wykorzystując potoki nienazwane realizuje to samo co polecenie 
+
+ls -l | grep ^d | wc -l
+
+
+Zadanie wykonaj za pomocą niskopoziomowej obsługi potoków (pipe, przydatna funkcja dup2).
+
+
+Zadanie 2
+Zdefiniuj dwa  programy  klienta wrfifo i serwera rdfifo. Serwer tworzy ogólnodostępną kolejkę FIFO (potok nazwany) o nazwie podanej jako argument wywołania. Następnie program czeka na komunikaty zapisywane do klientów i po ich odczytaniu wyświetla je na ekranie w postaci: 
+Godzina odczytu -   PID procesu klienta - godzina zapisu - treść komunikatu. 
+Program klienta wrfifo w argumencie wywołania otrzymuje nazwę kolejki FIFO, następnie wczytuje z klawiatury treść wiadomości i poprzez kolejkę FIFO wysyła do serwera odpowiedni komunikat postaci PID procesu klienta - godzina zapisu - treść komunikatu.
+
+Zadanie 3
+Za pomocą funkcji popen napisz program, który realizuje polecenie
+
+ls -l | grep ^d > folders.txt
