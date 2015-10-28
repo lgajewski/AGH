@@ -1,0 +1,2 @@
+# mownit
+Scientific Computing - AGH
