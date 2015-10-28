@@ -1,0 +1,25 @@
+int readers = 0
+semaphore counterMutex(1)
+semaphore accessMutex(1)
+
+writer() {
+	P(accessMutex)
+	writeResource() 
+	V(accessMutex)
+}
+
+reader() {
+	P(counterMutex)
+	readers++
+	if (readers == 1) {
+		P(accessMutex)
+	}
+	V(counterMutex)
+	readResource()
+	P(counterMutex)
+	readers--
+	if (readers == 0) {
+		V(accessMutex)
+	}
+	V(counterMutex)
+}
