@@ -1,0 +1,18 @@
+Dla obu wersji programu wykonalem 10 pomiarow czasowych. Iloœæ iteracji i w¹tków w obu wersjach
+jest identyczna, losowanie wrzucanych liczb do bufora losowana jest w identyczny sposób. Chwilowo pozby³em siê instrukcji wypisuj¹cych tekst na ekran, aby nie wyd³u¿aæ czasu wykonania.
+
+Jednostka: ms
+
+lp  |  monitory   |   semafory
+1	781		768
+2	795		860
+3	845		840
+4	770		764
+5	905		820
+6	965		890
+7	908		831
+8	1068		714
+9	850		804
+10	794		909
+
+Wniosek: Dla tych samych danych czasy wykonania programu okaza³ siê podobny z niewielk¹ ró¿nic¹ na korzyœæ semaforów.
