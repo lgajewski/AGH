@@ -1,0 +1,11 @@
+Lp|Rodzaj sortowania|Rozmiar rekordu|Ilość rekordów|Czas realny|Czas użytkownika|Czas systemowy
+1 	sort 		4 		2000	7.97		0.40 		1.47
+2	sort_sys	4 		2000 	11.53		0.20 		2.56
+3	sort		512		1000	4.65 		0.23 		0.87
+4	sort_sys	512 	1000	3.85 		0.06		0.87
+5 	sort 		4096	150 	6.61		0.18		1.31
+6	sort_sys	4096	150 	3.22		0.00 		0.05
+7	sort		8192 	300 	94.30 		1.23 		21.78
+8 	sort_sys	8192 	300		2.72 		0.01 		0.66
+
+Wniosek: Wybierając funkcję służące do wczytywania danych powinniśmy zastanowić się nad ich strukturą, wielkością i częstością zapisu / odczytu. Funkcje biblioteczne wypadają dość dobrze przy odczytach krótkich i częstych, zaś funkcje systemowe odznaczają się nieprzeciętną szybkością odczytu/zapisu danych o dużej wielkości.

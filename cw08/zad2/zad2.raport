@@ -1,0 +1,29 @@
+a)	OPERATION	OP1		OP2		OP3		OP4		OP5
+
+SIGUSR1			ex		 br		 sc		 br 	 sc
+SIGTERM			ex		 br		 sc		 br 	 sc
+SIGKILL			ex		 ex		 ex		 ex 	 ex
+SIGSTOP			st		 st		 st    	 st  	 st
+
+
+
+Legenda:
+
+OP1 - wysłanie sygnału do procesu, gdy żaden wątek nie ma zamaskowanego tego sygnału
+OP2 - wysłanie sygnału do procesu, gdy główny wątek programu ma zamaskowany ten sygnał, a wszystkie pozostałe wątki nie
+OP3 - wysłanie sygnału do procesu, gdy wszystkie wątki mają zainstalowaną niestandardową procedurę obsługi przerwania, która wypisuje informację o nadejściu tego sygnału oraz PID i TID danego wątku
+OP4 - wysłanie sygnału do wątku z zamaskowanym tym sygnałem
+OP5 - wysłanie sygnału do wątku, w którym zmieniona jest procedura obsługi sygnału, jak przedstawiono w punkcie 3
+
+ex - wyjscie z programu
+st - program zostaje zastopowany
+br - brak reakcji ze strony programu
+sc - sygnal prawidlowo obsluzony
+
+	
+b) Spraw, by w jednym z wątków następowało dzielenie przez zero i by był wygenerowany odpowiedni sygnał. Jak reaguje na niego wątek, który spowodował tę sytuację, a jak inne wątki wchodzące w skład tego samego procesu? Umieść odpowiedź w pliku zad2.raport . Zaznacz dla jakiego rodzaju systemu operacyjnego i wersji jądra były przeprowadzane testy i jaki to był komputer.
+
+- błąd dzielenia w jednym z wątków spowodowało ubicie wszystkich pozostałych wątków
+- błąd dzielenia spowodował również zastopowanie całego programu
+- system operacyjny: Linux Fedora 21
+- wersja jadra: 3.19.3-200.fc21.x86_64
