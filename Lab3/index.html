@@ -1,0 +1,100 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0050)http://home.agh.edu.pl/~kzajac/dydakt/mownit/lab3/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="GENERATOR" content="vi">
+<title>Metody Numeryczne</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body bgcolor="papayawhip">
+
+<table width="80%" height="90%" border="0" align="CENTER">
+<tbody><tr>
+<td align="CENTER">
+<div align="left">
+
+<hr>
+<h1>Aproksymacja, macierze </h1>
+<hr>
+
+<ul>
+<li> Napisać w języku C  program mnożacy dwie macierze 
+kwadratowe
+metoda naiwna (wersja 1):
+<pre>for (i=0;i&lt;N; i++)
+  for(j=0;j&lt;N;j++)
+   for(k=0;k&lt;N; k++)
+     C[i][j]+=A[i][k]*B[k][j]
+</pre> 
+</li><li> następnie 
+ulepszyc (wersja 2) podany schemat
+wykorzystując 
+fakt, ze w C macierz przechowywana jest wierszami 
+(<i>row major order</i> tzn A11,A12, ..., A1m, A21, A22,...,A2m, ..Anm) 
+oraz że można zmieniać 
+kolejność operacji dodawania (a co za tym idzie kolejnosc petli). 
+Porównac
+działanie algorytmow bez włączonej opcji optymalizacji kompilatora.
+</li><li> sprawdzić, co się dzieje, jak włączymy optymalizację 
+kompilatora 
+</li><li> Porównac czas działania własnego programu z możliwosciami 
+<a href="http://www.gnu.org/software/gsl/manual/html_node/BLAS-Support.html">BLAS </a> 
+dostepnego z GSL
+
+</li><li> Zmierzyc czasy działania programów dla coraz wiekszych macierzy 
+</li><li> Policzyc srednia i odchylenie standardowe uzyskanych 
+czasow dla  roznych wielkosci danych korzystajac z 
+jezyka R. 
+Przedstawic wszystkie trzy wyniki (wersja 1, wersja 2, blas) na jednym 
+wykresie (sredni czas w zaleznosci od rozmiaru macierzy) wraz z 
+wartosciami 
+bledow.
+</li><li> Uzyc <a href="http://home.agh.edu.pl/~kzajac/dydakt/mownit/lab3/r_fitting.html"> aproxymacji wielomianowej dostepnej w 
+jezyku R </a> do znalezienia
+odpowiednich wielomianow, ktore najlepiej pasuja do wynikow kazdego z 
+algorytmow. Dodac wykresy uzyskanych wielomianow do wczesniejszego 
+wykresu.
+</li><li> Porownac wspolrzedne  uzyskane w R z wynikami uzyskanymi za pomoca  
+funkcji <a href="http://www.gnu.org/software/gsl/manual/html_node/Fitting-Examples.html"> 
+Multi-parameter fitting </a> 
+dostępnej w GSL do aproksymacji wynikow.
+
+</li><li>
+Zweryfikowac poprawnosc aproksymacji na podstawie otrzymanych wykresów. 
+Czy zgadza sie z teoretyczną złożonością ?
+ </li></ul>
+<!--
+<li> Bezposrednie metody rozwiazywania ukladow rownan
+<ul>
+<li> Porownac <a href=http://www.gnu.org/software/gsl/manual/html_node/Linear-Algebra.html>
+bezposrednie metody rozwiazywania ukladow 
+rownan</a> 
+dostepnych 
+w GSL (czas dzialania dla roznych rozmiarow macierzy)
+<li> Zmierzyc czasy dzialania programu (srednia z 10  pomiarow, 
+blad jako odchylenie standardowe), uzyc metody <a 
+href=http://www.gnu.org/software/gsl/manual/html_node/Fitting-Examples.html> 
+least square fit</a> 
+dostepnej w GSL do aproksymacji wynikow i oszacowania zlozonosci.
+</ul>
+<li> Przedstawic ciekawy test dot. w/w tematow uzywajac wybranych  <a 
+href=http://math.nist.gov/MatrixMarket/>macierzy do testow</a>.  Mile 
+widziane uzycie narzedzi do wizualizacji (Matrix Structure Plots,
+Matrix Cityplots) dostepnych na w/w  stronie.
+</ol>
+-->
+ 
+<br>
+
+<p>
+
+</p></div>
+</td>
+</tr>
+</tbody></table>
+
+
+
+
+</body></html>

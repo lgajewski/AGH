@@ -1,0 +1,77 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0050)http://home.agh.edu.pl/~kzajac/dydakt/mownit/lab4/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+
+<meta name="GENERATOR" content="vi">
+<title>Metody Numeryczne</title>
+</head>
+
+<body bgcolor="papayawhip">
+
+<table width="80%" height="90%" border="0" align="CENTER">
+<tbody><tr>
+<td align="CENTER">
+<div align="left">
+
+<hr>
+<h1>Interpolacja</h1>
+<hr>
+
+<h3>Materialy</h3>
+<ul>
+<li> <a href="http://www.gnu.org/software/gsl/manual/html_node/Interpolation.html">Interpolacja 
+w GSL</a>
+</li><li> <a href="http://www.icsr.agh.edu.pl/~mownit/output/pdf/interpolacja.pdf"> 
+rozdzial 3 wykladow
+dra Bubaka</a> 
+</li></ul>
+
+<h3>Zadanie</h3>
+<ul>
+<li>Porownanie wlasnych procedur interpolacji wielomianowej z
+funkcjonalonoscia GSL:
+<ul>
+<li>Wygenerowac tablice N punktow (x,y) 
+</li><li>Uzyc funkcji gsl do interpolacji wielomianowej 
+dla tych punktow - uzyc <code>gsl_interp_polynomial</code>. Narysowac jego 
+wykres.
+</li><li>Napisac 
+wlasny program generujacy dane (recznie - bez korzystania z gsl) do 
+narysowania 
+wykresu  wielomianu interpolujacego metoda Lagrange'a dla 
+tych punktow w 
+wybranym 
+przedziale. Postarac sie zaprojektowac API podobnie do GSL - osobna 
+funkcja <i>init</i> oraz <i>eval</i> Narysowac wykres.
+</li><li>Zrobic to samo metoda Newtona. Porownac wszystkie 3 wyniki na jednym 
+wykresie.
+</li><li>Porownac metody poprzez pomiar czasu wykonania. 
+Dokonac pomiaru 10 
+razy i policzyc wartosc srednia oraz oszacowac blad pomiaru za 
+pomoca odchylenia standardowego. Narysowac wykresy w R.
+</li><li>Poeksperymentowac z innymi  typami interpolacji gsl (cspline, akima), 
+zmierzyc czasy, narysowac wykresy i porownac z wykresami interpolacji 
+wielomianowej. 
+</li></ul> 
+</li><li>
+Zbadac i zademonstrowac algorytmy interpolacji stosowane w grafice 
+komputerowej (np. do zmiany wielkosci obrazu)
+<a href="http://www.algorytm.org/przetwarzanie-obrazow/zmiana-wielkosci-obrazu-interpolacja-dwukwadratowa.html"> 
+- przyklad </a>
+</li><li>Wymagane sprawozdanie zawierajace krotki opis zastosowanych metod  
+Lagrange'a i Newtona a takze wykresy, wyniki i wnioski (forma dowolna), 
+ktore nalezy pokazac w czasie nastepnego lab (nie wysylac)
+</li></ul> 
+<br>
+
+<p>
+
+</p></div>
+</td>
+</tr>
+</tbody></table>
+
+
+
+
+</body></html>
