@@ -1,0 +1,11 @@
+fun,alg,neval
+x2,trapez,130
+x2,qng,21
+x2,qag,1
+x2,qags,1
+x2,qagp,1
+sqrt_x,trapez,753
+sqrt_x,qng,43
+sqrt_x,qag,5
+sqrt_x,qags,3
+sqrt_x,qagp,3
