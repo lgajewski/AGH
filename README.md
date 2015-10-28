@@ -1,7 +1,7 @@
 # **sysopy**
 Operating Systems - AGH
 
-# **Exercises**
+## **Exercises**
 
 1. Memory management, libraries, time measurement
 	* bidirectional list
@@ -47,3 +47,6 @@ Operating Systems - AGH
 	* asynchronous operations
 	* TCP/UDP protocols
 
+---
+
+### Author: *Lukasz Gajewski*
