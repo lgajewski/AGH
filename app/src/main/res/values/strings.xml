@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">ChatApp</string>
+    <string name="title_activity_login">Log in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_username">Username</string>
+    <string name="log_in">Log in</string>
+
+    <string name="error_invalid_email">This username is invalid</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_username_too_short">Username is too short</string>
+    <string name="error_invalid_port">Port is invalid</string>
+    <string name="prompt_host">Host</string>
+    <string name="prompt_port">Port</string>
+    <string name="title_activity_home">Home</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="logged_users">Logged users</string>
+    <string name="title_activity_user_chat">UserChatActivity</string>
+    <string name="msg_input">Enter the message…</string>
+    <string name="no_user">No user</string>
+    <string name="title_activity_user">UserActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="statistics">View statistics</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="search">Search</string>
+    <string name="auth_problem">Authentication problem</string>
+    <string name="sent">Sent</string>
+    <string name="received">Received</string>
+</resources>
