@@ -1,0 +1,3 @@
+start=witam
+jak_leci=co slychac?
+koniec=zegnam

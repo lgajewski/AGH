@@ -1,0 +1,4 @@
+start=witam Pana, tu Zygmunt
+jak_leci=wszystko ok, a u Pana?
+uspiony=nie moge juz dluzej rozmawiac..
+koniec=do widzenia

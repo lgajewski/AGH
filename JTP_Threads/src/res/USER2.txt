@@ -1,0 +1,4 @@
+start=witam, Dorota z tej strony
+jak_leci=wszystko w porzadku
+uspiony=nic nie piszesz, wiec ide! pa!
+koniec=trzymaj sie

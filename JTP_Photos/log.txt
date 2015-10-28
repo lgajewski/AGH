@@ -1,0 +1,1312 @@
+[20:27:07] INFO  [Main] : Starting the program
+[20:27:07] INFO  [Main] : Server is starting
+[20:27:07] INFO  [Config] : Directory 'tasks' has been created successfully
+[20:27:07] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:27:07] INFO  [Manager] : Following directory: tasks
+[20:27:07] INFO  [Client] : Waiting for an integer..
+[20:27:10] INFO  [Client] : Unzipping: small-files.zip
+[20:27:10] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[20:27:10] INFO  [Manager] : 
+Files from 'tasks' processed in: 210 ms
+[20:27:10] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:27:10] INFO  [Client] : Waiting for an integer..
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[20:27:11] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[20:27:12] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[20:27:12] INFO  [Manager] : 
+Files from 'tasks' processed in: 951 ms
+[20:27:14] INFO  [Main] : Server interrupted. End of program.
+
+
+
+[20:27:14] INFO  [Manager] : Stopped to follow: tasks
+[20:27:25] INFO  [Main] : Starting the program
+[20:27:25] INFO  [Main] : Server is starting
+[20:27:25] INFO  [Client] : Waiting for an integer..
+[20:27:25] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:27:25] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:27:25] INFO  [Manager] : Following directory: tasks
+[20:27:27] INFO  [Client] : Unzipping: small-files.zip
+[20:27:27] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[20:27:27] INFO  [Manager] : 
+Files from 'tasks' processed in: 194 ms
+[20:27:27] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:27:27] INFO  [Client] : Waiting for an integer..
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[20:27:28] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[20:27:29] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[20:27:30] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[20:27:30] INFO  [Manager] : 
+Files from 'tasks' processed in: 1907 ms
+[20:27:34] INFO  [Main] : Server interrupted. End of program.
+
+
+
+[20:27:34] INFO  [Manager] : Stopped to follow: tasks
+[20:38:29] INFO  [Main] : Starting the program
+[20:38:29] INFO  [Main] : Server is starting
+[20:39:04] INFO  [Main] : Starting the program
+[20:39:04] INFO  [Main] : Server is starting
+[20:39:04] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:39:04] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:39:04] INFO  [Manager] : Following directory: tasks
+[20:40:14] INFO  [Main] : Starting the program
+[20:40:14] INFO  [Main] : Server is starting
+[20:40:14] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:40:14] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:40:14] INFO  [Manager] : Following directory: tasks
+[20:40:14] INFO  [Client] : Waiting for an integer..
+[20:40:16] INFO  [Client] : Unzipping: small-files.zip
+[20:40:16] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[20:40:16] INFO  [Manager] : 
+Files from 'tasks' processed in: 174 ms
+[20:40:16] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:40:16] INFO  [Client] : Waiting for an integer..
+[20:40:17] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[20:40:17] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[20:40:17] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[20:40:17] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[20:40:18] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[20:40:19] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[20:40:19] INFO  [Manager] : 
+Files from 'tasks' processed in: 1938 ms
+[20:40:21] INFO  [Main] : Server interrupted. End of program.
+
+
+
+[20:40:21] INFO  [Manager] : Stopped to follow: tasks
+[20:40:29] INFO  [Main] : Starting the program
+[20:40:29] INFO  [Main] : Server is starting
+[20:40:29] INFO  [Client] : Waiting for an integer..
+[20:40:29] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:40:29] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:40:29] INFO  [Manager] : Following directory: tasks
+[20:40:31] INFO  [Client] : Unzipping: small-files.zip
+[20:40:31] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[20:40:31] INFO  [Manager] : 
+Files from 'tasks' processed in: 205 ms
+[20:40:31] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:40:31] INFO  [Client] : Waiting for an integer..
+[20:40:32] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[20:40:32] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[20:40:32] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[20:40:33] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[20:40:33] INFO  [Manager] : 
+Files from 'tasks' processed in: 976 ms
+[20:40:36] INFO  [Main] : Server interrupted. End of program.
+
+
+
+[20:40:36] INFO  [Manager] : Stopped to follow: tasks
+[20:44:19] INFO  [MainServer] : Starting the program
+[20:44:19] INFO  [MainServer] : Server is starting
+[20:44:19] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:44:19] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:44:19] INFO  [Manager] : Following directory: tasks
+[20:45:11] INFO  [MainServer] : Starting the program
+[20:45:11] INFO  [MainServer] : Server is starting
+[20:45:11] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:45:11] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:45:11] INFO  [Manager] : Following directory: tasks
+[20:45:16] INFO  [MainClient] : Starting the program
+[20:45:16] INFO  [MainClient] : Client is starting
+[20:45:16] INFO  [Client] : Waiting for an integer..
+[20:45:26] INFO  [Client] : Unzipping: heavy-files.zip
+[20:45:27] INFO  [ZIP] : Successfully unzipped: src\res\heavy-files.zip
+[20:45:27] INFO  [Client] : Waiting for an integer..
+[20:45:29] INFO  [JPG] : Writed JPG file to: heavy (1).jpg
+[20:45:29] INFO  [Manager] : 
+Files from 'tasks' processed in: 3108 ms
+[20:45:32] INFO  [JPG] : Writed JPG file to: heavy (4).jpg
+[20:45:34] INFO  [JPG] : Writed JPG file to: heavy (5).jpg
+[20:45:35] INFO  [JPG] : Writed JPG file to: heavy (2).jpg
+[20:45:37] INFO  [JPG] : Writed JPG file to: heavy (6).jpg
+[20:45:39] INFO  [JPG] : Writed JPG file to: heavy (3).jpg
+[20:45:39] INFO  [Manager] : 
+Files from 'tasks' processed in: 9076 ms
+[20:45:43] INFO  [Client] : Unzipping: medium-files.zip
+[20:45:44] INFO  [JPG] : Writed JPG file to: medium-files (1).jpg
+[20:45:44] INFO  [Manager] : 
+Files from 'tasks' processed in: 704 ms
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (24).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (27).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (10).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (25).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (11).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (12).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (15).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (20).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (29).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (21).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (18).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (2).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (17).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (26).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (28).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (22).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (16).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (31).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (30).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (19).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (14).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (3).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (13).jpg
+[20:45:50] INFO  [JPG] : Writed JPG file to: medium-files (23).jpg
+[20:45:51] INFO  [JPG] : Writed JPG file to: medium-files (32).jpg
+[20:45:51] INFO  [ZIP] : Successfully unzipped: src\res\medium-files.zip
+[20:45:51] INFO  [Client] : Waiting for an integer..
+[20:45:51] INFO  [Manager] : 
+Files from 'tasks' processed in: 5825 ms
+[20:45:54] INFO  [JPG] : Writed JPG file to: medium-files (7).jpg
+[20:45:54] INFO  [JPG] : Writed JPG file to: medium-files (41).jpg
+[20:45:54] INFO  [JPG] : Writed JPG file to: medium-files (9).jpg
+[20:45:54] INFO  [JPG] : Writed JPG file to: medium-files (34).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (4).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (8).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (37).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (40).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (36).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (39).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (33).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (6).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (5).jpg
+[20:45:55] INFO  [JPG] : Writed JPG file to: medium-files (35).jpg
+[20:45:55] INFO  [Manager] : 
+Files from 'tasks' processed in: 3179 ms
+[20:45:59] INFO  [Client] : Unzipping: small-files.zip
+[20:45:59] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[20:45:59] INFO  [Manager] : 
+Files from 'tasks' processed in: 101 ms
+[20:46:00] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:46:00] INFO  [Client] : Waiting for an integer..
+[20:46:01] INFO  [Client] : Unzipping: wm_img.zip
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[20:46:01] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[20:46:01] INFO  [ZIP] : Successfully unzipped: src\res\wm_img.zip
+[20:46:01] INFO  [Client] : Waiting for an integer..
+[20:46:01] INFO  [Manager] : 
+Files from 'tasks' processed in: 955 ms
+[20:46:01] INFO  [Client] : Unzipping: wm_txt.zip
+[20:46:01] INFO  [ZIP] : Successfully unzipped: src\res\wm_txt.zip
+[20:46:01] INFO  [Client] : Waiting for an integer..
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (19).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (15).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (17).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (13).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (28).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (16).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (5).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (11).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (8).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (22).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (29).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (26).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (12).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (7).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (30).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (23).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (21).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (10).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (3).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (27).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (2).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (4).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (31).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (9).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (1).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (25).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (18).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (24).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (20).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (14).jpg
+[20:46:03] INFO  [WaterMarker] : Writed WM file to: wm_file (6).jpg
+[20:46:03] INFO  [Manager] : 
+Files from 'tasks' processed in: 555 ms
+[20:53:30] INFO  [MainClient] : Starting the program
+[20:53:30] INFO  [MainClient] : Client is starting
+[20:53:30] INFO  [Client] : Waiting for an integer..
+[20:53:33] DEBUG [Manager] : Undefined file extension
+[20:53:33] INFO  [Manager] : 
+Files from 'tasks' processed in: 1 ms
+[20:53:39] INFO  [MainClient] : Starting the program
+[20:53:39] INFO  [MainClient] : Client is starting
+[20:53:39] INFO  [Client] : Waiting for an integer..
+[20:53:47] INFO  [Client] : Unzipping: small-files.zip
+[20:53:48] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:53:48] INFO  [Client] : Waiting for an integer..
+[20:53:55] INFO  [Client] : Unzipping: small-files.zip
+[20:53:55] DEBUG [Manager] : Undefined file extension
+[20:53:56] INFO  [JPG] : Writed JPG file to: small (1)_2.jpg
+[20:53:56] INFO  [Manager] : 
+Files from 'tasks' processed in: 100 ms
+[20:53:56] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:53:56] INFO  [Client] : Waiting for an integer..
+[20:53:56] INFO  [Client] : Unzipping: small-files.zip
+[20:53:56] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:53:56] INFO  [Client] : Waiting for an integer..
+[20:53:57] DEBUG [Manager] : Undefined file extension
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (52)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (47)_2.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (47)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (9)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (46)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (61)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (18)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (63)_2.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (25)_2.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (53)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (28)_2.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (68)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (54)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (50)_3.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (24)_2.jpg
+[20:53:57] INFO  [JPG] : Writed JPG file to: small (35)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (62)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (15)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (50)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (32)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (59)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (29)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (53)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (18)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (60)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (19)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (36)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (4)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (38)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (25)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (32)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (59)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (23)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (11)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (40)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (5)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (12)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (58)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (34)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (1)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (26)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (51)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (8)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (39)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (2)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (22)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (15)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (64)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (37)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (45)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (33)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (51)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (30)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (48)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (16)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (38)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (27)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (57)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (56)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (23)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (57)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (27)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (56)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (16)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (37)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (28)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (65)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (10)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (44)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (17)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (20)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (29)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (9)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (58)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (64)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (63)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (49)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (49)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (61)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (60)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (62)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (67)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (44)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (6)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (42)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (66)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (12)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (30)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (13)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (33)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (36)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (40)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (69)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (2)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (8)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (55)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (43)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (31)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (21)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (17)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (55)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (3)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (4)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (68)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (14)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (48)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (39)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (26)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (31)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (41)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (34)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (43)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (66)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (69)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (24)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (6)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (7)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (19)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (42)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (14)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (35)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (45)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (52)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (22)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (3)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (67)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (5)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (10)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (7)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (65)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (46)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (21)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (20)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (11)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (13)_3.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (54)_2.jpg
+[20:53:58] INFO  [JPG] : Writed JPG file to: small (41)_3.jpg
+[20:53:58] INFO  [Manager] : 
+Files from 'tasks' processed in: 1771 ms
+[20:54:02] DEBUG [Client] : NoSuchElementException - unexpected end of program
+
+
+
+[20:54:08] INFO  [MainClient] : Starting the program
+[20:54:08] INFO  [MainClient] : Client is starting
+[20:54:08] INFO  [Client] : Waiting for an integer..
+[20:54:11] INFO  [MainClient] : Starting the program
+[20:54:11] INFO  [MainClient] : Client is starting
+[20:54:11] INFO  [Client] : Waiting for an integer..
+[20:54:15] DEBUG [Client] : NoSuchElementException - unexpected end of program
+
+
+
+[20:54:17] DEBUG [Client] : NoSuchElementException - unexpected end of program
+
+
+
+[20:54:23] INFO  [MainClient] : Starting the program
+[20:54:23] INFO  [MainClient] : Client is starting
+[20:54:23] INFO  [Client] : Waiting for an integer..
+[20:54:32] INFO  [MainClient] : Starting the program
+[20:54:32] INFO  [MainClient] : Client is starting
+[20:54:32] INFO  [Client] : Waiting for an integer..
+[20:54:41] INFO  [MainServer] : Starting the program
+[20:54:41] INFO  [MainServer] : Server is starting
+[20:54:41] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:54:41] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:54:41] INFO  [Manager] : Following directory: tasks
+[20:54:44] INFO  [Client] : Unzipping: small-files.zip
+[20:54:44] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[20:54:44] INFO  [Manager] : 
+Files from 'tasks' processed in: 207 ms
+[20:54:45] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[20:54:45] INFO  [Client] : Waiting for an integer..
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[20:54:46] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[20:54:46] INFO  [Manager] : 
+Files from 'tasks' processed in: 1030 ms
+[20:54:58] DEBUG [Manager] : Undefined file extension
+[20:54:58] INFO  [Manager] : 
+Files from 'tasks' processed in: 1 ms
+[20:56:13] INFO  [MainServer] : Starting the program
+[20:56:13] INFO  [MainServer] : Server is starting
+[20:56:13] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:56:13] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:56:13] INFO  [Manager] : Following directory: tasks
+[20:56:16] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[20:56:16] INFO  [Manager] : 
+Files from 'tasks' processed in: 106 ms
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[20:56:17] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[20:56:18] INFO  [Manager] : 
+Files from 'tasks' processed in: 438 ms
+[20:58:47] INFO  [MainServer] : Starting the program
+[20:58:47] INFO  [MainServer] : Server is starting
+[20:58:47] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:58:47] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:58:47] INFO  [Manager] : Following directory: tasks
+[20:58:53] INFO  [MainServer] : Starting the program
+[20:58:53] INFO  [MainServer] : Server is starting
+[20:58:53] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:58:53] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:58:53] INFO  [Manager] : Following directory: tasks
+[20:59:02] INFO  [MainServer] : Starting the program
+[20:59:02] INFO  [MainServer] : Server is starting
+[20:59:02] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:59:02] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[20:59:02] INFO  [Manager] : Following directory: tasks
+[20:59:05] INFO  [MainClient] : Starting the program
+[20:59:05] INFO  [MainClient] : Client is starting
+[20:59:05] INFO  [Client] : Waiting for an integer..
+[20:59:06] INFO  [MainServer] : Server interrupted. End of program.
+
+
+
+[20:59:06] INFO  [Manager] : 
+Files from 'tasks' processed in: 6 ms
+[09:46:30] INFO  [MainServer] : Starting the program
+[09:46:30] INFO  [MainServer] : Server is starting
+[09:46:30] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[09:46:30] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[09:46:30] INFO  [Manager] : Following directory: tasks
+[09:46:32] INFO  [MainClient] : Starting the program
+[09:46:32] INFO  [MainClient] : Client is starting
+[09:46:32] INFO  [Client] : Waiting for an integer..
+[09:46:35] INFO  [Client] : Unzipping: heavy-files.zip
+[09:46:38] INFO  [ZIP] : Successfully unzipped: src\res\heavy-files.zip
+[09:46:38] INFO  [Client] : Waiting for an integer..
+[09:46:40] INFO  [JPG] : Writed JPG file to: heavy (1).jpg
+[09:46:40] INFO  [Manager] : 
+Files from 'tasks' processed in: 4638 ms
+[09:46:43] INFO  [JPG] : Writed JPG file to: heavy (4).jpg
+[09:46:45] INFO  [JPG] : Writed JPG file to: heavy (5).jpg
+[09:46:45] INFO  [JPG] : Writed JPG file to: heavy (2).jpg
+[09:46:45] INFO  [Client] : Unzipping: medium-files.zip
+[09:46:47] INFO  [JPG] : Writed JPG file to: heavy (6).jpg
+[09:46:49] INFO  [ZIP] : Successfully unzipped: src\res\medium-files.zip
+[09:46:49] INFO  [Client] : Waiting for an integer..
+[09:46:50] INFO  [JPG] : Writed JPG file to: heavy (3).jpg
+[09:46:50] INFO  [Manager] : 
+Files from 'tasks' processed in: 9334 ms
+[09:46:51] INFO  [Client] : Unzipping: medium-files.zip
+[09:46:58] INFO  [JPG] : Writed JPG file to: medium-files (11).jpg
+[09:46:58] INFO  [JPG] : Writed JPG file to: medium-files (10)_2.jpg
+[09:47:00] INFO  [JPG] : Writed JPG file to: medium-files (8).jpg
+[09:47:00] INFO  [JPG] : Writed JPG file to: medium-files (12).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (21).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (1)_2.jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (23).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (19).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (10).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (39).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (15).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (13).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (5).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (29).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (36).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (26).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (25).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (30).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (31).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (1).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (41).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (16).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (24).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (14).jpg
+[09:47:01] INFO  [JPG] : Writed JPG file to: medium-files (27).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (9).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (3).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (34).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (32).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (40).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (18).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (28).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (7).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (22).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (4).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (35).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (2).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (33).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (37).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (20).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (6).jpg
+[09:47:02] INFO  [JPG] : Writed JPG file to: medium-files (17).jpg
+[09:47:02] INFO  [Manager] : 
+Files from 'tasks' processed in: 10756 ms
+[09:47:03] INFO  [ZIP] : Successfully unzipped: src\res\medium-files.zip
+[09:47:03] INFO  [Client] : Waiting for an integer..
+[09:47:03] INFO  [Client] : Unzipping: medium-files.zip
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (19)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (12)_3.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (13)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (4)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (31)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (29)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (11)_3.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (12)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (11)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (9)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (35)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (37)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (30)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (1)_3.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (36)_2.jpg
+[09:47:11] INFO  [JPG] : Writed JPG file to: medium-files (20)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (24)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (5)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (40)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (27)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (8)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (2)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (26)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (18)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (32)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (14)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (7)_2.jpg
+[09:47:12] INFO  [JPG] : Writed JPG file to: medium-files (6)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (3)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (25)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (41)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (21)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (34)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (16)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (15)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (17)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (22)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (39)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (10)_3.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (23)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (33)_2.jpg
+[09:47:13] INFO  [JPG] : Writed JPG file to: medium-files (28)_2.jpg
+[09:47:13] INFO  [Manager] : 
+Files from 'tasks' processed in: 10085 ms
+[09:47:17] INFO  [ZIP] : Successfully unzipped: src\res\medium-files.zip
+[09:47:17] INFO  [Client] : Waiting for an integer..
+[09:47:21] INFO  [JPG] : Writed JPG file to: medium-files (31)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (34)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (25)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (33)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (18)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (27)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (15)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (30)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (19)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (4)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (28)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (14)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (3)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (5)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (2)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (35)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (29)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (40)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (32)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (20)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (6)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (26)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (39)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (36)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (22)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (41)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (37)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (23)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (16)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (13)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (21)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (24)_3.jpg
+[09:47:22] INFO  [JPG] : Writed JPG file to: medium-files (17)_3.jpg
+[09:47:22] INFO  [Manager] : 
+Files from 'tasks' processed in: 7672 ms
+[09:47:24] INFO  [JPG] : Writed JPG file to: medium-files (7)_3.jpg
+[09:47:24] INFO  [JPG] : Writed JPG file to: medium-files (8)_3.jpg
+[09:47:24] INFO  [JPG] : Writed JPG file to: medium-files (9)_3.jpg
+[09:47:24] INFO  [Manager] : 
+Files from 'tasks' processed in: 739 ms
+[09:48:42] DEBUG [Client] : NoSuchElementException - unexpected end of program
+
+
+
+[01:23:19] INFO  [MainClient] : Starting the program
+[01:23:19] INFO  [MainClient] : Client is starting
+[01:23:19] INFO  [Client] : Waiting for an integer..
+[01:23:48] INFO  [Client] : Unzipping: small-files.zip
+[01:23:48] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[01:23:48] INFO  [Client] : Waiting for an integer..
+[01:23:59] INFO  [MainServer] : Starting the program
+[01:23:59] INFO  [MainServer] : Server is starting
+[01:23:59] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[01:23:59] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[01:23:59] INFO  [Manager] : Following directory: tasks
+[01:24:05] INFO  [Client] : Unzipping: small-files.zip
+[01:24:06] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[01:24:06] INFO  [Client] : Waiting for an integer..
+[01:24:06] INFO  [JPG] : Writed JPG file to: small (1)_2.jpg
+[01:24:06] INFO  [Manager] : 
+Files from 'tasks' processed in: 532 ms
+[01:24:07] INFO  [JPG] : Writed JPG file to: small (54)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (19)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (35)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (45)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (51)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (4)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (20)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (7)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (17)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (26)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (43)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (12)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (39)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (67)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (36)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (21)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (15)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (47)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (66)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (25)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (58)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (50)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (16)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (28)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (38)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (37)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (33)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (29)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (32)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (65)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (57)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (62)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (30)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (46)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (61)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (68)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (22)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (48)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (24)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (64)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (40)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (23)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (69)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (13)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (10)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (11)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (41)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (31)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (5)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (14)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (63)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (6)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (42)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (3)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (52)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (55)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (2)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (59)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (44)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (34)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (27)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (53)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (9)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (8)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (49)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (56)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (18)_2.jpg
+[01:24:08] INFO  [JPG] : Writed JPG file to: small (60)_2.jpg
+[01:24:08] INFO  [Manager] : 
+Files from 'tasks' processed in: 1131 ms
+[01:24:14] DEBUG [Client] : NoSuchElementException - unexpected end of program
+
+
+
+[10:04:22] INFO  [MainServer] : Starting the program
+[10:04:22] INFO  [MainServer] : Server is starting
+[10:04:22] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[10:04:22] INFO  [Config] : Directory 'tasks' has been cleared successfully
+[10:04:22] INFO  [Manager] : Following directory: tasks
+[10:04:32] INFO  [MainClient] : Starting the program
+[10:04:32] INFO  [MainClient] : Client is starting
+[10:04:32] INFO  [Client] : Waiting for an integer..
+[10:05:04] INFO  [Client] : Unzipping: heavy-files.zip
+[10:05:05] INFO  [ZIP] : Successfully unzipped: src\res\heavy-files.zip
+[10:05:05] INFO  [Client] : Waiting for an integer..
+[10:05:07] INFO  [JPG] : Writed JPG file to: heavy (1).jpg
+[10:05:07] INFO  [Manager] : 
+Files from 'tasks' processed in: 3415 ms
+[10:05:10] INFO  [JPG] : Writed JPG file to: heavy (4).jpg
+[10:05:12] INFO  [JPG] : Writed JPG file to: heavy (5).jpg
+[10:05:14] INFO  [JPG] : Writed JPG file to: heavy (2).jpg
+[10:05:14] INFO  [JPG] : Writed JPG file to: heavy (6).jpg
+[10:05:17] INFO  [JPG] : Writed JPG file to: heavy (3).jpg
+[10:05:17] INFO  [Manager] : 
+Files from 'tasks' processed in: 8867 ms
+[10:05:18] INFO  [Client] : Unzipping: medium-files.zip
+[10:05:19] INFO  [JPG] : Writed JPG file to: medium-files (12).jpg
+[10:05:19] INFO  [JPG] : Writed JPG file to: medium-files (10).jpg
+[10:05:19] INFO  [JPG] : Writed JPG file to: medium-files (11).jpg
+[10:05:19] INFO  [JPG] : Writed JPG file to: medium-files (1).jpg
+[10:05:19] INFO  [Manager] : 
+Files from 'tasks' processed in: 1170 ms
+[10:05:24] INFO  [JPG] : Writed JPG file to: medium-files (22).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (34).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (2).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (25).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (14).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (24).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (18).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (32).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (15).jpg
+[10:05:25] INFO  [ZIP] : Successfully unzipped: src\res\medium-files.zip
+[10:05:25] INFO  [Client] : Waiting for an integer..
+[10:05:25] INFO  [Client] : Unzipping: small-files.zip
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (23).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (20).jpg
+[10:05:25] INFO  [JPG] : Writed JPG file to: medium-files (31).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (26).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (13).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (16).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (28).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (35).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (29).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (30).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (3).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (33).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (17).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (21).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (27).jpg
+[10:05:26] INFO  [JPG] : Writed JPG file to: medium-files (19).jpg
+[10:05:26] INFO  [Manager] : 
+Files from 'tasks' processed in: 5861 ms
+[10:05:26] INFO  [ZIP] : Successfully unzipped: src\res\small-files.zip
+[10:05:26] INFO  [Client] : Waiting for an integer..
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (36).jpg
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (21).jpg
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (7).jpg
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (46).jpg
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (63).jpg
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (6).jpg
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (65).jpg
+[10:05:27] INFO  [JPG] : Writed JPG file to: small (20).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (45).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (48).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (44).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (52).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (39).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (58).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (12).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (26).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (50).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (66).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (11).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (68).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (15).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (16).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (35).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (31).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (3).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (60).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (33).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (2).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (34).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (53).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (38).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (64).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (27).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (43).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (55).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (10).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (47).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (18).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (57).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (14).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (25).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (59).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (17).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (32).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (9).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (4).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (67).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (61).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (5).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (13).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (51).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (37).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (24).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (62).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (69).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (41).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (23).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (54).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (40).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (1).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (29).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (22).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (30).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (49).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (28).jpg
+[10:05:28] INFO  [JPG] : Writed JPG file to: small (19).jpg
+[10:05:29] INFO  [JPG] : Writed JPG file to: small (8).jpg
+[10:05:29] INFO  [JPG] : Writed JPG file to: small (42).jpg
+[10:05:29] INFO  [JPG] : Writed JPG file to: small (56).jpg
+[10:05:29] INFO  [JPG] : Writed JPG file to: medium-files (5).jpg
+[10:05:29] INFO  [JPG] : Writed JPG file to: medium-files (9).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (39).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (40).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (7).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (36).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (37).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (8).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (41).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (6).jpg
+[10:05:30] INFO  [JPG] : Writed JPG file to: medium-files (4).jpg
+[10:05:30] INFO  [Manager] : 
+Files from 'tasks' processed in: 3216 ms
