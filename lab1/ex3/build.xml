@@ -20,7 +20,7 @@
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
     <jar jarfile="${jar}/ex3.jar" basedir="${build}">
 		<manifest>
-    		<attribute name="Main-Class" value="lgajewski.distributed.ex3.server.Main"/>
+    		<attribute name="Main-Class" value="lgajewski.distributed.ex3.chat.Main"/>
   		</manifest>
     </jar>
   </target>
