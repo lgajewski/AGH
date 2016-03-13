@@ -1,0 +1,6 @@
+content of file1.txt
+
+1 + 2 = 6
+
+
+.

@@ -12,7 +12,7 @@ compile:
 	$(CC) $(P1).c -o $(P1)
 	
 
-PROJ = ex2
+PROJ = ex1
 
 #JAVA
 

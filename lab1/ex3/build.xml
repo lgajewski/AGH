@@ -1,4 +1,4 @@
-<project name="ex2" default="dist" basedir=".">
+<project name="ex3" default="dist" basedir=".">
   <!-- set global properties for this build -->
   <property name="src" location="src"/>
   <property name="build" location="build"/>
@@ -18,9 +18,9 @@
 
   <target name="dist" depends="compile" description="generate the distribution">
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${jar}/ex2.jar" basedir="${build}">
+    <jar jarfile="${jar}/ex3.jar" basedir="${build}">
 		<manifest>
-    		<attribute name="Main-Class" value="lgajewski.distributed.ex2.server.Main"/>
+    		<attribute name="Main-Class" value="lgajewski.distributed.ex3.server.Main"/>
   		</manifest>
     </jar>
   </target>
@@ -30,6 +30,6 @@
   </target>
 
   <target name="run">
-        <java jar="${jar}/ex2.jar" fork="true"/>
+        <java jar="${jar}/ex3.jar" fork="true"/>
     </target>
 </project>

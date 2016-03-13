@@ -5,23 +5,25 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <libgen.h>
 
 #define BUFFER_SIZE 1024
 
 int port = 1234;
 char* host = "127.0.0.1";
-char* file_name;
+char* file_path;
 
 int send_file(FILE * file, int c_socket);
 void read_args(char* argv[]);
+int send_filename(int c_socket);
 
 int main(int argc, char* argv[]) {
   if (argc == 2) {
-    file_name = argv[1];
+    file_path = argv[1];
   } else if (argc == 4) {
     host = argv[1];
     port = atoi(argv[2]);
-    file_name = argv[3];
+    file_path = argv[3];
   } else {
     printf("\nUsage:\n");
     printf("\t %s <file to transfer>\n", argv[0]);
@@ -30,10 +32,10 @@ int main(int argc, char* argv[]) {
   }
 
   // open file in a binary mode
-  printf("Opening file '%s'", file_name);
-  FILE * file = fopen(file_name, "rb");
-  if (file < 0) {
-    printf("Cannot open file: %s\n", argv[2]);
+  printf("Opening file '%s'..\n", file_path);
+  FILE * file = fopen(file_path, "rb");
+  if (file == NULL) {
+    printf("Cannot open file: %s\n", file_path);
     exit(-1);
   }
 
@@ -60,12 +62,20 @@ int main(int argc, char* argv[]) {
     exit(-3);
   }
 
-  printf("Sending file '%s' to the server..", file_name);
+  printf("Sending file '%s' to the server..\n", file_path);
+
+  if (send_filename(c_socket) == -1) {
+    printf("Failed to send filename to the server!\n");
+    close(c_socket);
+    fclose(file);
+    exit(-4);
+  }
+
   if (send_file(file, c_socket) == -1) {
     printf("Failure with sending file to the server!\n");
     close(c_socket);
     fclose(file);
-    exit(-4);
+    exit(-5);
   }
 
   close(c_socket);
@@ -73,31 +83,59 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
+int send_filename(int c_socket) {
+  // retrieve filename and its length
+  char* filename = basename(file_path);
+  int filename_length = htonl(strlen(filename));
+
+  // send length of filename
+  if(send(c_socket, &filename_length, 4, 0) < 0) {
+    printf("Failed to send filename length\n");
+    return -1;
+  }
+
+  // send filename
+  if(send(c_socket, filename, strlen(filename), 0) < 0) {
+    printf("Failed to send filename\n");
+    return -1;
+  }
+
+  return 0;
+}
+
 int send_file(FILE * file, int c_socket) {
-  int total_sent = 0, length;
+  int sent_bytes = 0, file_length;
   char buffer[BUFFER_SIZE];
 
-  // get file length
+  // get file file_length
   fseek(file, 0L, SEEK_END);
-  length = ftell(file);
+  file_length = ftell(file);
   fseek(file, 0L, SEEK_SET);
 
   // convert integer from host byte order to network byte order
-  int rlength = htonl(length);
+  int nfile_length = htonl(file_length);
 
   // send length of file through the socket
-  send(c_socket, &rlength, 4, 0);
+  if(send(c_socket, &nfile_length, 4, 0) < 0) {
+    printf("Failed to send length of a file\n");
+    return -1;
+  }
   
-  while (total_sent < length) {
-    int bytes_read = fread(buffer, 1, BUFFER_SIZE, file);
-    
-    if (send(c_socket, buffer, bytes_read, 0) < bytes_read) {
+  // send file by chunks
+  printf("\t|  SENT  |  READ  |  LEFT  |\n");
+  while (sent_bytes < file_length) {
+    int read_bytes = fread(buffer, 1, BUFFER_SIZE, file);
+    int sent_last_chunk = send(c_socket, buffer, read_bytes, 0);
+
+    printf("\t| %6d | %6d | %6d |\n", sent_bytes, read_bytes, file_length - sent_bytes);
+
+    if (sent_last_chunk < read_bytes) {
       printf("Failure sending file chunk.\n");
       return -1;
     }
     
-    total_sent += bytes_read;
+    sent_bytes += read_bytes;
   }
 
-  return total_sent;
+  return sent_bytes;
 }
