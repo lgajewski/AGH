@@ -23,17 +23,23 @@ public class EventListener extends UnicastRemoteObject implements IEventListener
 
     public void playerMove() throws RemoteException {
         boolean valid = false;
-        do {
-            System.out.print("enter your move (row[1-3] column[1-3]): ");
-            int row = in.nextInt() - 1;
-            int col = in.nextInt() - 1;
-            if (gameBoard.isValidMove(nick, row, col)) {
-                gameBoard.setSeed(nick, row, col);
-                valid = true;
-            } else {
-                System.out.println("This move at (" + (row + 1) + "," + (col + 1) + ") is not valid. Try again...");
-            }
-        } while (!valid);
+        try {
+            do {
+                System.out.print("enter your move (row[1-3] column[1-3]): ");
+                int row, col;
+                row = in.nextInt() - 1;
+                col = in.nextInt() - 1;
+                if (gameBoard.isValidMove(nick, row, col)) {
+                    gameBoard.setSeed(nick, row, col);
+                    valid = true;
+                } else {
+                    System.out.println("This move at (" + (row + 1) + "," + (col + 1) + ") is not valid. Try again...");
+                }
+            } while (!valid);
+        } catch (Exception e) {
+            System.err.println("error: incorrect input.. exiting");
+            System.exit(-1);
+        }
     }
 
     @Override
@@ -45,22 +51,20 @@ public class EventListener extends UnicastRemoteObject implements IEventListener
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        do {
-            try {
-                option = scanner.nextInt();
-            } catch (Exception e) {
-                option = 0;
-            }
-            switch (option) {
-                case 1:
-                case 2:
-                    gameBoard.selectMode(nick, option);
-                    break;
-                default:
-                    System.out.println("Unrecognized option! Try again..");
-                    option = 0;
-            }
-        } while (option == 0);
+        try {
+            option = scanner.nextInt();
+        } catch (Exception e) {
+            option = 3;
+        }
+        switch (option) {
+            case 1:
+            case 2:
+                gameBoard.selectMode(nick, option);
+                break;
+            default:
+                System.out.println("Unrecognized option! Try again..");
+                System.exit(0);
+        }
     }
 
     @Override

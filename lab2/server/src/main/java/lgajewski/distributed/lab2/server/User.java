@@ -7,13 +7,23 @@ public class User {
     private String nick;
     private IEventListener listener;
 
-    private User opponent;
+    private User opponent = null;
+
+    private Board board;
 
     private Seed seed = Seed.CROSS;
 
     public User(String nick, IEventListener listener) {
         this.nick = nick;
         this.listener = listener;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     public Seed getSeed() {

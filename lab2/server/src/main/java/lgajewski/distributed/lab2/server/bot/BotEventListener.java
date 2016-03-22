@@ -35,12 +35,10 @@ public class BotEventListener extends UnicastRemoteObject implements IEventListe
         int row = 0;
         int col = 0;
         do {
-            row = new Random().nextInt(3) + 1;
-            col = new Random().nextInt(3) + 1;
+            row = new Random().nextInt(3);
+            col = new Random().nextInt(3);
         } while (!gameBoard.isValidMove(nick, row, col));
 
-
-        System.out.println(nick + ": setSeed [" + row + "," + col + "]");
         gameBoard.setSeed(nick, row, col);
     }
 

@@ -1,9 +1,7 @@
 package lgajewski.distributed.lab2.server;
 
-import lgajewski.distributed.lab2.common.IGameBoard;
-
 import java.rmi.Naming;
-import java.rmi.server.UnicastRemoteObject;
+import java.rmi.registry.LocateRegistry;
 
 public class GameBoardServer {
 
@@ -15,14 +13,12 @@ public class GameBoardServer {
             }
 
             String name = "rmi://" + args[0] + ":" + args[1] + "/game";
-
+            LocateRegistry.createRegistry(Integer.parseInt(args[1]));
             GameBoardImpl nbi = new GameBoardImpl();
-            IGameBoard nb = (IGameBoard) UnicastRemoteObject.exportObject(nbi, 0);
-            Naming.rebind(name, nb);
+            Naming.rebind(name, nbi);
             System.out.println("Listening..");
         } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }

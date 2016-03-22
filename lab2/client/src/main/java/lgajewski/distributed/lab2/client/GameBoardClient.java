@@ -18,15 +18,27 @@ public class GameBoardClient {
             }
 
             String name = "rmi://" + args[0] + ":" + args[1] + "/game";
-            IGameBoard nb = (IGameBoard) Naming.lookup(name);
+            final IGameBoard nb = (IGameBoard) Naming.lookup(name);
 
-            String nick = args[2];
+            final String nick = args[2];
 
-            IEventListener listener = new EventListener(nb, nick);
+            final IEventListener listener = new EventListener(nb, nick);
             nb.register(nick, listener);
 
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                @Override
+                public void run() {
+                    System.out.println("\ncleanup ...");
+                    try {
+                        nb.unregister(nick);
+                    } catch (RemoteException e) {
+                        System.out.println("server already terminated");
+                    }
+                }
+            });
+
         } catch (RemoteException | NotBoundException | MalformedURLException e) {
-            e.printStackTrace();
+            System.err.println("Error: " + e.getMessage());
         }
     }
 
