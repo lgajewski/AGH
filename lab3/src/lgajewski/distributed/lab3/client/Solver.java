@@ -73,22 +73,19 @@ public class Solver implements JMSClient, Runnable {
         topicConnection.start();
 
         queueConsumer.setMessageListener(message -> {
-            System.out.println("\t[S] got message: " + message);
-
             try {
 
                 if (message != null && message instanceof TextMessage) {
                     TextMessage textMessage = (TextMessage) message;
 
                     String solved = solveEquation(textMessage.getText());
-                    System.out.println("\t[S] solved equation: " + solved);
                     Message result = topicSession.createTextMessage(solved);
 
-                    System.out.println("\t[S] Forwarding to topic: " + task.getTopicName());
+                    System.out.format("\t[S - %s] solved equation: %s, forwarding to topic: %s\n", task.name(), solved, task.getTopicName());
                     topicPublisher.send(result);
 
                 } else {
-                    System.out.println("\t[S] unknown message");
+                    System.out.format("\t[S - %s] unknown message\n", task.name());
                 }
 
             } catch (JMSException e) {

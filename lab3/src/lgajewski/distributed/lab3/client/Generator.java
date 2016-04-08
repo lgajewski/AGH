@@ -62,7 +62,7 @@ public class Generator implements JMSClient, Runnable {
         connection.start();
 
         String equation = generateEquation(task.getOperator());
-        System.out.println("[G] sending task: " + equation + ", task: " + task.name());
+        System.out.format("[G - %s] sending equation: %s\n", task.name(), equation);
 
         // send a TextMessage and set task property
         Message message = session.createTextMessage(equation);

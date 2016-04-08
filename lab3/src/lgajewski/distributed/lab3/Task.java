@@ -43,5 +43,9 @@ public enum Task {
         public E random() {
             return values[RND.nextInt(values.length)];
         }
+
+        E index(int i) {
+            return values[i % values.length];
+        }
     }
 }

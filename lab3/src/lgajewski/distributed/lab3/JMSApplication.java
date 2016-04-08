@@ -15,10 +15,11 @@ import java.util.Scanner;
 
 public class JMSApplication {
 
-    private static final int GENERATORS = 1;
-    private static final int SOLVERS = 5;
-    private static final int COLLECTORS = 3;
+    private static final int GENERATORS = 2;
+    private static final int SOLVERS = 7;
+    private static final int COLLECTORS = 7;
 
+    private static final boolean RANDOM_POLICY = false;
     private static Task.RandomTask<Task> randomTask = new Task.RandomTask<>(Task.class);
 
     public static void main(String[] args) throws NamingException, JMSException {
@@ -35,14 +36,14 @@ public class JMSApplication {
         // create solvers
         List<Solver> solvers = new ArrayList<>();
         for (int i = 0; i < SOLVERS; i++) {
-            Task task = randomTask.random();
+            Task task = getNextTask(i);
             solvers.add(new Solver(jndiContext, task));
         }
 
         // create collectors
         List<Collector> collectors = new ArrayList<>();
         for (int i = 0; i < COLLECTORS; i++) {
-            Task task = randomTask.random();
+            Task task = getNextTask(i);
             collectors.add(new Collector(jndiContext, task));
         }
 
@@ -88,6 +89,14 @@ public class JMSApplication {
         props.put(Context.INITIAL_CONTEXT_FACTORY, jndiContextClassName);
         props.put(Context.PROVIDER_URL, providerUrl);
         return new InitialContext(props);
+    }
+
+    private static Task getNextTask(int i) {
+        if (RANDOM_POLICY) {
+            return randomTask.random();
+        } else {
+            return randomTask.index(i);
+        }
     }
 
 }

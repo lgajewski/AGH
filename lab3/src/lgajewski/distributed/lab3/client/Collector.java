@@ -38,7 +38,7 @@ public class Collector implements JMSClient, Runnable {
                 AUTO_ACKNOWLEDGE //Messages acknowledged after receive() method returns
         );
 
-        topicSubscriber = topicSession.createSubscriber(topic);
+        topicSubscriber = topicSession.createDurableSubscriber(topic, task.name());
 
         System.out.format("[C - %s] JMS client objects initialized!\n", task.name());
     }
@@ -55,8 +55,11 @@ public class Collector implements JMSClient, Runnable {
     private void subscribe() throws JMSException {
         topicConnection.start();
 
-        topicSubscriber.setMessageListener(message ->
-                System.out.println("\t\t[C] collected result: " + message));
+        topicSubscriber.setMessageListener(message -> {
+            if (message != null) {
+                System.out.format("\t\t[C - %s] collected result: %s\n", task.name(), message);
+            }
+        });
     }
 
     @Override
