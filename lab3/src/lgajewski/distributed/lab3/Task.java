@@ -3,7 +3,12 @@ package lgajewski.distributed.lab3;
 public enum Task {
 
     SUM("sum", "+"),
-    SUBTRACT("subtract", "-");
+    SUBTRACT("subtract", "-"),
+    MULTIPLY("multiply", "*"),
+    DIVIDE("divide", "/"),
+    POW("pow", "^"),
+    DIV("div", "div"),
+    MOD("mod", "%");
 
     private final String taskName;
     private final String operator;

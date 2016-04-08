@@ -6,7 +6,6 @@ import lgajewski.distributed.lab3.Task;
 import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.NamingException;
-
 import java.util.regex.Pattern;
 
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
@@ -93,7 +92,8 @@ public class Solver implements JMSClient, Runnable {
                 }
 
             } catch (JMSException e) {
-                e.printStackTrace();;
+                e.printStackTrace();
+                ;
             }
 
 
@@ -109,14 +109,35 @@ public class Solver implements JMSClient, Runnable {
         Double v1 = Double.valueOf(numbers[0]);
         Double v2 = Double.valueOf(numbers[1]);
 
+        Object result;
+
         switch (task) {
             case SUM:
-                return eq + " = " + (v1 + v2);
+                result = (v1 + v2);
+                break;
             case SUBTRACT:
-                return eq + " = " + (v1 - v2);
+                result = (v1 - v2);
+                break;
+            case MULTIPLY:
+                result = v1 * v2;
+                break;
+            case DIVIDE:
+                result = v1 / v2;
+                break;
+            case DIV:
+                result = v1.intValue() / v2.intValue();
+                break;
+            case MOD:
+                result = v1 % v2;
+                break;
+            case POW:
+                result = Math.pow(v1, v2);
+                break;
             default:
-                return eq + " = ?";
+                result = "?";
         }
+
+        return eq + " = " + result;
     }
 
     @Override
