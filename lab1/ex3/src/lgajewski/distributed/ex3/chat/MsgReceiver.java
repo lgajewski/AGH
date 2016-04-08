@@ -31,7 +31,6 @@ public class MsgReceiver implements Runnable {
     public void run() {
         System.out.println("[receiver] ready to receive messages");
         try (MulticastSocket socket = new MulticastSocket(port)) {
-//            socket.setInterface(InetAddress.getByName(null));
             socket.joinGroup(inetAddress);
             while (running) {
                 byte[] bytes = new byte[Message.SIZE_IN_BYTES];

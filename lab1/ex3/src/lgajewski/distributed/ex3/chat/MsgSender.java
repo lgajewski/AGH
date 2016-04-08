@@ -33,7 +33,6 @@ public class MsgSender implements Runnable {
     public void run() {
         System.out.println("[sender] running, please type some messages to sent");
         try (MulticastSocket socket = new MulticastSocket()) {
-//            socket.setInterface(InetAddress.getByName(null));
             socket.joinGroup(inetAddress);
 
             final Scanner scanner = new Scanner(System.in);

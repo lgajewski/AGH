@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ChatApp {
-    private static final String HOST = "224.0.0.1";
+    private static final String HOST = "228.5.6.7";
     private static final int PORT = 7777;
 
     private final String username;
