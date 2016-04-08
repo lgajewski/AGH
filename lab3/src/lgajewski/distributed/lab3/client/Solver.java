@@ -56,7 +56,7 @@ public class Solver implements JMSClient, Runnable {
         queueConsumer = queueSession.createConsumer(queue, "task = '" + task.name() + "'");
         topicPublisher = topicSession.createPublisher(topic);
 
-        System.out.println("[S] JMS client objects initialized!");
+        System.out.format("[S - %s] JMS client objects initialized!\n", task.name());
     }
 
     @Override

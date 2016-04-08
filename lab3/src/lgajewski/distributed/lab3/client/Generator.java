@@ -2,6 +2,7 @@ package lgajewski.distributed.lab3.client;
 
 
 import lgajewski.distributed.lab3.JMSClient;
+import lgajewski.distributed.lab3.JMSProperties;
 import lgajewski.distributed.lab3.Task;
 
 import javax.jms.*;
@@ -15,9 +16,6 @@ public class Generator implements JMSClient, Runnable {
 
     private static final int BOUND = 100;
 
-    // Task for generator
-    private final Task task;
-
     // JMS Client objects
     private QueueConnection connection;
     private QueueSession session;
@@ -25,9 +23,7 @@ public class Generator implements JMSClient, Runnable {
 
     private volatile boolean running = true;
 
-    public Generator(Context jndiContext, Task task) throws JMSException, NamingException {
-        this.task = task;
-
+    public Generator(Context jndiContext) throws JMSException, NamingException {
         initializeJmsClientObjects(jndiContext);
     }
 
@@ -36,7 +32,7 @@ public class Generator implements JMSClient, Runnable {
         QueueConnectionFactory queueConnectionFactory = (QueueConnectionFactory) jndiContext.lookup("ConnectionFactory");
 
         // Destination
-        Queue queue = (Queue) jndiContext.lookup(task.getQueueName());
+        Queue queue = (Queue) jndiContext.lookup(JMSProperties.DEFAULT_QUEUE_NAME.getProperty());
 
         connection = queueConnectionFactory.createQueueConnection();
         session = connection.createQueueSession(
@@ -50,20 +46,23 @@ public class Generator implements JMSClient, Runnable {
 
     @Override
     public void run() {
+        Task.RandomTask<Task> randomTask = new Task.RandomTask<>(Task.class);
+
         while (running) {
             try {
-                generate();
+                Task task = randomTask.random();
+                generate(task);
             } catch (JMSException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void generate() throws JMSException, InterruptedException {
+    private void generate(Task task) throws JMSException, InterruptedException {
         connection.start();
 
-        String equation = generateEquation();
-        System.out.println("[G] sending task: " + equation);
+        String equation = generateEquation(task.getOperator());
+        System.out.println("[G] sending task: " + equation + ", task: " + task.name());
 
         // send a TextMessage and set task property
         Message message = session.createTextMessage(equation);
@@ -88,11 +87,11 @@ public class Generator implements JMSClient, Runnable {
         }
     }
 
-    private String generateEquation() {
+    private String generateEquation(String operator) {
         Random random = new Random();
         int v1 = random.nextInt(BOUND);
-        int v2 = random.nextInt(BOUND);
+        int v2 = random.nextInt(BOUND) + 1;
 
-        return v1 + task.getOperator() + v2;
+        return v1 + operator + v2;
     }
 }

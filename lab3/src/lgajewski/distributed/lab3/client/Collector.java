@@ -40,7 +40,7 @@ public class Collector implements JMSClient, Runnable {
 
         topicSubscriber = topicSession.createSubscriber(topic);
 
-        System.out.println("[C] JMS client objects initialized!");
+        System.out.format("[C - %s] JMS client objects initialized!\n", task.name());
     }
 
     @Override
