@@ -4,6 +4,8 @@ import lgajewski.distributed.JMSClient;
 import lgajewski.distributed.Task;
 
 import javax.jms.*;
+import javax.naming.Context;
+import javax.naming.NamingException;
 
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
@@ -12,32 +14,36 @@ public class Solver implements JMSClient, Runnable {
     // Task for generator
     private final Task task;
 
-    // JMS Administrative objects references
-    private QueueConnectionFactory queueConnectionFactory;
-    private Queue incomingMessagesQueue;
+    // JMS Client objects - queue
+    private QueueConnection queueConnection;
+    private MessageConsumer queueConsumer;
 
-    // JMS Client objects
-    private QueueConnection connection;
-    private MessageConsumer consumer;
+    // JMS Client objects - topic
+    private TopicConnection topicConnection;
+    private TopicPublisher topicPublisher;
 
-    private volatile boolean running = true;
-
-    public Solver(QueueConnectionFactory queueConnectionFactory, Queue incomingMessagesQueue, Task task) throws JMSException {
-        this.queueConnectionFactory = queueConnectionFactory;
-        this.incomingMessagesQueue = incomingMessagesQueue;
+    public Solver(Context jndiContext, Task task) throws JMSException, NamingException {
         this.task = task;
 
-        initializeJmsClientObjects();
+        initializeJmsClientObjects(jndiContext);
     }
 
-    private void initializeJmsClientObjects() throws JMSException {
-        connection = queueConnectionFactory.createQueueConnection();
-        QueueSession session = connection.createQueueSession(
+    private void initializeJmsClientObjects(Context jndiContext) throws JMSException, NamingException {
+        // ConnectionFactory
+        QueueConnectionFactory queueConnectionFactory = (QueueConnectionFactory) jndiContext.lookup("ConnectionFactory");
+        TopicConnectionFactory topicConnectionFactory = (TopicConnectionFactory) jndiContext.lookup("ConnectionFactory");
+
+        // Destination
+        Queue queue = (Queue) jndiContext.lookup(task.getQueueName());
+        Topic topic = (Topic) jndiContext.lookup(task.getTopicName());
+
+        queueConnection = queueConnectionFactory.createQueueConnection();
+        QueueSession session = queueConnection.createQueueSession(
                 false, // non-transactional
                 AUTO_ACKNOWLEDGE //Messages acknowledged after receive() method returns
         );
 
-        consumer = session.createConsumer(incomingMessagesQueue, "task = '" + task.name() + "'");
+        queueConsumer = session.createConsumer(queue, "task = '" + task.name() + "'");
         System.out.println("JMS client objects initialized!");
     }
 
@@ -48,24 +54,30 @@ public class Solver implements JMSClient, Runnable {
         } catch (JMSException e) {
             e.printStackTrace();
         }
-
-        while (running) {}
     }
 
     private void listen() throws JMSException {
-        connection.start();
+        queueConnection.start();
+        topicConnection.start();
 
-        consumer.setMessageListener(message -> System.out.println("[receiver] got message: " + message));
+        queueConsumer.setMessageListener(message -> System.out.println("[receiver] got message: " + message));
     }
 
     @Override
     public void stop() {
-        running = false;
-
-        // close the connection
-        if (connection != null) {
+        // close the queueConnection
+        if (queueConnection != null) {
             try {
-                connection.close();
+                queueConnection.close();
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // close the topicConnection
+        if (topicConnection != null) {
+            try {
+                topicConnection.close();
             } catch (JMSException e) {
                 e.printStackTrace();
             }

@@ -5,6 +5,8 @@ import lgajewski.distributed.JMSClient;
 import lgajewski.distributed.Task;
 
 import javax.jms.*;
+import javax.naming.Context;
+import javax.naming.NamingException;
 import java.util.Random;
 
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
@@ -23,13 +25,19 @@ public class Generator implements JMSClient, Runnable {
 
     private volatile boolean running = true;
 
-    public Generator(QueueConnectionFactory queueConnectionFactory, Queue queue, Task task) throws JMSException {
+    public Generator(Context jndiContext, Task task) throws JMSException, NamingException {
         this.task = task;
 
-        initializeJmsClientObjects(queueConnectionFactory, queue);
+        initializeJmsClientObjects(jndiContext);
     }
 
-    private void initializeJmsClientObjects(QueueConnectionFactory queueConnectionFactory, Queue queue) throws JMSException {
+    private void initializeJmsClientObjects(Context jndiContext) throws JMSException, NamingException {
+        // ConnectionFactory
+        QueueConnectionFactory queueConnectionFactory = (QueueConnectionFactory) jndiContext.lookup("ConnectionFactory");
+
+        // Destination
+        Queue queue = (Queue) jndiContext.lookup(task.getQueueName());
+
         connection = queueConnectionFactory.createQueueConnection();
         session = connection.createQueueSession(
                 false, // non-transactional

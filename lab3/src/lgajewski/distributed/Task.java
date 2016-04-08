@@ -20,4 +20,8 @@ public enum Task {
     public String getTopicName() {
         return "t-" + taskName;
     }
+
+    public String getQueueName() {
+        return "q-task";
+    }
 }
