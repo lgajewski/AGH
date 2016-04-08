@@ -1,4 +1,4 @@
-package lgajewski.distributed;
+package lgajewski.distributed.lab3;
 
 public enum JMSProperties {
 

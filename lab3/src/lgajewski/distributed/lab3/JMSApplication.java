@@ -1,7 +1,8 @@
-package lgajewski.distributed;
+package lgajewski.distributed.lab3;
 
-import lgajewski.distributed.client.Generator;
-import lgajewski.distributed.client.Solver;
+import lgajewski.distributed.lab3.client.Collector;
+import lgajewski.distributed.lab3.client.Generator;
+import lgajewski.distributed.lab3.client.Solver;
 
 import javax.jms.JMSException;
 import javax.naming.Context;
@@ -10,31 +11,30 @@ import javax.naming.NamingException;
 import java.util.Properties;
 import java.util.Scanner;
 
-import static lgajewski.distributed.JMSProperties.DEFAULT_JMS_PROVIDER_URL;
-import static lgajewski.distributed.JMSProperties.JNDI_CONTEXT_FACTORY_CLASS_NAME;
-
 public class JMSApplication {
 
     public static void main(String[] args) throws NamingException, JMSException {
         // Application JNDI context
-        Context jndiContext = initializeJndiContext(DEFAULT_JMS_PROVIDER_URL.getProperty(),
-                JNDI_CONTEXT_FACTORY_CLASS_NAME.getProperty());
-
-//        initializeAdministrativeObjects(DEFAULT_QUEUE_NAME.getProperty());
+        Context jndiContext = initializeJndiContext(JMSProperties.DEFAULT_JMS_PROVIDER_URL.getProperty(),
+                JMSProperties.JNDI_CONTEXT_FACTORY_CLASS_NAME.getProperty());
 
         Generator generator = new Generator(jndiContext, Task.SUM);
         Solver solver = new Solver(jndiContext, Task.SUM);
+        Collector collector = new Collector(jndiContext, Task.SUM);
 
         Thread thread1 = new Thread(solver);
         Thread thread2 = new Thread(generator);
+        Thread thread3 = new Thread(collector);
         thread1.start();
         thread2.start();
+        thread3.start();
 
         System.out.println("Running! Type 'exit' to shutdown application.\n");
 
         // register shadow hooks
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
+                System.out.println("Shutdown Hook!");
             }
         });
 

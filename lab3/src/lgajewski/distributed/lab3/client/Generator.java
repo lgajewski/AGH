@@ -1,8 +1,8 @@
-package lgajewski.distributed.client;
+package lgajewski.distributed.lab3.client;
 
 
-import lgajewski.distributed.JMSClient;
-import lgajewski.distributed.Task;
+import lgajewski.distributed.lab3.JMSClient;
+import lgajewski.distributed.lab3.Task;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -45,7 +45,7 @@ public class Generator implements JMSClient, Runnable {
         );
 
         sender = session.createSender(queue);
-        System.out.println("JMS client objects initialized!");
+        System.out.println("[G] JMS client objects initialized!");
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Generator implements JMSClient, Runnable {
         connection.start();
 
         String equation = generateEquation();
-        System.out.println("[generator] sending task: " + equation);
+        System.out.println("[G] sending task: " + equation);
 
         // send a TextMessage and set task property
         Message message = session.createTextMessage(equation);

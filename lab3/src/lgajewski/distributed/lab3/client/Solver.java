@@ -1,7 +1,7 @@
-package lgajewski.distributed.client;
+package lgajewski.distributed.lab3.client;
 
-import lgajewski.distributed.JMSClient;
-import lgajewski.distributed.Task;
+import lgajewski.distributed.lab3.JMSClient;
+import lgajewski.distributed.lab3.Task;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -37,14 +37,24 @@ public class Solver implements JMSClient, Runnable {
         Queue queue = (Queue) jndiContext.lookup(task.getQueueName());
         Topic topic = (Topic) jndiContext.lookup(task.getTopicName());
 
+        // connection
         queueConnection = queueConnectionFactory.createQueueConnection();
-        QueueSession session = queueConnection.createQueueSession(
+        topicConnection = topicConnectionFactory.createTopicConnection();
+
+        QueueSession queueSession = queueConnection.createQueueSession(
                 false, // non-transactional
                 AUTO_ACKNOWLEDGE //Messages acknowledged after receive() method returns
         );
 
-        queueConsumer = session.createConsumer(queue, "task = '" + task.name() + "'");
-        System.out.println("JMS client objects initialized!");
+        TopicSession topicSession = topicConnection.createTopicSession(
+                false, // non-transactional
+                AUTO_ACKNOWLEDGE //Messages acknowledged after receive() method returns
+        );
+
+        queueConsumer = queueSession.createConsumer(queue, "task = '" + task.name() + "'");
+        topicPublisher = topicSession.createPublisher(topic);
+
+        System.out.println("[S] JMS client objects initialized!");
     }
 
     @Override
@@ -60,7 +70,16 @@ public class Solver implements JMSClient, Runnable {
         queueConnection.start();
         topicConnection.start();
 
-        queueConsumer.setMessageListener(message -> System.out.println("[receiver] got message: " + message));
+        queueConsumer.setMessageListener(message -> {
+            System.out.println("\t[S] got message: " + message);
+            System.out.println("\t[S] Forwarding to topic: " + task.getTopicName());
+
+            try {
+                topicPublisher.send(message);
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
