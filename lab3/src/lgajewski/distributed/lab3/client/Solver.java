@@ -7,6 +7,8 @@ import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
+import java.util.regex.Pattern;
+
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
 public class Solver implements JMSClient, Runnable {
@@ -21,6 +23,7 @@ public class Solver implements JMSClient, Runnable {
     // JMS Client objects - topic
     private TopicConnection topicConnection;
     private TopicPublisher topicPublisher;
+    private TopicSession topicSession;
 
     public Solver(Context jndiContext, Task task) throws JMSException, NamingException {
         this.task = task;
@@ -46,7 +49,7 @@ public class Solver implements JMSClient, Runnable {
                 AUTO_ACKNOWLEDGE //Messages acknowledged after receive() method returns
         );
 
-        TopicSession topicSession = topicConnection.createTopicSession(
+        topicSession = topicConnection.createTopicSession(
                 false, // non-transactional
                 AUTO_ACKNOWLEDGE //Messages acknowledged after receive() method returns
         );
@@ -72,14 +75,48 @@ public class Solver implements JMSClient, Runnable {
 
         queueConsumer.setMessageListener(message -> {
             System.out.println("\t[S] got message: " + message);
-            System.out.println("\t[S] Forwarding to topic: " + task.getTopicName());
 
             try {
-                topicPublisher.send(message);
+
+                if (message != null && message instanceof TextMessage) {
+                    TextMessage textMessage = (TextMessage) message;
+
+                    String solved = solveEquation(textMessage.getText());
+                    System.out.println("\t[S] solved equation: " + solved);
+                    Message result = topicSession.createTextMessage(solved);
+
+                    System.out.println("\t[S] Forwarding to topic: " + task.getTopicName());
+                    topicPublisher.send(result);
+
+                } else {
+                    System.out.println("\t[S] unknown message");
+                }
+
             } catch (JMSException e) {
-                e.printStackTrace();
+                e.printStackTrace();;
             }
+
+
         });
+    }
+
+    private String solveEquation(String eq) {
+        String[] numbers = eq.split(Pattern.quote(task.getOperator()));
+        if (numbers.length != 2) {
+            return eq + " = ?";
+        }
+
+        Double v1 = Double.valueOf(numbers[0]);
+        Double v2 = Double.valueOf(numbers[1]);
+
+        switch (task) {
+            case SUM:
+                return eq + " = " + (v1 + v2);
+            case SUBTRACT:
+                return eq + " = " + (v1 - v2);
+            default:
+                return eq + " = ?";
+        }
     }
 
     @Override
