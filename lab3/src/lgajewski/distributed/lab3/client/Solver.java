@@ -90,7 +90,6 @@ public class Solver implements JMSClient, Runnable {
 
             } catch (JMSException e) {
                 e.printStackTrace();
-                ;
             }
 
 
