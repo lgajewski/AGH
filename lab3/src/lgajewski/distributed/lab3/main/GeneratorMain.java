@@ -1,8 +1,7 @@
-package lgajewski.distributed.lab3;
+package lgajewski.distributed.lab3.main;
 
-import lgajewski.distributed.lab3.client.Collector;
+import lgajewski.distributed.lab3.JMSProperties;
 import lgajewski.distributed.lab3.client.Generator;
-import lgajewski.distributed.lab3.client.Solver;
 
 import javax.jms.JMSException;
 import javax.naming.Context;
@@ -10,15 +9,18 @@ import javax.naming.NamingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lgajewski.distributed.lab3.Utils.*;
+import static lgajewski.distributed.lab3.Utils.handleShutdownApplication;
+import static lgajewski.distributed.lab3.Utils.initializeJndiContext;
 
-public class JMSApplication {
+public class GeneratorMain {
 
-    private static final int GENERATORS = 2;
-    private static final int SOLVERS = 7;
-    private static final int COLLECTORS = 7;
+    private static int GENERATORS = 2;
 
     public static void main(String[] args) throws NamingException, JMSException {
+        if (args.length == 1) {
+            GENERATORS = Integer.valueOf(args[0]);
+        }
+
         // Application JNDI context
         Context jndiContext = initializeJndiContext(JMSProperties.DEFAULT_JMS_PROVIDER_URL.getProperty(),
                 JMSProperties.JNDI_CONTEXT_FACTORY_CLASS_NAME.getProperty());
@@ -29,24 +31,8 @@ public class JMSApplication {
             generators.add(new Generator(jndiContext));
         }
 
-        // create solvers
-        List<Solver> solvers = new ArrayList<>();
-        for (int i = 0; i < SOLVERS; i++) {
-            Task task = getNextTask(i);
-            solvers.add(new Solver(jndiContext, task));
-        }
-
-        // create collectors
-        List<Collector> collectors = new ArrayList<>();
-        for (int i = 0; i < COLLECTORS; i++) {
-            Task task = getNextTask(i);
-            collectors.add(new Collector(jndiContext, task));
-        }
-
         // start threads
         generators.forEach(generator -> new Thread(generator).start());
-        solvers.forEach(solver -> new Thread(solver).start());
-        collectors.forEach(collector -> new Thread(collector).start());
 
         System.out.println("Running! Type 'exit' to shutdown application.\n");
 
@@ -62,9 +48,7 @@ public class JMSApplication {
 
         // cleanUp
         jndiContext.close();
-        generators.forEach(JMSClient::stop);
-        solvers.forEach(JMSClient::stop);
-        collectors.forEach(JMSClient::stop);
+        generators.forEach(Generator::stop);
     }
 
 }
