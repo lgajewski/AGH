@@ -22,6 +22,8 @@ package demo;
 
 public interface _UserOperationsNC
 {
+    long getTimestamp();
+
     long getId();
 
     Name getName();

@@ -5,18 +5,6 @@
 
 module demo
 {
-	exception RequestCanceledException
-	{
-	};
-
-	interface Calc
-	{
-		float add1(float a, float b);
-		["amd"] float add2(float a, float b) throws RequestCanceledException;
-		float subtract(float a, float b);
-	};
-	
-	
 
 	struct Name
 	{
@@ -26,18 +14,12 @@ module demo
 	
 	interface User
 	{
+	    long getTimestamp();
 		long getId();
 		Name getName();
 		void changeName(Name name1); 	
 	};
-	
-	sequence<User*> Users;
-	
-	interface UserManagement
-	{
-		User* createUser();
-		Users findUsers(string template);
-	};
+
 
 };
 

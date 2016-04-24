@@ -22,6 +22,40 @@ package demo;
 
 public interface UserPrx extends Ice.ObjectPrx
 {
+    public long getTimestamp();
+
+    public long getTimestamp(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_getTimestamp();
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_getTimestamp(Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_getTimestamp(Callback_User_getTimestamp __cb);
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, Callback_User_getTimestamp __cb);
+
+    public Ice.AsyncResult begin_getTimestamp(IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_getTimestamp(IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                              IceInternal.Functional_BoolCallback __sentCb);
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, 
+                                              IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, 
+                                              IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                              IceInternal.Functional_BoolCallback __sentCb);
+
+    public long end_getTimestamp(Ice.AsyncResult __result);
+
     public long getId();
 
     public long getId(java.util.Map<String, String> __ctx);

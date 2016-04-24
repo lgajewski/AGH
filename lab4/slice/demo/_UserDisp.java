@@ -85,6 +85,22 @@ public abstract class _UserDisp extends Ice.ObjectImpl implements User
         return getName(null);
     }
 
+    public final long getTimestamp()
+    {
+        return getTimestamp(null);
+    }
+
+    public static Ice.DispatchStatus ___getTimestamp(User __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        __inS.readEmptyParams();
+        long __ret = __obj.getTimestamp(__current);
+        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+        __os.writeLong(__ret);
+        __inS.__endWriteParams(true);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
     public static Ice.DispatchStatus ___getId(User __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
@@ -124,6 +140,7 @@ public abstract class _UserDisp extends Ice.ObjectImpl implements User
         "changeName",
         "getId",
         "getName",
+        "getTimestamp",
         "ice_id",
         "ice_ids",
         "ice_isA",
@@ -154,17 +171,21 @@ public abstract class _UserDisp extends Ice.ObjectImpl implements User
             }
             case 3:
             {
-                return ___ice_id(this, in, __current);
+                return ___getTimestamp(this, in, __current);
             }
             case 4:
             {
-                return ___ice_ids(this, in, __current);
+                return ___ice_id(this, in, __current);
             }
             case 5:
             {
-                return ___ice_isA(this, in, __current);
+                return ___ice_ids(this, in, __current);
             }
             case 6:
+            {
+                return ___ice_isA(this, in, __current);
+            }
+            case 7:
             {
                 return ___ice_ping(this, in, __current);
             }

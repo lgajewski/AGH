@@ -476,6 +476,171 @@ public final class UserPrxHelper extends Ice.ObjectPrxHelperBase implements User
         __cb.response(__ret);
     }
 
+    private static final String __getTimestamp_name = "getTimestamp";
+
+    public long getTimestamp()
+    {
+        return getTimestamp(null, false);
+    }
+
+    public long getTimestamp(java.util.Map<String, String> __ctx)
+    {
+        return getTimestamp(__ctx, true);
+    }
+
+    private long getTimestamp(java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        __checkTwowayOnly(__getTimestamp_name);
+        return end_getTimestamp(begin_getTimestamp(__ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_getTimestamp()
+    {
+        return begin_getTimestamp(null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx)
+    {
+        return begin_getTimestamp(__ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(Ice.Callback __cb)
+    {
+        return begin_getTimestamp(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_getTimestamp(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(Callback_User_getTimestamp __cb)
+    {
+        return begin_getTimestamp(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, Callback_User_getTimestamp __cb)
+    {
+        return begin_getTimestamp(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_getTimestamp(null, false, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                              IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_getTimestamp(null, false, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, 
+                                              IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_getTimestamp(__ctx, true, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, 
+                                              IceInternal.Functional_LongCallback __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                              IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_getTimestamp(__ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, 
+                                               boolean __explicitCtx, 
+                                               boolean __synchronous, 
+                                               IceInternal.Functional_LongCallback __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                               IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_getTimestamp(__ctx, __explicitCtx, __synchronous, 
+                                  new IceInternal.Functional_TwowayCallbackLong(__responseCb, __exceptionCb, __sentCb)
+                                      {
+                                          public final void __completed(Ice.AsyncResult __result)
+                                          {
+                                              UserPrxHelper.__getTimestamp_completed(this, __result);
+                                          }
+                                      });
+    }
+
+    private Ice.AsyncResult begin_getTimestamp(java.util.Map<String, String> __ctx, 
+                                               boolean __explicitCtx, 
+                                               boolean __synchronous, 
+                                               IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__getTimestamp_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__getTimestamp_name, __cb);
+        try
+        {
+            __result.prepare(__getTimestamp_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            __result.writeEmptyParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public long end_getTimestamp(Ice.AsyncResult __iresult)
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __getTimestamp_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            IceInternal.BasicStream __is = __result.startReadParams();
+            long __ret;
+            __ret = __is.readLong();
+            __result.endReadParams();
+            return __ret;
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __getTimestamp_completed(Ice.TwowayCallbackLong __cb, Ice.AsyncResult __result)
+    {
+        demo.UserPrx __proxy = (demo.UserPrx)__result.getProxy();
+        long __ret = 0;
+        try
+        {
+            __ret = __proxy.end_getTimestamp(__result);
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response(__ret);
+    }
+
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.

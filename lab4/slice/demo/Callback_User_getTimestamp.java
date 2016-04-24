@@ -20,9 +20,11 @@
 
 package demo;
 
-public interface _UserManagementOperations
+public abstract class Callback_User_getTimestamp
+    extends IceInternal.TwowayCallback implements Ice.TwowayCallbackLong
 {
-    UserPrx createUser(Ice.Current __current);
-
-    UserPrx[] findUsers(String template, Ice.Current __current);
+    public final void __completed(Ice.AsyncResult __result)
+    {
+        UserPrxHelper.__getTimestamp_completed(this, __result);
+    }
 }

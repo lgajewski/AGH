@@ -22,6 +22,8 @@ package demo;
 
 public interface _UserOperations
 {
+    long getTimestamp(Ice.Current __current);
+
     long getId(Ice.Current __current);
 
     Name getName(Ice.Current __current);
