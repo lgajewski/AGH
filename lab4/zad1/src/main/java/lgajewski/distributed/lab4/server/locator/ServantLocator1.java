@@ -15,7 +15,7 @@ public class ServantLocator1 implements Ice.ServantLocator {
 
     private Serializer serializer = new Serializer();
 
-    private int userId = 0;
+    private int userId = 5;
 
     public ServantLocator1(ObjectAdapter adapter) {
         log.info("## ServantLocator1() ##");
@@ -24,7 +24,7 @@ public class ServantLocator1 implements Ice.ServantLocator {
     }
 
     public Object locate(Current curr, LocalObjectHolder cookie) throws UserException {
-        log.info("## ServantLocator1 #" + curr.id + " .locate() ##");
+        log.info("## ServantLocator1 #" + curr.id.category + "/" + curr.id.name + ".locate() ##");
 
         String key = curr.id.name;
 
@@ -45,7 +45,7 @@ public class ServantLocator1 implements Ice.ServantLocator {
     }
 
     public void finished(Current curr, Object servant, java.lang.Object cookie) throws UserException {
-        log.info("## ServantLocator1 #" + curr.id + " .finished() ##");
+        log.info("## ServantLocator1 #" + curr.id.category + "/" + curr.id.name + " .finished() ##");
     }
 
     public void deactivate(String category) {

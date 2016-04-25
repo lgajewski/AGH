@@ -10,20 +10,20 @@ public class ServantLocator2 implements ServantLocator {
 
     private static final Logger log = Logger.getGlobal();
 
-    private long userId = 0;
+    private long userId = 10;
 
     public ServantLocator2() {
         log.info("## ServantLocator2() ##");
     }
 
     public Object locate(Current curr, LocalObjectHolder cookie) throws UserException {
-        log.info("## ServantLocator2 #" + curr.id + " .locate() ##");
+        log.info("## ServantLocator2 #" + curr.id.category + "/" + curr.id.name + " .locate() ##");
 
         return new UserI(userId++);
     }
 
     public void finished(Current curr, Object servant, java.lang.Object cookie) throws UserException {
-        log.info("## ServantLocator1 #" + curr.id + " .finished() ##");
+        log.info("## ServantLocator1 #" + curr.id.category + "/" + curr.id.name + " .finished() ##");
     }
 
     public void deactivate(String category) {

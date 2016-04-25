@@ -21,13 +21,13 @@ public class ServantLocator3 implements ServantLocator {
     }
 
     public Object locate(Current curr, LocalObjectHolder cookie) throws UserException {
-        log.info("## ServantLocator3 #" + curr.id + " .locate() ##");
+        log.info("## ServantLocator3 #" + curr.id.category + "/" + curr.id.name + " .locate() ##");
 
         return getNextServant();
     }
 
     public void finished(Current curr, Object servant, java.lang.Object cookie) throws UserException {
-        log.info("## ServantLocator1 #" + curr.id + " .finished() ##");
+        log.info("## ServantLocator1 #" + curr.id.category + "/" + curr.id.name + " .finished() ##");
     }
 
     public void deactivate(String category) {

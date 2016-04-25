@@ -28,7 +28,7 @@ public class ServantEvictor5 extends EvictorBase {
 
     @Override
     public Object add(Current c, LocalObjectHolder cookie) {
-        log.info("## ServantEvictor5 # add(" + c.id + ") #");
+        log.info("## ServantEvictor5 # add(" + c.id.category + "/" + c.id.name + ") #");
 
         java.lang.Object object = serializer.deserialize(c.id.name);
 
