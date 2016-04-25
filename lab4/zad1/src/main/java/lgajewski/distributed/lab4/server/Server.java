@@ -25,8 +25,8 @@ import java.util.logging.Logger;
  * K1 - Zapewnienie mechanizmu polaczenia. Odzyskiwanie danych z ostatniej sesji.
  * K2 - Obsluga rekordu studenta uczelni.
  * K3 - Realizacja 'ciezkiego' zadania obliczeniowego.
- * K4 - Mechanizm logowania.
- * K5 - Analogiczne do puli watkow. Obsluzenie duzej liczby klientow, np. przy zapytaniach do serwera.
+ * K4 - Mechanizm logowania. (debug mode)
+ * K5 - Zarzadzanie duza iloscia danych, wczytywanie ograniczonej ilosci i operowanie na nich
  */
 
 public class Server implements Runnable {
@@ -75,9 +75,9 @@ public class Server implements Runnable {
             adapter.addServantLocator(locator2, "K2");
             /** Realizacja 'ciezkiego' zadania obliczeniowego. */
             adapter.addServantLocator(locator3, "K3");
-            /** Mechanizm logowania. */
+            /** Mechanizm logowania (debug mode). */
             adapter.addDefaultServant(user1, "K4");
-            /** Analogiczne do puli watkow. Obsluzenie duzej liczby klientow, np. przy zapytaniach do serwera. */
+            /** Zarzadzanie duza iloscia danych, wczytywanie ograniczonej ilosci i operowanie na nich */
             adapter.addServantLocator(evictor5, "K5");
 
             // activate adapter and enter event processing loop

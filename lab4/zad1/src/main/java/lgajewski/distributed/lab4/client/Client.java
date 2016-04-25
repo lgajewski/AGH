@@ -14,7 +14,10 @@ import demo.UserPrx;
 import demo.UserPrxHelper;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +33,11 @@ public class Client {
             // ICE initialization
             communicator = Ice.Util.initialize(args);
 
+            // read adapter properties
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(new File("config/config.client")));
+            String proxy = properties.getProperty("Adapter.Endpoints");
+
             String line;
             java.io.BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -44,7 +52,7 @@ public class Client {
                 }
 
                 if (line.matches(".*\\/.*")) {
-                    Ice.ObjectPrx base = communicator.stringToProxy(line + ":tcp -h localhost -p 10000:udp -h localhost -p 10000");
+                    Ice.ObjectPrx base = communicator.stringToProxy(line + ":" + proxy);
 
                     UserPrx user = UserPrxHelper.checkedCast(base);
                     if (user == null) {

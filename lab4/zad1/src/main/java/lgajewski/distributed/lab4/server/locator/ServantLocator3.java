@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class ServantLocator3 implements ServantLocator {
 
-    private static final int N = 10;
+    private static final int N = 5;
 
     private UserI[] servants;
 

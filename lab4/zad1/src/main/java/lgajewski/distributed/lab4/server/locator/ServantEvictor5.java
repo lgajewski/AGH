@@ -18,10 +18,12 @@ public class ServantEvictor5 extends EvictorBase {
 
     private Serializer serializer = new Serializer();
 
+    private int userId = N;
+
     public ServantEvictor5() {
         super(N);
 
-        log.info("## ServantEvictor(" + N + ") ##");
+        log.info("## ServantEvictor5(" + N + ") ##");
     }
 
     @Override
@@ -31,7 +33,7 @@ public class ServantEvictor5 extends EvictorBase {
         java.lang.Object object = serializer.deserialize(c.id.name);
 
         if (object == null) {
-            object = new UserI(0);
+            object = new UserI(userId++);
         }
 
         return (Object) object;

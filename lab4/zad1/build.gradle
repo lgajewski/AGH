@@ -24,6 +24,10 @@ clean.doFirst {
     def sliceDir = new File("${projectDir}/slice");
     sliceDir.deleteDir()
     sliceDir.mkdir()
+
+    def dbDir = new File("${projectDir}/db");
+    dbDir.deleteDir()
+    dbDir.mkdir()
 }
 
 task compileSlice(type: Exec) {
