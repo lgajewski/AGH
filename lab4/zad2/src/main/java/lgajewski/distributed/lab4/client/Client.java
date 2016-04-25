@@ -66,12 +66,12 @@ public class Client {
                         System.out.flush();
                         line = in.readLine();
 
-                        if(line.equals("login")) {
+                        if (line.equals("login")) {
                             user.login();
                             System.out.println("Logged in!");
                         }
 
-                        if(line.equals("logout")) {
+                        if (line.equals("logout")) {
                             user.login();
                             System.out.println("Logged out!");
                         }
@@ -100,7 +100,8 @@ public class Client {
                             System.out.println("\tType period:");
                             String period = in.readLine();
 
-                            System.out.println("\tLoan calculated: " + user.calculateLoan(Integer.parseInt(period)));
+                            System.out.println("\tCalculating...");
+                            user.begin_calculateLoan(Integer.parseInt(period), new Callback_Customer_calculateLoanI());
                         }
 
                         if (line.equals("investment")) {
@@ -110,8 +111,9 @@ public class Client {
                             System.out.println("\tType amount:");
                             String amount = in.readLine();
 
-                            System.out.println("\tLoan calculated: " + user.calculateInvestment(
-                                    Integer.parseInt(period), Integer.parseInt(amount)));
+                            System.out.println("\tCalculating...");
+                            user.begin_calculateInvestment(Integer.parseInt(period), Integer.parseInt(amount),
+                                    new Callback_Customer_calculateInvestmentI());
                         }
                     } while (!line.equals("q"));
 

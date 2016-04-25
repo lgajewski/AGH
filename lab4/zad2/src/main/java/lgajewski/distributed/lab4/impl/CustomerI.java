@@ -60,7 +60,7 @@ public class CustomerI extends _CustomerDisp {
 
         float basicLoan = 1000;
 
-        float rate = investments.size() / loans.size();
+        float rate = investments.size() / (loans.size() + 1);
 
         return (int) (basicLoan * rate);
     }
