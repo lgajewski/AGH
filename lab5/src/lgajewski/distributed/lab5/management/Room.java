@@ -29,6 +29,10 @@ public class Room {
         return members.remove(member);
     }
 
+    boolean isEmpty() {
+        return members.isEmpty();
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("Room [" + roomId + "], members: " + members.size() + "\n");

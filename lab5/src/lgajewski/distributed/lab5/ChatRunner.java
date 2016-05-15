@@ -9,15 +9,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+@SuppressWarnings("WeakerAccess")
 public class ChatRunner {
 
     private BufferedReader in;
 
-    private String username = "janek";
+    private String username;
 
     private ChatManagement chatManagement;
 
-    @SuppressWarnings("WeakerAccess")
+    public ChatRunner(String username) {
+        this.username = username;
+    }
+
     public void start() throws Exception {
         in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -52,6 +56,11 @@ public class ChatRunner {
                     case "rooms":
                         List<Room> rooms = chatManagement.getRooms();
                         rooms.forEach(System.out::println);
+
+                        if (rooms.isEmpty()) {
+                            System.out.println("No users active");
+                        }
+
                         break;
                 }
 
@@ -107,7 +116,10 @@ public class ChatRunner {
     }
 
     public static void main(String[] args) throws Exception {
-        new ChatRunner().start();
+        String username = args.length > 0 ? args[0] : "user";
+
+        System.out.println("[ChatRunner] Default username: " + username);
+        new ChatRunner(username).start();
     }
 
 }

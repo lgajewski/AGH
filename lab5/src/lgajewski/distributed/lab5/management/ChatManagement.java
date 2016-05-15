@@ -94,7 +94,11 @@ public class ChatManagement extends ReceiverAdapter {
                         break;
                 }
 
-                rooms.put(channel, room);
+                if (!room.isEmpty()) {
+                    rooms.put(channel, room);
+                } else {
+                    rooms.remove(channel);
+                }
             }
         }
 
