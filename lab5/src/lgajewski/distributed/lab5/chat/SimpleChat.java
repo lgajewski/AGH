@@ -6,19 +6,7 @@ import org.jgroups.ReceiverAdapter;
 import org.jgroups.View;
 import org.jgroups.stack.ProtocolStack;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-import static lgajewski.distributed.lab5.protos.ChatOperationProtos.ChatMessage;
-
 public class SimpleChat extends ReceiverAdapter {
-
-    @SuppressWarnings("WeakerAccess")
-    public interface OnEventListener {
-        void onConnect() throws Exception;
-
-        void onDisconnect() throws Exception;
-    }
 
     private final String username;
     private final int roomId;
@@ -37,35 +25,6 @@ public class SimpleChat extends ReceiverAdapter {
         stack.init();
     }
 
-    private void eventLoop() {
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
-        while (true) {
-
-            try {
-
-                System.out.print("#" + roomId + " > ");
-                System.out.flush();
-
-                String line = in.readLine().toLowerCase();
-
-                if (line.startsWith("quit") || line.startsWith("exit"))
-                    break;
-
-                line = "[" + username + "] " + line;
-
-                ChatMessage chatMessage = ChatMessage.newBuilder().setMessage(line).build();
-
-                Message msg = new Message(null, null, chatMessage);
-                channel.send(msg);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void viewAccepted(View new_view) {
         System.out.println("** view: " + new_view);
 
@@ -74,6 +33,9 @@ public class SimpleChat extends ReceiverAdapter {
 
     }
 
+    public void send(Message msg) throws Exception {
+        channel.send(msg);
+    }
 
     public void receive(Message msg) {
         String line = msg.getSrc() + ": " + msg.getObject();
@@ -85,14 +47,23 @@ public class SimpleChat extends ReceiverAdapter {
     }
 
 
-    public void connect(OnEventListener listener) throws Exception {
+    public void connect() throws Exception {
         channel.connect(String.valueOf(roomId));
-        listener.onConnect();
-
-        eventLoop();
-
-        channel.close();
-        listener.onDisconnect();
     }
 
+    public void disconnect() {
+        channel.close();
+    }
+
+    public boolean isConnected() {
+        return channel.isConnected();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
 }

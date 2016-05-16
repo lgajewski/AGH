@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static lgajewski.distributed.lab5.protos.ChatOperationProtos.ChatAction;
 import static lgajewski.distributed.lab5.protos.ChatOperationProtos.ChatState;
@@ -41,11 +42,27 @@ public class ChatManagement extends ReceiverAdapter {
     }
 
     public void receive(Message msg) {
-        System.out.println("[" + TAG + "] receive - " + msg.getSrc() + ": " + msg.getObject());
-
         ChatOperationProtos.ChatAction chatAction = (ChatAction) msg.getObject();
+
+        System.out.println("[" + TAG + "] receive - " + msg.getSrc() + ": "
+                + chatAction.getAction() + ", " + chatAction.getChannel() + ", " + chatAction.getNickname());
+
+        ChatState.Builder builder = state.toBuilder();
+        switch (chatAction.getAction()) {
+            case JOIN:
+                builder.addState(chatAction);
+                break;
+            case LEAVE:
+                List<ChatAction> filtered = builder.getStateList().stream().filter(action ->
+                        action.getAction() == ChatAction.ActionType.JOIN
+                                && !action.getChannel().equals(chatAction.getChannel())
+                                && !action.getNickname().equals(chatAction.getNickname())).collect(Collectors.toList());
+                builder.clear().addAllState(filtered);
+                break;
+        }
+
         synchronized (stateLock) {
-            state = state.toBuilder().addState(chatAction).build();
+            state = builder.build();
         }
     }
 
