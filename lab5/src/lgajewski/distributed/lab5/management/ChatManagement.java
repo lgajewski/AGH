@@ -1,10 +1,12 @@
 package lgajewski.distributed.lab5.management;
 
-import lgajewski.distributed.lab5.protos.ChatOperationProtos;
+import com.google.protobuf.InvalidProtocolBufferException;
+import lgajewski.distributed.lab5.chat.Properties;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
 import org.jgroups.ReceiverAdapter;
 import org.jgroups.View;
+import org.jgroups.stack.ProtocolStack;
 import org.jgroups.util.Util;
 
 import java.io.DataInputStream;
@@ -32,9 +34,14 @@ public class ChatManagement extends ReceiverAdapter {
     private ChatState state;
 
     public ChatManagement() throws Exception {
+        ProtocolStack stack = Properties.getProtocolStack(null);
         channel = new JChannel();
+        channel.setName("janek");
         channel.setReceiver(this);
+        channel.setProtocolStack(stack);
         state = ChatState.newBuilder().build();
+
+        stack.init();
     }
 
     public void viewAccepted(View new_view) {
@@ -42,40 +49,49 @@ public class ChatManagement extends ReceiverAdapter {
     }
 
     public void receive(Message msg) {
-        ChatOperationProtos.ChatAction chatAction = (ChatAction) msg.getObject();
+        try {
+            final ChatAction chatAction = ChatAction.parseFrom(msg.getRawBuffer());
 
-        System.out.println("[" + TAG + "] receive - " + msg.getSrc() + ": "
-                + chatAction.getAction() + ", " + chatAction.getChannel() + ", " + chatAction.getNickname());
 
-        ChatState.Builder builder = state.toBuilder();
-        switch (chatAction.getAction()) {
-            case JOIN:
-                builder.addState(chatAction);
-                break;
-            case LEAVE:
-                List<ChatAction> filtered = builder.getStateList().stream().filter(action ->
-                        action.getAction() == ChatAction.ActionType.JOIN
-                                && !action.getChannel().equals(chatAction.getChannel())
-                                && !action.getNickname().equals(chatAction.getNickname())).collect(Collectors.toList());
-                builder.clear().addAllState(filtered);
-                break;
+            System.out.println("[" + TAG + "] receive - " + msg.getSrc() + ": "
+                    + chatAction.getAction() + ", " + chatAction.getChannel() + ", " + chatAction.getNickname());
+
+            ChatState.Builder builder = state.toBuilder();
+            switch (chatAction.getAction()) {
+                case JOIN:
+                    builder.addState(chatAction);
+                    break;
+                case LEAVE:
+                    List<ChatAction> filtered = builder.getStateList().stream().filter(action ->
+                            action.getAction() == ChatAction.ActionType.JOIN
+                                    && !action.getChannel().equals(chatAction.getChannel())
+                                    && !action.getNickname().equals(chatAction.getNickname())).collect(Collectors.toList());
+                    builder.clear().addAllState(filtered);
+                    break;
+            }
+
+            synchronized (stateLock) {
+                state = builder.build();
+            }
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
         }
 
-        synchronized (stateLock) {
-            state = builder.build();
-        }
     }
 
     public void getState(OutputStream output) throws Exception {
+        System.out.println("Getting state from ChatManagement..");
         synchronized (stateLock) {
-            Util.objectToStream(state, new DataOutputStream(output));
+            output.write(state.toByteArray());
+//            Util.objectToStream(state, new DataOutputStream(output));
         }
     }
 
     public void setState(InputStream input) throws Exception {
-
+        System.out.println("Set state in ChatManagement!");
         synchronized (stateLock) {
-            state = (ChatState) Util.objectFromStream(new DataInputStream(input));
+            state = ChatState.parseFrom(input);
+//            state = (ChatState) Util.objectFromStream(new DataInputStream(input));
 
             System.out.println("[" + TAG + "] received state, count: " + state.getStateCount());
         }
@@ -123,12 +139,12 @@ public class ChatManagement extends ReceiverAdapter {
     }
 
     public void join(String username, int roomId) throws Exception {
-        Message msg = new Message(null, null, createChatAction(username, roomId, ChatAction.ActionType.JOIN));
+        Message msg = new Message(null, null, createChatAction(username, roomId, ChatAction.ActionType.JOIN).toByteArray());
         channel.send(msg);
     }
 
     public void leave(String username, int roomId) throws Exception {
-        Message msg = new Message(null, null, createChatAction(username, roomId, ChatAction.ActionType.LEAVE));
+        Message msg = new Message(null, null, createChatAction(username, roomId, ChatAction.ActionType.LEAVE).toByteArray());
         channel.send(msg);
     }
 

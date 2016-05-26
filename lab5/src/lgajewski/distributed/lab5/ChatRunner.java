@@ -137,7 +137,7 @@ public class ChatRunner {
 
             ChatMessage chatMessage = ChatMessage.newBuilder().setMessage(line).build();
 
-            simpleChat.send(new Message(null, null, chatMessage));
+            simpleChat.send(new Message(null, null, chatMessage.toByteArray()));
         }
     }
 

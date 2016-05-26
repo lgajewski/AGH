@@ -1,5 +1,7 @@
 package lgajewski.distributed.lab5.chat;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+import lgajewski.distributed.lab5.protos.ChatOperationProtos;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
 import org.jgroups.ReceiverAdapter;
@@ -21,6 +23,7 @@ public class SimpleChat extends ReceiverAdapter {
 
         channel = new JChannel();
         channel.setReceiver(this);
+        channel.setName(username);
         channel.setProtocolStack(stack);
         stack.init();
     }
@@ -38,12 +41,18 @@ public class SimpleChat extends ReceiverAdapter {
     }
 
     public void receive(Message msg) {
-        String line = msg.getSrc() + ": " + msg.getObject();
+        try {
+            ChatOperationProtos.ChatMessage chatMessage = ChatOperationProtos.ChatMessage.parseFrom(msg.getRawBuffer());
+            String line = msg.getSrc() + ": " + chatMessage.getMessage();
 
-        System.out.println(line);
+            System.out.println(line);
 
-        System.out.print("#" + roomId + " > ");
-        System.out.flush();
+            System.out.print("#" + roomId + " > ");
+            System.out.flush();
+
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
     }
 
 
