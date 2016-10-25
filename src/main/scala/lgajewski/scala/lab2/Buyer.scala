@@ -19,6 +19,8 @@ object Buyer {
     require(value > 0)
   }
 
+  case class StartAuction(auction: ActorRef)
+
 }
 
 class Buyer(auctions: List[ActorRef]) extends Actor {
@@ -26,19 +28,24 @@ class Buyer(auctions: List[ActorRef]) extends Actor {
   var random = new Random()
   var balance = BigInt(0)
 
+  val BID_RANGE = 10
+  val BID_INTERVAL = 5
+
   override def receive: Receive = LoggingReceive {
-    case Buyer.Init(wallet) =>
-      balance = wallet
-      auctions.foreach(self ! Buyer.Bid(_, random.nextInt(10)))
-    case Buyer.Bid(auction, value) =>
+    case Buyer.StartAuction(auction) =>
+      auction ! Auction.Start
+    case Buyer.Init(value) =>
+      balance = value
+      auctions.foreach(auction => auction ! Auction.Bid(self, random.nextInt(BID_RANGE) + 1))
+    case Buyer.Bid(auction, value) if value <= balance =>
       auction ! Auction.Bid(self, value)
     case Auction.Bid(who, value) if who != self =>
-      sender ! Auction.Bid(self, value + 10)
+      context.system.scheduler.scheduleOnce(random.nextInt(BID_INTERVAL) seconds, self, Buyer.Bid(sender, value + random.nextInt(BID_RANGE)))
     case Auction.BidFailed(current) =>
-      context.system.scheduler.scheduleOnce(random.nextInt(4) seconds, self, Buyer.Bid(auction, current + 10))
+      context.system.scheduler.scheduleOnce(random.nextInt(BID_INTERVAL) seconds, self, Buyer.Bid(sender, current + random.nextInt(BID_RANGE)))
     case Auction.Sold(buyer, seller, bid) =>
-      println(s" You won auction" + sender.path.name + "! Bid: " + bid + "\n")
-      balance -= price
-      println(s" Your wallet is: " + balance + "\n")
+      balance -= bid
+      println(s" You won " + sender.path.name + "! Bid: " + bid)
+      println(s" Your balance is: " + balance + "\n")
   }
 }

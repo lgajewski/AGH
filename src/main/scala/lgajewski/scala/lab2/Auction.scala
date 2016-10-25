@@ -5,6 +5,7 @@ import akka.event.LoggingReceive
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
+import scala.util.Try
 
 object Auction {
 
@@ -50,7 +51,7 @@ class Auction extends Actor {
   def created: Receive = LoggingReceive {
     case Auction.Bid(who, value) =>
       bid = value
-      buyer ! Auction.Bid(who, value)  // inform last buyer
+      Try(buyer.!(Auction.Bid(who, value)))  // inform last buyer
       buyer = sender
       context become activated
     case Auction.BidTimerExpired =>
@@ -64,6 +65,7 @@ class Auction extends Actor {
       context.system.scheduler.scheduleOnce(5 seconds, self, Auction.BidTimerExpired)
       context become created
     case Auction.DeleteTimerExpired =>
+      printf("Auction %s has been deleted from the system.\n", self.path.name)
       context.stop(self)
   }
 
@@ -83,7 +85,7 @@ class Auction extends Actor {
 
   def sold: Receive = LoggingReceive {
     case Auction.DeleteTimerExpired =>
-      printf("Auction %s has been deleted from the system.", self.path.name)
+      printf("Auction %s has been deleted from the system.\n", self.path.name)
       context.stop(self)
   }
 
