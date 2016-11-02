@@ -12,7 +12,7 @@ class Seller(auctionNames: Set[String]) extends Actor {
         .map(name => context.actorOf(Props[Auction], name.replaceAll(" ", "")))
         .foreach(auction => auction ! Action.Auction.Start)
     case Action.Auction.Sold(buyer, seller, bid) =>
-      println(s" You sold an action:  " + sender.path.name + "! Bid: " + bid)
-      println(s" The buyer is: " + buyer+  "\n")
+      println(self.path.name + " > You sold an action:  " + sender.path.name + "! Bid: " + bid)
+      println(self.path.name + " > The buyer is: " + buyer+  "\n")
   }
 }

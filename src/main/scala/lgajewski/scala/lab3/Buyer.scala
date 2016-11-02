@@ -13,8 +13,8 @@ class Buyer(var balance: BigInt) extends Actor {
 
   var random = new Random()
 
-  val BID_RANGE = 10
-  val BID_INTERVAL = 5
+  val BID_RANGE = 15
+  val BID_INTERVAL = 2
 
   override def receive: Receive = LoggingReceive {
     case Action.Buyer.StartAuction(name) =>
@@ -34,7 +34,7 @@ class Buyer(var balance: BigInt) extends Actor {
 
     case Action.Auction.Sold(buyer, seller, bid) =>
       balance -= bid
-      println(s" You won " + sender.path.name + "! Bid: " + bid)
-      println(s" Your balance is: " + balance + "\n")
+      println(self.path.name + " > You won " + sender.path.name + "! Bid: " + bid)
+      println(self.path.name + " > Your balance is: " + balance + "\n")
   }
 }
