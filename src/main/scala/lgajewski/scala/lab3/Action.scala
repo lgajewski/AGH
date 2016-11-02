@@ -28,15 +28,13 @@ object Action {
 
   object Buyer {
 
-    case class Init(balance: BigInt) {
-      require(balance > 0)
-    }
-
     case class Bid(auction: ActorRef, value: BigInt) {
       require(value > 0)
     }
 
-    case class StartAuction(auction: ActorRef)
+    case class StartAuction(name: String) {
+      require(!name.isEmpty)
+    }
 
   }
 

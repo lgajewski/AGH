@@ -9,20 +9,20 @@ import scala.concurrent.duration.Duration
 object AuctionSystem extends App {
   val system = ActorSystem("AuctionSystem")
 
-//  val auction = system.actorOf(Props[AuctionFSM], "auction")
-  val auction = system.actorOf(Props[Auction], "auction")
+  val auctionNames = Set("Audi A6 diesel manual", "Audi A4 gas auto", "BMW X3 diesel auto")
+  val actionSearch = system.actorOf(Props(new ActionSearch(auctionNames)), "ActionSearch")
 
-  val auctions: List[ActorRef] = List(auction)
+  val seller = system.actorOf(Props(new Seller(auctionNames)), "Seller")
 
-  val buyer1 = system.actorOf(Props(new Buyer(auctions)), "buyer1")
-  val buyer2 = system.actorOf(Props(new Buyer(auctions)), "buyer2")
-  val buyer3 = system.actorOf(Props(new Buyer(auctions)), "buyer3")
+  val buyer1 = system.actorOf(Props(new Buyer(20)), "buyer1")
+  val buyer2 = system.actorOf(Props(new Buyer(60)), "buyer2")
+  val buyer3 = system.actorOf(Props(new Buyer(80)), "buyer3")
 
-  auction ! Action.Auction.Start
+  seller ! Action.Seller.CreateAuctions
 
-  buyer1 ! Action.Buyer.Init(20)
-  buyer2 ! Action.Buyer.Init(60)
-  buyer3 ! Action.Buyer.Init(80)
+
+  Thread.sleep(1500)
+  buyer1 ! Action.Buyer.StartAuction("Audi")
 
   Await.result(system.whenTerminated, Duration.Inf)
 }

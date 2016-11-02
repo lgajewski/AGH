@@ -14,6 +14,7 @@ class ActionSearch(auctionNames: Set[String]) extends Actor {
     case Action.ActionSearch.Register(who) =>
       auctions += who
     case Action.ActionSearch.Search(name) =>
+      println("HEY, SEARCH ME " + name)
       val matched = auctions.filter(auction => String.valueOf(auction) contains name).toList
       sender ! Action.ActionSearch.SearchResult(matched)
   }

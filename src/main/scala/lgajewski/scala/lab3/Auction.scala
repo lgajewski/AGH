@@ -15,6 +15,9 @@ class Auction extends Actor {
 
   var scheduler: Cancellable = null
 
+  // register in ActionSearch
+  context.actorSelection("/user/ActionSearch") ! Action.ActionSearch.Register(self)
+
   override def receive: Receive = idle
 
   def idle: Receive = LoggingReceive {
