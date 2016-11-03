@@ -42,7 +42,7 @@ object Action {
     case object CreateAuctions
   }
 
-  object ActionSearch {
+  object AuctionSearch {
     case class Register(who: ActorRef)
     case class Search(name: String)
     case class SearchResult(auctions: List[ActorRef])

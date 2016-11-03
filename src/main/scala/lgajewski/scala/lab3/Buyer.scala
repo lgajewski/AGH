@@ -18,9 +18,9 @@ class Buyer(var balance: BigInt) extends Actor {
 
   override def receive: Receive = LoggingReceive {
     case Action.Buyer.StartAuction(name) =>
-      context.actorSelection("/user/ActionSearch") ! Action.ActionSearch.Search(name)
+      context.actorSelection("/user/ActionSearch") ! Action.AuctionSearch.Search(name)
 
-    case Action.ActionSearch.SearchResult(auctions) =>
+    case Action.AuctionSearch.SearchResult(auctions) =>
       auctions.foreach(auction => auction ! Action.Auction.Bid(self, random.nextInt(BID_RANGE) + 1))
 
     case Action.Buyer.Bid(auction, value) if value <= balance =>

@@ -23,7 +23,7 @@ class Auction extends Actor {
 
 
   // register in ActionSearch
-  context.actorSelection("/user/ActionSearch") ! Action.ActionSearch.Register(self)
+  context.actorSelection("/user/ActionSearch") ! Action.AuctionSearch.Register(self)
 
   override def receive: Receive = idle
 
