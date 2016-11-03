@@ -10,7 +10,6 @@ import scala.util.{Random, Try}
 class Auction extends Actor {
 
   var bid = BigInt(0)
-  var seller: ActorRef = null
   var buyer: ActorRef = null
 
   var scheduler: Cancellable = null
@@ -29,7 +28,9 @@ class Auction extends Actor {
 
   def idle: Receive = LoggingReceive {
     case Action.Auction.Start =>
-      seller = sender
+      // confirm that auction has just started
+      context.parent ! Action.Auction.Start
+
       context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.BidTimerExpired)
       context become created
   }
@@ -64,8 +65,8 @@ class Auction extends Actor {
       who ! Action.Auction.BidFailed(bid)
     case Action.Auction.BidTimerExpired =>
       context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.DeleteTimerExpired)
-      buyer ! Action.Auction.Sold(buyer, seller, bid)
-      seller ! Action.Auction.Sold(buyer, seller, bid)
+      buyer ! Action.Auction.Sold(buyer, context.parent, bid)
+      context.parent ! Action.Auction.Sold(buyer, context.parent, bid)
       context become sold
   }
 

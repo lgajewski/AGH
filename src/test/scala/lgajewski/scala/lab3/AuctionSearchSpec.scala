@@ -4,7 +4,7 @@ import akka.actor.{ActorSystem, Props}
 import akka.testkit.{ImplicitSender, TestKit, TestProbe}
 import org.scalatest.{BeforeAndAfterAll, WordSpecLike}
 
-class AuctionSearchSpec extends TestKit(ActorSystem("AuctionSearchTest"))
+class AuctionSearchSpec extends TestKit(ActorSystem("AuctionSearchSpec"))
   with WordSpecLike with BeforeAndAfterAll with ImplicitSender {
 
   override def afterAll(): Unit = {
