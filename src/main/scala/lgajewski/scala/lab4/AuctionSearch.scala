@@ -1,7 +1,6 @@
 package lgajewski.scala.lab4
 
-import akka.actor.{Actor, ActorRef}
-import akka.event.LoggingReceive
+import akka.actor.Actor
 
 import scala.collection.mutable.ListBuffer
 
@@ -10,7 +9,7 @@ class AuctionSearch(auctionNames: List[String]) extends Actor {
 
   var auctions = new ListBuffer[Auction]
 
-  override def receive: Receive = LoggingReceive {
+  override def receive: Receive = {
     case Action.AuctionSearch.Register(who) =>
       auctions += who
     case Action.AuctionSearch.Search(name) =>

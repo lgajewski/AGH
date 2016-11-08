@@ -1,7 +1,6 @@
 package lgajewski.scala.lab4
 
 import akka.actor.Actor
-import akka.event.LoggingReceive
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
@@ -16,7 +15,7 @@ class Buyer(var balance: BigInt) extends Actor {
   val BID_RANGE = 15
   val BID_INTERVAL = 2
 
-  override def receive: Receive = LoggingReceive {
+  override def receive: Receive = {
     case Action.Buyer.StartAuction(name) =>
       context.actorSelection("/user/ActionSearch") ! Action.AuctionSearch.Search(name)
 

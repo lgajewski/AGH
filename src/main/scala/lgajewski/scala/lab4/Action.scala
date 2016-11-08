@@ -5,6 +5,7 @@ import akka.actor.ActorRef
 object Action {
 
   case object Auction {
+
     case object Start
 
     case object Relist
@@ -24,6 +25,7 @@ object Action {
     case object BidTimerExpired
 
     case object DeleteTimerExpired
+
   }
 
   object Buyer {
@@ -39,13 +41,19 @@ object Action {
   }
 
   object Seller {
+
     case object CreateAuctions
+
   }
 
   object AuctionSearch {
+
     case class Register(who: Auction)
+
     case class Search(name: String)
+
     case class SearchResult(auctions: List[Auction])
+
   }
 
 }
