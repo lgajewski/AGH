@@ -1,6 +1,7 @@
 package lgajewski.scala.lab4
 
 import akka.actor.{ActorRef, Cancellable}
+import akka.event.LoggingReceive
 import akka.persistence.{PersistentActor, SnapshotOffer, SnapshotSelectionCriteria}
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -21,7 +22,7 @@ case object Sold extends AuctionState
 
 case class StateChangeEvent(state: AuctionState)
 
-case class State(var bid: BigInt = 0, var buyer: ActorRef = null) {
+case class State(auctionState: AuctionState, var bid: BigInt = 0, var buyer: ActorRef = null) {
   override def toString: String = "bid:" + bid
 }
 
@@ -30,7 +31,7 @@ class Auction(auctionName: String) extends PersistentActor {
   var ref = self
   var name: String = auctionName
 
-  var state = State()
+  var state = State(Idle)
 
   var scheduler: Cancellable = null
 
@@ -41,20 +42,20 @@ class Auction(auctionName: String) extends PersistentActor {
   def getTimeout: FiniteDuration = random.nextInt(MAX_TIMEOUT - MIN_TIMEOUT) + MIN_TIMEOUT seconds
 
 
-  // register in ActionSearch
-  context.actorSelection("/user/ActionSearch") ! Action.AuctionSearch.Register(this)
-
   def idle: Receive = {
     case Action.Auction.Start =>
       println("> [IDLE] Action.Auction.Start " + state)
-      // confirm that auction has just started
-      context.parent ! Action.Auction.Start
       persist(StateChangeEvent(Created))(event => {
+        // register in ActionSearch
+        context.actorSelection("/user/ActionSearch") ! Action.AuctionSearch.Register(this)
+
+        // confirm that auction has just started
+        context.parent ! Action.Auction.Start
         updateState(event)
       })
   }
 
-  def created: Receive = {
+  def created: Receive = LoggingReceive {
     case Action.Auction.Bid(who, value) if value > state.bid =>
       println("> [CREATED] Action.Auction.Bid " + state)
       state.bid = value
@@ -71,7 +72,7 @@ class Auction(auctionName: String) extends PersistentActor {
       persist(StateChangeEvent(Ignored))(event => updateState(event))
   }
 
-  def ignored: Receive = {
+  def ignored: Receive = LoggingReceive {
     case Action.Auction.Relist =>
       persist(StateChangeEvent(Created))(event => updateState(event))
     case Action.Auction.DeleteTimerExpired =>
@@ -79,7 +80,7 @@ class Auction(auctionName: String) extends PersistentActor {
       deleteAuction()
   }
 
-  def activated: Receive = {
+  def activated: Receive = LoggingReceive {
     case Action.Auction.Bid(who, value) if value > state.bid =>
       println("> [ACTIVATED] Action.Auction.Bid " + state)
       state.bid = value
@@ -96,7 +97,7 @@ class Auction(auctionName: String) extends PersistentActor {
       })
   }
 
-  def sold: Receive = {
+  def sold: Receive = LoggingReceive {
     case Action.Auction.DeleteTimerExpired =>
       println("> [SOLD] Action.Auction.DeleteTimerExpired " + state)
       deleteAuction()
@@ -111,6 +112,9 @@ class Auction(auctionName: String) extends PersistentActor {
         scheduler = context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.BidTimerExpired)
         created
       case Activated =>
+        if (scheduler == null || scheduler.isCancelled) {
+          scheduler = context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.BidTimerExpired)
+        }
         activated
       case Ignored =>
         Try(scheduler.cancel())
@@ -126,16 +130,18 @@ class Auction(auctionName: String) extends PersistentActor {
   def deleteAuction() = {
     printf("> Auction %s has been deleted from the system.\n", self.path.name)
     deleteSnapshots(SnapshotSelectionCriteria())
-//    deleteMessages(Long.MaxValue)
+    deleteMessages(Long.MaxValue)
     context.stop(self)
   }
 
-  val receiveRecover: Receive = {
+  val receiveRecover: Receive = LoggingReceive {
     case evt: StateChangeEvent =>
       print("> [RECOVER] ")
       updateState(evt)
     case SnapshotOffer(_, snapshot: State) =>
+      println("> [SNAPSHOT] load from snapshot, " + snapshot)
       state = snapshot
+      updateState(StateChangeEvent(state.auctionState))
   }
 
   override def receiveCommand: Receive = idle

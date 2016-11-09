@@ -1,15 +1,16 @@
 package lgajewski.scala.lab4
 
 import akka.actor.Actor
+import akka.event.LoggingReceive
 
 import scala.collection.mutable.ListBuffer
 
 
-class AuctionSearch(auctionNames: List[String]) extends Actor {
+class AuctionSearch extends Actor {
 
   var auctions = new ListBuffer[Auction]
 
-  override def receive: Receive = {
+  override def receive: Receive = LoggingReceive {
     case Action.AuctionSearch.Register(who) =>
       auctions += who
     case Action.AuctionSearch.Search(name) =>
