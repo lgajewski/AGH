@@ -1,12 +1,14 @@
 package lgajewski.scala.lab4
 
+import java.util.concurrent.TimeUnit
+
 import akka.actor.{ActorRef, Cancellable}
 import akka.event.LoggingReceive
-import akka.persistence.{PersistentActor, SnapshotOffer, SnapshotSelectionCriteria}
+import akka.persistence.{PersistentActor, RecoveryCompleted, SnapshotOffer, SnapshotSelectionCriteria}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
-import scala.util.{Random, Try}
+import scala.util.Try
 
 sealed trait AuctionState
 
@@ -22,59 +24,56 @@ case object Sold extends AuctionState
 
 case class StateChangeEvent(state: AuctionState)
 
-case class State(auctionState: AuctionState, var bid: BigInt = 0, var buyer: ActorRef = null) {
-  override def toString: String = "bid:" + bid
+case class State(var auctionState: AuctionState,
+                 var bid: BigInt = 0,
+                 var buyer: ActorRef = null,
+                 var duration: Long = 0) {
+  override def toString: String = "bid:" + bid + ", duration: " + duration
 }
 
 class Auction(auctionName: String) extends PersistentActor {
 
   var ref = self
   var name: String = auctionName
-
   var state = State(Idle)
 
   var scheduler: Cancellable = null
 
-  val MIN_TIMEOUT = 5
-  val MAX_TIMEOUT = 10
-  val random = new Random()
+  def getTimeout: Long = 5000
 
-  def getTimeout: FiniteDuration = random.nextInt(MAX_TIMEOUT - MIN_TIMEOUT) + MIN_TIMEOUT seconds
+  // register in ActionSearch
+  context.actorSelection("/user/ActionSearch") ! Action.AuctionSearch.Register(this)
 
-
-  def idle: Receive = {
+  def idle: Receive = LoggingReceive {
     case Action.Auction.Start =>
       println("> [IDLE] Action.Auction.Start " + state)
-      persist(StateChangeEvent(Created))(event => {
-        // register in ActionSearch
-        context.actorSelection("/user/ActionSearch") ! Action.AuctionSearch.Register(this)
 
-        // confirm that auction has just started
-        context.parent ! Action.Auction.Start
-        updateState(event)
+      // confirm that auction has just started
+      context.parent ! Action.Auction.Start
+
+      persist(StateChangeEvent(Created))(event => {
+        updateAuctionState(event.state)
       })
   }
 
   def created: Receive = LoggingReceive {
     case Action.Auction.Bid(who, value) if value > state.bid =>
       println("> [CREATED] Action.Auction.Bid " + state)
-      state.bid = value
       Try(state.buyer.!(Action.Auction.Bid(who, value))) // inform last buyer
-      state.buyer = sender
-      saveSnapshot(state)
+      saveSnap(Created, value, sender)
       persist(StateChangeEvent(Activated))(event => {
-        updateState(event)
+        updateAuctionState(event.state)
       })
     case Action.Auction.Bid(who, value) =>
       who ! Action.Auction.BidFailed(state.bid)
     case Action.Auction.BidTimerExpired =>
       println("> [CREATED] Action.Auction.BidTimerExpired " + state)
-      persist(StateChangeEvent(Ignored))(event => updateState(event))
+      persist(StateChangeEvent(Ignored))(event => updateAuctionState(event.state))
   }
 
   def ignored: Receive = LoggingReceive {
     case Action.Auction.Relist =>
-      persist(StateChangeEvent(Created))(event => updateState(event))
+      persist(StateChangeEvent(Created))(event => updateAuctionState(event.state))
     case Action.Auction.DeleteTimerExpired =>
       println("> [IGNORED] Action.Auction.DeleteTimerExpired " + state)
       deleteAuction()
@@ -83,17 +82,15 @@ class Auction(auctionName: String) extends PersistentActor {
   def activated: Receive = LoggingReceive {
     case Action.Auction.Bid(who, value) if value > state.bid =>
       println("> [ACTIVATED] Action.Auction.Bid " + state)
-      state.bid = value
       state.buyer ! Action.Auction.Bid(who, value) // inform last buyer
-      state.buyer = sender
-      saveSnapshot(state)
+      saveSnap(Activated, value, sender)
     case Action.Auction.Bid(who, value) =>
       who ! Action.Auction.BidFailed(state.bid)
     case Action.Auction.BidTimerExpired =>
       state.buyer ! Action.Auction.Sold(this, state.buyer, context.parent, state.bid)
       context.parent ! Action.Auction.Sold(this, state.buyer, context.parent, state.bid)
       persist(StateChangeEvent(Sold))(event => {
-        updateState(event)
+        updateAuctionState(event.state)
       })
   }
 
@@ -103,28 +100,43 @@ class Auction(auctionName: String) extends PersistentActor {
       deleteAuction()
   }
 
-  def updateState(evt: StateChangeEvent): Unit = {
-    println("> [" + name + "] [" + evt.state.toString + "]")
-    context.become(evt.state match {
+  def saveSnap(auctionState: AuctionState, bid: BigInt, buyer: ActorRef): Unit = {
+    state.bid = bid
+    state.buyer = buyer
+    state.auctionState = auctionState
+    if (System.currentTimeMillis() - startTimerMillis > state.duration) {
+      state.duration = System.currentTimeMillis() - startTimerMillis
+    }
+
+    saveSnapshot(state)
+  }
+
+  var startTimerMillis: Long = 0
+
+  def updateAuctionState(auctionState: AuctionState): Unit = {
+    println("> [" + name.substring(0, 10) + "] [" + auctionState.toString + "]")
+    startTimer(auctionState)
+    context.become(auctionState match {
       case Idle => idle
-      case Created =>
-        Try(scheduler.cancel())
-        scheduler = context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.BidTimerExpired)
-        created
-      case Activated =>
-        if (scheduler == null || scheduler.isCancelled) {
-          scheduler = context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.BidTimerExpired)
-        }
-        activated
-      case Ignored =>
-        Try(scheduler.cancel())
-        scheduler = context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.DeleteTimerExpired)
-        ignored
-      case Sold =>
-        Try(scheduler.cancel())
-        scheduler = context.system.scheduler.scheduleOnce(getTimeout, self, Action.Auction.DeleteTimerExpired)
-        sold
+      case Created => created
+      case Activated => activated
+      case Ignored => ignored
+      case Sold => sold
     })
+  }
+
+  def startTimer(state: AuctionState) = {
+    Try(scheduler.cancel())
+    val bidTimeout = new FiniteDuration(getTimeout - this.state.duration, TimeUnit.MILLISECONDS)
+    val deleteTimeout = new FiniteDuration(getTimeout, TimeUnit.MILLISECONDS)
+    state match {
+      case Idle =>
+      case Created | Activated=>
+        startTimerMillis = System.currentTimeMillis()
+        scheduler = context.system.scheduler.scheduleOnce(bidTimeout, self, Action.Auction.BidTimerExpired)
+      case Ignored | Sold =>
+        scheduler = context.system.scheduler.scheduleOnce(deleteTimeout, self, Action.Auction.DeleteTimerExpired)
+    }
   }
 
   def deleteAuction() = {
@@ -136,12 +148,16 @@ class Auction(auctionName: String) extends PersistentActor {
 
   val receiveRecover: Receive = LoggingReceive {
     case evt: StateChangeEvent =>
-      print("> [RECOVER] ")
-      updateState(evt)
+      print("> [RECOVERY] ")
+      state.auctionState = evt.state
+      updateAuctionState(evt.state)
     case SnapshotOffer(_, snapshot: State) =>
       println("> [SNAPSHOT] load from snapshot, " + snapshot)
       state = snapshot
-      updateState(StateChangeEvent(state.auctionState))
+      updateAuctionState(state.auctionState)
+    case RecoveryCompleted =>
+      startTimer(state.auctionState)
+      println("> [RECOVERY COMPLETE]")
   }
 
   override def receiveCommand: Receive = idle

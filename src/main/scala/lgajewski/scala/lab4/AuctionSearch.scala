@@ -10,7 +10,7 @@ class AuctionSearch extends Actor {
 
   var auctions = new ListBuffer[Auction]
 
-  override def receive: Receive = LoggingReceive {
+  override def receive: Receive = {
     case Action.AuctionSearch.Register(who) =>
       auctions += who
     case Action.AuctionSearch.Search(name) =>
