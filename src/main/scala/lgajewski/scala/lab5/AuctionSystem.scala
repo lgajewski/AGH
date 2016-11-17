@@ -8,29 +8,29 @@ import scala.concurrent.duration.Duration
 
 object AuctionSystem extends App {
   val config = ConfigFactory.load()
-  val clientSystem = ActorSystem("AuctionSystem", config.getConfig("clientapp").withFallback(config))
-  val serverSystem = ActorSystem("AuctionSystem", config.getConfig("serverapp").withFallback(config))
+  val localSystem = ActorSystem("AuctionSystem")
+  val remoteSystem = ActorSystem("AuctionSystem", config.getConfig("remote").withFallback(config))
 
-  val auctionNames = List("BMW X3 diesel automatic")
-//  val auctionNames = List("Audi A6 diesel manual", "Peugeot 307 gas manual", "BMW X3 diesel automatic", "Audi A3 gas manual")
+//  val auctionNames = List("BMW X3 diesel automatic")
+  val auctionNames = List("Audi A6 diesel manual", "Peugeot 307 gas manual", "BMW X3 diesel automatic", "Audi A3 gas manual")
 
-  val actionSearch = clientSystem.actorOf(Props[AuctionSearch], "ActionSearch")
+  val actionSearch = localSystem.actorOf(Props[AuctionSearch], "ActionSearch")
 
-  val publisher = serverSystem.actorOf(Props[AuctionPublisher], "AuctionPublisher")
-  val notifier = clientSystem.actorOf(Props[Notifier], "Notifier")
+  val publisher = remoteSystem.actorOf(Props[AuctionPublisher], "AuctionPublisher")
+  val notifier = localSystem.actorOf(Props[Notifier], "Notifier")
 
-  val seller = clientSystem.actorOf(Props(new Seller(auctionNames)), "Seller")
+  val seller = localSystem.actorOf(Props(new Seller(auctionNames)), "Seller")
   seller ! Action.Seller.CreateAuctions
 
   Thread.sleep(1500)
 
-  val buyer1 = clientSystem.actorOf(Props(new Buyer(60)), "buyer1")
-  val buyer2 = clientSystem.actorOf(Props(new Buyer(100)), "buyer2")
-  val buyer3 = clientSystem.actorOf(Props(new Buyer(120)), "buyer3")
+  val buyer1 = localSystem.actorOf(Props(new Buyer(60)), "buyer1")
+  val buyer2 = localSystem.actorOf(Props(new Buyer(100)), "buyer2")
+  val buyer3 = localSystem.actorOf(Props(new Buyer(120)), "buyer3")
 
-  buyer1 ! Action.Buyer.StartAuction("automatic")
-  buyer2 ! Action.Buyer.StartAuction("automatic")
+  buyer1 ! Action.Buyer.StartAuction("manual")
+  buyer2 ! Action.Buyer.StartAuction("manual")
   buyer3 ! Action.Buyer.StartAuction("automatic")
 
-  Await.result(clientSystem.whenTerminated, Duration.Inf)
+  Await.result(localSystem.whenTerminated, Duration.Inf)
 }

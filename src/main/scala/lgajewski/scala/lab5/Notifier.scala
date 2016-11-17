@@ -11,7 +11,7 @@ class Notifier extends Actor {
   override def receive: Receive = {
     case Action.Notifier.Notify(title, buyer, bid) =>
       // use remote account
-      val publisher = context.actorSelection("akka.tcp://AuctionSystem@127.0.0.1:2552/user/AuctionPublisher")
+      val publisher = context.actorSelection("akka.tcp://AuctionSystem@127.0.0.1:2553/user/AuctionPublisher")
       implicit val timeout = Timeout(5 seconds)
 
       // use ask pattern

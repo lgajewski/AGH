@@ -13,7 +13,12 @@ class Buyer(var balance: BigInt) extends Actor {
   var random = new Random()
 
   val BID_RANGE = 15
+  val BID_MIN_SCHEDULE = 1
   val BID_INTERVAL = 2
+
+  def calcDelay: Int = {
+    random.nextInt(BID_INTERVAL) + BID_MIN_SCHEDULE
+  }
 
   override def receive: Receive = {
     case Action.Buyer.StartAuction(name) =>
@@ -26,10 +31,10 @@ class Buyer(var balance: BigInt) extends Actor {
       auction ! Action.Auction.Bid(self, value)
 
     case Action.Auction.Bid(who, value) if who != self =>
-      context.system.scheduler.scheduleOnce(random.nextInt(BID_INTERVAL) seconds, self, Action.Buyer.Bid(sender, value + random.nextInt(BID_RANGE)))
+      context.system.scheduler.scheduleOnce(calcDelay seconds, self, Action.Buyer.Bid(sender, value + random.nextInt(BID_RANGE)))
 
     case Action.Auction.BidFailed(current) =>
-      context.system.scheduler.scheduleOnce(random.nextInt(BID_INTERVAL) seconds, self, Action.Buyer.Bid(sender, current + random.nextInt(BID_RANGE)))
+      context.system.scheduler.scheduleOnce(calcDelay seconds, self, Action.Buyer.Bid(sender, current + random.nextInt(BID_RANGE)))
 
     case Action.Auction.Sold(auction, buyer, seller, bid) =>
       balance -= bid
