@@ -1,4 +1,4 @@
-package lgajewski.scala.lab5
+package lgajewski.scala.lab6
 
 import akka.actor.Actor
 import akka.pattern.ask
