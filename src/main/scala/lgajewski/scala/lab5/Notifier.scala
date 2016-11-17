@@ -1,23 +1,21 @@
 package lgajewski.scala.lab5
 
-import akka.actor.Actor
-import akka.util.Timeout
-import akka.pattern.ask
+import akka.actor.SupervisorStrategy.Restart
+import akka.actor.{Actor, OneForOneStrategy, Props}
 
-import scala.concurrent.Await
 import scala.concurrent.duration._
 
 class Notifier extends Actor {
+
+  override val supervisorStrategy =
+    OneForOneStrategy(maxNrOfRetries = Int.MaxValue, withinTimeRange = 1 minute) {
+      case _ => Restart
+    }
+
   override def receive: Receive = {
     case Action.Notifier.Notify(title, buyer, bid) =>
-      // use remote account
-      val publisher = context.actorSelection("akka.tcp://AuctionSystem@127.0.0.1:2553/user/AuctionPublisher")
-      implicit val timeout = Timeout(5 seconds)
-
-      // use ask pattern
-      val future = publisher ? Action.Notifier.Notify(title, buyer, bid)
-      val result = Await.result(future, timeout.duration)
-
-      sender ! Action.Notifier.Done
+      println("[NOTIFIER] Trying to send a NotifierRequest...")
+      // create request and delegate
+      context.actorOf(Props[NotifierRequest]) ! Action.Notifier.Notify(title, buyer, bid)
   }
 }
