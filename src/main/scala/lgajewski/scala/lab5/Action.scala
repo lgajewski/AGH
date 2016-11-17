@@ -56,4 +56,14 @@ object Action {
 
   }
 
+  object Notifier {
+
+    case object Done
+
+    case class Notify(title: String, buyer: ActorRef, bid: BigInt) {
+      require(bid >= 0)
+    }
+
+  }
+
 }

@@ -52,7 +52,7 @@ class Auction(auctionName: String) extends PersistentActor {
       context.parent ! Action.Auction.Start
 
       persist(StateChangeEvent(Created))(event => {
-        updateAuctionState(event.state)
+        changeAuctionState(event.state)
       })
   }
 
@@ -60,20 +60,20 @@ class Auction(auctionName: String) extends PersistentActor {
     case Action.Auction.Bid(who, value) if value > state.bid =>
       println("> [CREATED] Action.Auction.Bid " + state)
       Try(state.buyer.!(Action.Auction.Bid(who, value))) // inform last buyer
-      saveSnap(Created, value, sender)
+      updateState(Created, value, sender)
       persist(StateChangeEvent(Activated))(event => {
-        updateAuctionState(event.state)
+        changeAuctionState(event.state)
       })
     case Action.Auction.Bid(who, value) =>
       who ! Action.Auction.BidFailed(state.bid)
     case Action.Auction.BidTimerExpired =>
       println("> [CREATED] Action.Auction.BidTimerExpired " + state)
-      persist(StateChangeEvent(Ignored))(event => updateAuctionState(event.state))
+      persist(StateChangeEvent(Ignored))(event => changeAuctionState(event.state))
   }
 
   def ignored: Receive = LoggingReceive {
     case Action.Auction.Relist =>
-      persist(StateChangeEvent(Created))(event => updateAuctionState(event.state))
+      persist(StateChangeEvent(Created))(event => changeAuctionState(event.state))
     case Action.Auction.DeleteTimerExpired =>
       println("> [IGNORED] Action.Auction.DeleteTimerExpired " + state)
       deleteAuction()
@@ -83,14 +83,14 @@ class Auction(auctionName: String) extends PersistentActor {
     case Action.Auction.Bid(who, value) if value > state.bid =>
       println("> [ACTIVATED] Action.Auction.Bid " + state)
       state.buyer ! Action.Auction.Bid(who, value) // inform last buyer
-      saveSnap(Activated, value, sender)
+      updateState(Activated, value, sender)
     case Action.Auction.Bid(who, value) =>
       who ! Action.Auction.BidFailed(state.bid)
     case Action.Auction.BidTimerExpired =>
       state.buyer ! Action.Auction.Sold(this, state.buyer, context.parent, state.bid)
       context.parent ! Action.Auction.Sold(this, state.buyer, context.parent, state.bid)
       persist(StateChangeEvent(Sold))(event => {
-        updateAuctionState(event.state)
+        changeAuctionState(event.state)
       })
   }
 
@@ -100,7 +100,7 @@ class Auction(auctionName: String) extends PersistentActor {
       deleteAuction()
   }
 
-  def saveSnap(auctionState: AuctionState, bid: BigInt, buyer: ActorRef): Unit = {
+  def updateState(auctionState: AuctionState, bid: BigInt, buyer: ActorRef): Unit = {
     state.bid = bid
     state.buyer = buyer
     state.auctionState = auctionState
@@ -108,12 +108,16 @@ class Auction(auctionName: String) extends PersistentActor {
       state.duration = System.currentTimeMillis() - startTimerMillis
     }
 
+    // save snap
     saveSnapshot(state)
+
+    // send notification
+    context.actorSelection("/user/Notifier") ! Action.Notifier.Notify(auctionName, buyer, bid)
   }
 
   var startTimerMillis: Long = 0
 
-  def updateAuctionState(auctionState: AuctionState): Unit = {
+  def changeAuctionState(auctionState: AuctionState): Unit = {
     println("> [" + name.substring(0, 10) + "] [" + auctionState.toString + "]")
     startTimer(auctionState)
     context.become(auctionState match {
@@ -140,7 +144,7 @@ class Auction(auctionName: String) extends PersistentActor {
   }
 
   def deleteAuction() = {
-    printf("> Auction %s has been deleted from the system.\n", self.path.name)
+    printf("> Auction '%s' has been deleted from the system.\n", auctionName)
     deleteSnapshots(SnapshotSelectionCriteria())
     deleteMessages(Long.MaxValue)
     context.stop(self)
@@ -150,11 +154,11 @@ class Auction(auctionName: String) extends PersistentActor {
     case evt: StateChangeEvent =>
       print("> [RECOVERY] ")
       state.auctionState = evt.state
-      updateAuctionState(evt.state)
+      changeAuctionState(evt.state)
     case SnapshotOffer(_, snapshot: State) =>
       println("> [SNAPSHOT] load from snapshot, " + snapshot)
       state = snapshot
-      updateAuctionState(state.auctionState)
+      changeAuctionState(state.auctionState)
     case RecoveryCompleted =>
       startTimer(state.auctionState)
       println("> [RECOVERY COMPLETE]")
