@@ -1,13 +1,13 @@
 package lgajewski.scala.lab6
 
-import akka.actor.Actor
+import akka.actor.{Actor, ActorLogging}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.util.Random
 
 
-class Buyer(var balance: BigInt) extends Actor {
+class Buyer(var balance: BigInt) extends Actor with ActorLogging  {
   require(balance > 0)
 
   var random = new Random()
@@ -38,7 +38,7 @@ class Buyer(var balance: BigInt) extends Actor {
 
     case Action.Auction.Sold(auction, buyer, seller, bid) =>
       balance -= bid
-      println(self.path.name + " > You won " + auction.name + "! Bid: " + bid)
-      println(self.path.name + " > Your balance is: " + balance + "\n")
+      log.debug(self.path.name + " > You won " + auction.name + "! Bid: " + bid)
+      log.debug(self.path.name + " > Your balance is: " + balance + "\n")
   }
 }

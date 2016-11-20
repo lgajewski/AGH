@@ -1,11 +1,11 @@
 package lgajewski.scala.lab6
 
 import akka.actor.SupervisorStrategy.Restart
-import akka.actor.{Actor, OneForOneStrategy, Props}
+import akka.actor.{Actor, ActorLogging, OneForOneStrategy, Props}
 
 import scala.concurrent.duration._
 
-class Notifier extends Actor {
+class Notifier extends Actor with ActorLogging  {
 
   override val supervisorStrategy =
     OneForOneStrategy(maxNrOfRetries = Int.MaxValue, withinTimeRange = 1 minute) {
@@ -14,7 +14,7 @@ class Notifier extends Actor {
 
   override def receive: Receive = {
     case Action.Notifier.Notify(title, buyer, bid) =>
-      println("> [NOTIFIER] Trying to send a NotifierRequest...")
+      log.debug("> [NOTIFIER] Trying to send a NotifierRequest...")
       // create request and delegate
       context.actorOf(Props[NotifierRequest]) ! Action.Notifier.Notify(title, buyer, bid)
   }

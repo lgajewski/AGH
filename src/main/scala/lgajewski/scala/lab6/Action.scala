@@ -4,6 +4,8 @@ import akka.actor.ActorRef
 
 object Action {
 
+  case object Done
+
   case object Auction {
 
     case object Start

@@ -1,11 +1,11 @@
 package lgajewski.scala.lab6
 
 import akka.actor.{Actor, ActorLogging, Props}
-import akka.routing.{ActorRefRoutee, BroadcastRoutingLogic, RoundRobinRoutingLogic, Router}
+import akka.routing._
 
 class MasterSearch extends Actor with ActorLogging {
 
-  val nbOfroutees: Int = 5
+  val nbOfroutees: Int = 4
 
   val routees = Vector.fill(nbOfroutees) {
     val r = context.actorOf(Props[AuctionSearch])

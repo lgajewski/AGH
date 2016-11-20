@@ -1,11 +1,11 @@
 package lgajewski.scala.lab6
 
-import akka.actor.Actor
+import akka.actor.{Actor, ActorLogging}
 
-class AuctionPublisher extends Actor{
+class AuctionPublisher extends Actor with ActorLogging {
   override def receive: Receive = {
     case Action.Notifier.Notify(title, buyer, bid) =>
-      println(s"> [AUCTION PUBLISHER] [$title] - ${buyer.path.name}, bid: $bid")
+      log.debug(s"> [AUCTION PUBLISHER] [$title] - ${buyer.path.name}, bid: $bid")
 
       sender ! Action.Notifier.Done
   }

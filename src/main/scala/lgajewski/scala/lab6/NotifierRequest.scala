@@ -1,13 +1,13 @@
 package lgajewski.scala.lab6
 
-import akka.actor.Actor
+import akka.actor.{Actor, ActorLogging}
 import akka.pattern.ask
 import akka.util.Timeout
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
-class NotifierRequest extends Actor {
+class NotifierRequest extends Actor with ActorLogging  {
   override def receive: Receive = {
     case Action.Notifier.Notify(title, buyer, bid) =>
       // use remote account
@@ -20,7 +20,7 @@ class NotifierRequest extends Actor {
       try {
         Await.result(future, timeout.duration)
       } catch {
-        case e: Exception => println("> [REQUEST]" + e.getMessage)
+        case e: Exception => log.debug("> [REQUEST]" + e.getMessage)
       }
 
       sender ! Action.Notifier.Done
