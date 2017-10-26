@@ -18,6 +18,7 @@ apply plugin: 'pmd'
 
 group = 'pl.edu.agh'
 version = '0.0.1-SNAPSHOT'
+
 sourceCompatibility = 1.8
 
 repositories {
@@ -27,6 +28,7 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -38,7 +40,7 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 0.3
+                minimum = 0.1
             }
         }
     }
@@ -56,7 +58,6 @@ pmd {
             'java-imports',
             'java-junit',
             'java-migrating',
-            'java-naming',
             'java-strictexception',
             'java-strings',
             'java-sunsecure',

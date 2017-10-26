@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: IOSR
+
+server:
+    port: 80
