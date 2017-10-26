@@ -14,6 +14,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: "jacoco"
+apply plugin: 'pmd'
 
 group = 'pl.edu.agh'
 version = '0.0.1-SNAPSHOT'
@@ -30,7 +31,7 @@ dependencies {
 }
 
 
-// JaCoCo configuration
+// JaCoCo - test coverage
 check.dependsOn jacocoTestCoverageVerification
 
 jacocoTestCoverageVerification {
@@ -41,4 +42,26 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+
+// PMD - static code analysis
+pmd {
+    ruleSets = [
+            'java-basic',
+            'java-braces',
+            'java-clone',
+            'java-codesize',
+            'java-empty',
+            'java-finalizers',
+            'java-imports',
+            'java-junit',
+            'java-migrating',
+            'java-naming',
+            'java-strictexception',
+            'java-strings',
+            'java-sunsecure',
+            'java-typeresolution',
+            'java-unnecessary',
+            'java-unusedcode'
+    ]
 }
