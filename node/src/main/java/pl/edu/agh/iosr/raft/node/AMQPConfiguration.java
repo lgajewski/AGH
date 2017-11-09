@@ -2,8 +2,8 @@ package pl.edu.agh.iosr.raft.node;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -13,7 +13,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AMQPConfiguration {
 
-    final static String QUEUE_NAME = "raft-algorithm";
+    private final static String FANOUT_EXCHANGE_NAME = "raft-exchange-fanout";
+
+    private final static String QUEUE_BASE_NAME = "raft-queue-direct-";
+    private final static String QUEUE_NAME = QUEUE_BASE_NAME + Application.nodeId;
 
     @Bean
     Queue queue() {
@@ -21,13 +24,13 @@ public class AMQPConfiguration {
     }
 
     @Bean
-    TopicExchange exchange() {
-        return new TopicExchange("raft-algorithm-exchange");
+    FanoutExchange fanoutExchange() {
+        return new FanoutExchange(FANOUT_EXCHANGE_NAME);
     }
 
     @Bean
-    Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(QUEUE_NAME);
+    Binding fanoutBinding(Queue queue, FanoutExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange);
     }
 
     @Bean
@@ -45,5 +48,8 @@ public class AMQPConfiguration {
         return new MessageListenerAdapter(receiver, "receive");
     }
 
+    public static String getRoutingKey(int nodeId) {
+        return QUEUE_BASE_NAME + nodeId;
+    }
 
 }
