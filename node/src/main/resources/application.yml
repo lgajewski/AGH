@@ -1,0 +1,7 @@
+spring:
+    application:
+        name: IOSR-node
+
+logging:
+  level:
+    ROOT: INFO

@@ -10,59 +10,53 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: "jacoco"
-apply plugin: 'pmd'
-
-group = 'pl.edu.agh'
-version = '0.0.1-SNAPSHOT'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+allprojects {
+    group = 'pl.edu.agh'
+    version = '0.0.1'
 }
 
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: "jacoco"
+    apply plugin: 'pmd'
 
-dependencies {
-    compile('org.springframework.boot:spring-boot-starter')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-}
+    sourceCompatibility = 1.8
 
+    repositories {
+        mavenCentral()
+    }
 
 // JaCoCo - test coverage
-check.dependsOn jacocoTestCoverageVerification
+    check.dependsOn jacocoTestCoverageVerification
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.1
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = 0.1
+                }
             }
         }
     }
-}
 
 // PMD - static code analysis
-pmd {
-    ruleSets = [
-            'java-basic',
-            'java-braces',
-            'java-clone',
-            'java-codesize',
-            'java-empty',
-            'java-finalizers',
-            'java-imports',
-            'java-junit',
-            'java-migrating',
-            'java-strictexception',
-            'java-strings',
-            'java-sunsecure',
-            'java-typeresolution',
-            'java-unnecessary',
-            'java-unusedcode'
-    ]
+    pmd {
+        ruleSets = [
+                'java-basic',
+                'java-braces',
+                'java-clone',
+                'java-codesize',
+                'java-empty',
+                'java-finalizers',
+                'java-imports',
+                'java-junit',
+                'java-migrating',
+                'java-strictexception',
+                'java-strings',
+                'java-sunsecure',
+                'java-unnecessary',
+                'java-unusedcode'
+        ]
+    }
 }
