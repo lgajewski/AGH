@@ -4,6 +4,7 @@ jdk:
 branches:
   only:
     - master
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -11,5 +12,16 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
+sudo: required
+services:
+  - docker
+
 before_install:
   - java -version
+  - docker-compose --version
+
+before_script:
+  - docker-compose up --build -d
+after_script:
+  - docker-compose down
