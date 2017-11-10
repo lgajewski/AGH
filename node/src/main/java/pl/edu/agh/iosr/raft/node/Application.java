@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 
@@ -12,8 +13,8 @@ public class Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
-    static int nodeId;
-    static int nodeAmount;
+    public static int nodeId;
+    public static int nodeAmount;
 
     public static void main(String[] args) throws IOException {
         if (args.length != 2) {

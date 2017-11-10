@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.edu.agh.iosr.raft.node.protocol.Node;
 
 @Configuration
 public class AMQPConfiguration {
@@ -44,8 +45,8 @@ public class AMQPConfiguration {
     }
 
     @Bean
-    MessageListenerAdapter listenerAdapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "receive");
+    MessageListenerAdapter listenerAdapter(Node node) {
+        return new MessageListenerAdapter(node, "receiveMessage");
     }
 
     public static String getRoutingKey(int nodeId) {
