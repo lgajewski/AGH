@@ -19,7 +19,7 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Node node = new Node(rabbitTemplate, Application.nodeId, Application.nodeAmount);
+        Node node = new Node(rabbitTemplate);
 //        System.out.println("Sending message to node #1..");
 //        rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(1), "Hello from RabbitMQ!");
 //
