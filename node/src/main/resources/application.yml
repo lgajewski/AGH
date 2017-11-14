@@ -1,7 +1,20 @@
 spring:
-    application:
-        name: IOSR-node
+  application:
+      name: IOSR-node
 
 logging:
   level:
     ROOT: INFO
+
+amqp:
+  queue: queue-${raft.name}
+  exchange: raft-exchange
+  routingKey: ${raft.name}
+
+raft:
+  name: node
+  nodes:
+
+
+
+

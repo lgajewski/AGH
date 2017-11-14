@@ -2,14 +2,15 @@ package pl.edu.agh.iosr.raft.node.protocol.messages;
 
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import pl.edu.agh.iosr.raft.node.Message;
 import pl.edu.agh.iosr.raft.node.protocol.Entry;
 
 import java.util.List;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class AppendEntriesRequest {
+public class AppendEntriesRequest implements Message {
     private Integer term;
-    private Integer leaderId;
+    private String leaderId;
     private Integer prevLogIndex;
     private Integer prevLogTerm;
     private List<Entry> entries;
@@ -17,17 +18,16 @@ public class AppendEntriesRequest {
 
     public AppendEntriesRequest(){};
 
-    public AppendEntriesRequest(int term, int leaderId) {
+    public AppendEntriesRequest(int term, String leaderId) {
         this.term = term;
         this.leaderId = leaderId;
     }
-
 
     public Integer getTerm() {
         return term;
     }
 
-    public Integer getLeaderId() {
+    public String getLeaderId() {
         return leaderId;
     }
 
@@ -61,5 +61,10 @@ public class AppendEntriesRequest {
 
     public void setEntries(List<Entry> entries) {
         this.entries = entries;
+    }
+
+    @Override
+    public String getRoutingKey() {
+        return leaderId;
     }
 }

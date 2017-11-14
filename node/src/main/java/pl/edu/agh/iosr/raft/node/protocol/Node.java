@@ -1,10 +1,11 @@
 package pl.edu.agh.iosr.raft.node.protocol;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.edu.agh.iosr.raft.node.AMQPConfiguration;
-import pl.edu.agh.iosr.raft.node.Application;
+import pl.edu.agh.iosr.raft.node.MessageBroker;
+import pl.edu.agh.iosr.raft.node.properties.RaftProperties;
 import pl.edu.agh.iosr.raft.node.protocol.messages.AppendEntriesRequest;
 import pl.edu.agh.iosr.raft.node.protocol.messages.AppendEntriesResponse;
 import pl.edu.agh.iosr.raft.node.protocol.messages.VoteRequest;
@@ -12,17 +13,21 @@ import pl.edu.agh.iosr.raft.node.protocol.messages.VoteResponse;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class Node {
 
+    private final RaftProperties raftProperties;
 
     //PERSISTENT STATE
-    private final Integer nodeId;
+    private final String nodeId;
     private final Integer nodeAmount;
     private Integer currentTerm;
-    private Integer votedFor;
+    private String votedFor;
     private List<Entry> log;
 
     //VOLATILE STATE?
@@ -42,18 +47,20 @@ public class Node {
     private static final ObjectMapper mapper = new ObjectMapper();
     private ScheduledExecutorService electionScheduler = Executors.newSingleThreadScheduledExecutor();
     private ScheduledExecutorService heartbeatScheduler = Executors.newSingleThreadScheduledExecutor();
-    private final Random rand = new Random();;
+    private final Random rand = new Random();
+
     private Runnable electionRunnableTask;
     private Runnable heartbeatRunnableTask;
-    private RabbitTemplate rabbitTemplate;
+    private MessageBroker messageBroker;
 
-
-    public Node(RabbitTemplate rabbitTemplate) {
-        this.nodeId = Application.nodeId;
-        this.nodeAmount = Application.nodeAmount;
+    @Autowired
+    public Node(MessageBroker messageBroker, RaftProperties raftProperties) {
+        this.nodeId = raftProperties.getName();
+        this.nodeAmount = raftProperties.getNodes().size();
+        this.raftProperties = raftProperties;
         this.nodeState = NodeState.FOLLOWER;
         this.currentTerm = 0;
-        this.votedFor = -1;
+        this.votedFor = null;
         this.log = new ArrayList<>();
         this.commitIndex = 0;
         this.lastApplied = 0;
@@ -62,7 +69,7 @@ public class Node {
         this.leaderId = null;
         this.replicatedStateMachine = new ReplicatedStateMachine();
         this.grantedVotes = 0;
-        this.heartbeatRunnableTask = new Runnable(){
+        this.heartbeatRunnableTask = new Runnable() {
 
             @Override
             public void run() {
@@ -75,12 +82,12 @@ public class Node {
                 becomeCandidate();
             }
         };
-        this.rabbitTemplate = rabbitTemplate;
-        this.electionTask = this.electionScheduler.schedule(this.electionRunnableTask, rand.nextInt(150)+150, TimeUnit.MILLISECONDS);
+        this.messageBroker = messageBroker;
+        this.electionTask = this.electionScheduler.schedule(this.electionRunnableTask, rand.nextInt(150) + 150, TimeUnit.MILLISECONDS);
     }
 
 
-    public String sendMessage(){
+    public String sendMessage() {
         AppendEntriesRequest appendEntriesRequest = new AppendEntriesRequest(this.currentTerm, this.nodeId);
         appendEntriesRequest.setLeaderCommit(this.commitIndex);
         appendEntriesRequest.setPrevLogIndex(this.lastApplied + 1);
@@ -96,18 +103,39 @@ public class Node {
         return json;
     }
 
-    public void receiveMessage(String json){
+    @RabbitListener(queues = "${amqp.queue}")
+    public void receivedMessage(AppendEntriesRequest appendEntriesRequest) {
+        System.out.println("Received " + appendEntriesRequest);
+    }
+
+    @RabbitListener(queues = "${amqp.queue}")
+    public void receivedMessage(AppendEntriesResponse appendEntriesResponse) {
+        System.out.println("Received " + appendEntriesResponse);
+    }
+
+
+    @RabbitListener(queues = "${amqp.queue}")
+    public void receivedMessage(VoteRequest voteRequest) {
+        System.out.println("Received " + voteRequest);
+    }
+
+    @RabbitListener(queues = "${amqp.queue}")
+    public void receivedMessage(VoteResponse voteResponse) {
+        System.out.println("Received " + voteResponse);
+    }
+
+    public void receiveMessage(String json) {
 
         try {
             System.out.println(json);
             String className = mapper.readTree(json).findValue("type").asText();
-            if(className.equalsIgnoreCase("AppendEntriesRequest")){
+            if (className.equalsIgnoreCase("AppendEntriesRequest")) {
                 handleAppendEntriesRequest(mapper.readValue(json, AppendEntriesRequest.class));
-            } else if(className.equalsIgnoreCase("AppendEntriesResponse")){
+            } else if (className.equalsIgnoreCase("AppendEntriesResponse")) {
                 handleAppendEntriesResponse(1, mapper.readValue(json, AppendEntriesResponse.class));
-            } else if(className.equalsIgnoreCase("VoteRequest")){
+            } else if (className.equalsIgnoreCase("VoteRequest")) {
                 handleVoteRequest(mapper.readValue(json, VoteRequest.class));
-            } else if(className.equalsIgnoreCase("VoteResponse")){
+            } else if (className.equalsIgnoreCase("VoteResponse")) {
                 handleVoteResponse(mapper.readValue(json, VoteResponse.class));
             } else {
                 handleCommand(mapper.readValue(json, String.class));
@@ -119,17 +147,15 @@ public class Node {
     }
 
 
-
-
     private void handleAppendEntriesRequest(AppendEntriesRequest appendEntriesRequest) {
         System.out.println(appendEntriesRequest.getTerm());
         if (appendEntriesRequest.getTerm() > this.currentTerm) {
-            rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(appendEntriesRequest.getLeaderId()), new AppendEntriesResponse(this.currentTerm, false));
+            messageBroker.sendMessage(new AppendEntriesResponse(this.currentTerm, false, appendEntriesRequest.getLeaderId()));
             return;
         }
         int index = appendEntriesRequest.getPrevLogIndex();
         if (this.log.get(index) == null || this.log.get(index).getTerm() != appendEntriesRequest.getPrevLogTerm()) {
-            rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(appendEntriesRequest.getLeaderId()), new AppendEntriesResponse(this.currentTerm, false));
+            messageBroker.sendMessage(new AppendEntriesResponse(this.currentTerm, false, appendEntriesRequest.getLeaderId()));
             return;
         }
 
@@ -153,21 +179,21 @@ public class Node {
         if (appendEntriesRequest.getLeaderCommit() > this.commitIndex) {
             this.commitIndex = Math.min(appendEntriesRequest.getLeaderCommit(), this.log.size() - 1);
         }
-        rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(appendEntriesRequest.getLeaderId()), new AppendEntriesResponse(this.currentTerm, true));
 
+        messageBroker.sendMessage(new AppendEntriesResponse(this.currentTerm, true, appendEntriesRequest.getLeaderId()));
     }
 
     private void handleVoteRequest(VoteRequest voteRequest) {
         if (voteRequest.getTerm() < this.currentTerm) {
-            rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(voteRequest.getCandidateId()), new VoteResponse(this.currentTerm, false));
+            messageBroker.sendMessage(new VoteResponse(this.currentTerm, false, voteRequest.getCandidateId()));
             return;
         }
         if ((this.votedFor == null || this.votedFor.equals(voteRequest.getCandidateId())) &&
                 this.log.get(this.log.size() - 1).getTerm() == voteRequest.getLastLogTerm() &&
                 this.log.size() == voteRequest.getLastLogIndex()) {
-            rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(voteRequest.getCandidateId()), new VoteResponse(this.currentTerm, true));
+            messageBroker.sendMessage(new VoteResponse(this.currentTerm, true, voteRequest.getCandidateId()));
         }
-        rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(voteRequest.getCandidateId()), new VoteResponse(this.currentTerm, false));
+        messageBroker.sendMessage(new VoteResponse(this.currentTerm, false, voteRequest.getCandidateId()));
     }
 
     private void handleAppendEntriesResponse(int nodeId, AppendEntriesResponse appendEntriesResponse) {
@@ -178,18 +204,16 @@ public class Node {
 
     }
 
-    private void handleCommand(String command){
-        if(this.nodeId.equals(this.leaderId)){
+    private void handleCommand(String command) {
+        if (this.nodeId.equals(this.leaderId)) {
             this.log.add(new Entry(this.currentTerm, command));
 
             //TODO respond after entry applied to state machine
         } else {
-            rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(this.leaderId), command);
+//            messageBroker.sendMessage(new ???(this.currentTerm, false, this.leaderId));
+//            rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(this.leaderId), command);
         }
     }
-
-
-
 
 
     private void executeCommands() {
@@ -210,7 +234,7 @@ public class Node {
 
     private void becomeFollower() {
         System.out.println("Becoming follower");
-        if(this.nodeState == NodeState.LEADER){
+        if (this.nodeState == NodeState.LEADER) {
             this.heartbeatTask.cancel(false);
         }
         this.nodeState = NodeState.FOLLOWER;
@@ -218,7 +242,7 @@ public class Node {
 
     private void becomeCandidate() {
         System.out.println("Becoming a candidate");
-        if(this.nodeState == NodeState.LEADER){
+        if (this.nodeState == NodeState.LEADER) {
             this.heartbeatTask.cancel(false);
         }
         this.nodeState = NodeState.CANDIDATE;
@@ -227,7 +251,7 @@ public class Node {
         this.currentTerm++;
         this.votedFor = this.nodeId;
         this.electionScheduler = Executors.newSingleThreadScheduledExecutor();
-        this.electionTask = this.electionScheduler.schedule(this.electionRunnableTask, rand.nextInt(150)+150, TimeUnit.MILLISECONDS);
+        this.electionTask = this.electionScheduler.schedule(this.electionRunnableTask, rand.nextInt(150) + 150, TimeUnit.MILLISECONDS);
         VoteRequest voteRequest = new VoteRequest(this.currentTerm, this.nodeId, this.log.size() - 1, this.log.get(this.log.size() - 1).getTerm());
 //        TODO: send VoteRequest to all other servers VoteRequest(this.currentTerm, this.nodeId, this.log.size()-1, this.log.get(this.log.size()-1).getTerm())
     }
@@ -247,31 +271,20 @@ public class Node {
         appendEntriesRequest.setPrevLogIndex(this.lastApplied + 1);
         appendEntriesRequest.setPrevLogTerm(this.log.get(this.lastApplied - 1).getTerm());
         appendEntriesRequest.setEntries(this.log.subList(this.lastApplied + 1, this.log.size() - 1));
-        for(int i=1;i< this.nodeAmount;i++){
-            if(i != this.nodeId){
-                rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(i), appendEntriesRequest);
-            }
-        }
+        raftProperties.getNodes().forEach(node -> messageBroker.sendMessage(appendEntriesRequest));
     }
 
-    private void sendHeartbeat(){
+    private void sendHeartbeat() {
         System.out.println("sendHeartbeat");
         AppendEntriesRequest appendEntriesRequest = new AppendEntriesRequest(this.currentTerm, this.nodeId);
         appendEntriesRequest.setLeaderCommit(this.commitIndex);
-        for(int i=1;i< this.nodeAmount;i++){
-            if(i != this.nodeId){
-                rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(i), appendEntriesRequest);
-            }
-        }
+        raftProperties.getNodes().forEach(node -> messageBroker.sendMessage(appendEntriesRequest));
     }
 
-    private void sendVoteRequest(){
+    private void sendVoteRequest() {
         System.out.println("sendVoteRequest");
-        VoteRequest voteRequest = new VoteRequest(this.currentTerm, this.nodeId, this.log.size()-1, this.log.get(this.log.size() - 1).getTerm());
-        for(int i=1;i< this.nodeAmount;i++){
-            if(i != this.nodeId){
-                rabbitTemplate.convertAndSend(AMQPConfiguration.getRoutingKey(i), voteRequest);
-            }
-        }
+        VoteRequest voteRequest = new VoteRequest(this.currentTerm, this.nodeId, this.log.size() - 1, this.log.get(this.log.size() - 1).getTerm());
+
+        raftProperties.getNodes().forEach(node -> messageBroker.sendMessage(voteRequest));
     }
 }
