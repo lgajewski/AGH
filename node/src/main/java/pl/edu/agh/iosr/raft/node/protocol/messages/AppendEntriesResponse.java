@@ -5,19 +5,20 @@ import pl.edu.agh.iosr.raft.node.Message;
 
 import java.io.Serializable;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class AppendEntriesResponse implements Serializable, Message {
     private Integer term;
     private Boolean success;
     private String leaderId;
+    private String senderId;
 
-    public AppendEntriesResponse() {
-    }
+    public AppendEntriesResponse(){}
 
-    public AppendEntriesResponse(int term, boolean success, String leaderId) {
+    public AppendEntriesResponse(int term, boolean success, String leaderId, String senderId) {
         this.term = term;
         this.success = success;
         this.leaderId = leaderId;
+        this.senderId = senderId;
     }
 
     public Integer getTerm() {
@@ -31,5 +32,20 @@ public class AppendEntriesResponse implements Serializable, Message {
     @Override
     public String getRoutingKey() {
         return leaderId;
+    }
+
+    @Override
+    public String getSenderId() {
+        return senderId;
+    }
+
+    @Override
+    public String toString() {
+        return "AppendEntriesResponse = {" +
+                "term:" + term +
+                ", success:" + success +
+                ", leaderId:" + leaderId +
+                ", senderId:" + senderId +
+                "}";
     }
 }

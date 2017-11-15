@@ -18,6 +18,7 @@ public class MessageBroker {
     }
 
     public void sendMessage(Message msg) {
+//        System.out.println(msg);
         rabbitTemplate.convertAndSend(amqpProperties.getExchange(), msg.getRoutingKey(), msg);
     }
 

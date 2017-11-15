@@ -4,21 +4,22 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import pl.edu.agh.iosr.raft.node.Message;
 
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class VoteRequest implements Message {
     private Integer term;
     private String candidateId;
     private Integer lastLogIndex;
     private Integer lastLogTerm;
+    private String sendTo;
 
-    public VoteRequest() {
-    }
+    public VoteRequest(){}
 
-    public VoteRequest(int term, String leaderId, int lastLogIndex, int lastLogTerm) {
+    public VoteRequest(int term, String candidateId, int lastLogIndex, int lastLogTerm, String sendTo) {
         this.term = term;
-        this.candidateId = leaderId;
+        this.candidateId = candidateId;
         this.lastLogIndex = lastLogIndex;
         this.lastLogTerm = lastLogTerm;
+        this.sendTo = sendTo;
     }
 
     public Integer getTerm() {
@@ -39,6 +40,22 @@ public class VoteRequest implements Message {
 
     @Override
     public String getRoutingKey() {
+        return sendTo;
+    }
+
+    @Override
+    public String getSenderId() {
         return candidateId;
+    }
+
+    @Override
+    public String toString() {
+        return "VoteRequest = {" +
+                "term:" + term +
+                ", candidateId:" + candidateId +
+                ", lastLogIndex:" + lastLogIndex +
+                ", lastLogTerm:" + lastLogTerm +
+                ", sendTo:" + sendTo +
+                "}";
     }
 }
