@@ -3,8 +3,9 @@ package pl.edu.agh.iosr.raft.node.protocol.messages;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import pl.edu.agh.iosr.raft.node.Message;
 
+import java.io.Serializable;
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class VoteRequest implements Message {
     private Integer term;
     private String candidateId;

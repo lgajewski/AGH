@@ -3,8 +3,9 @@ package pl.edu.agh.iosr.raft.node.protocol.messages;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import pl.edu.agh.iosr.raft.node.Message;
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class VoteResponse implements Message {
+import java.io.Serializable;
+
+public class VoteResponse implements Message, Serializable {
     private String candidateId;
     private String senderId;
     private Integer term;

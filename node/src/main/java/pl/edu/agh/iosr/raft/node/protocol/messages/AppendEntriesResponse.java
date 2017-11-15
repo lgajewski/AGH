@@ -5,8 +5,7 @@ import pl.edu.agh.iosr.raft.node.Message;
 
 import java.io.Serializable;
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class AppendEntriesResponse implements Serializable, Message {
+public class AppendEntriesResponse implements Message, Serializable {
     private Integer term;
     private Boolean success;
     private String leaderId;

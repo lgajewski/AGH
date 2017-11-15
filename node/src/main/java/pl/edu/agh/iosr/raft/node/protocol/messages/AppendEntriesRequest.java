@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import pl.edu.agh.iosr.raft.node.Message;
 import pl.edu.agh.iosr.raft.node.protocol.Entry;
 
+import java.io.Serializable;
 import java.util.List;
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class AppendEntriesRequest implements Message {
+public class AppendEntriesRequest implements Message, Serializable {
     private Integer term;
     private String leaderId;
     private Integer prevLogIndex;

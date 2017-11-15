@@ -1,6 +1,7 @@
 package pl.edu.agh.iosr.raft.node.protocol;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 @Component
+@RabbitListener(queues = "${amqp.queue}")
 public class Node {
 
     private final RaftProperties raftProperties;
@@ -76,7 +78,7 @@ public class Node {
 
             @Override
             public void run() {
-//                sendHeartbeat();
+                sendHeartbeat();
             }
         };
         this.electionRunnableTask = new Runnable() {
@@ -90,36 +92,52 @@ public class Node {
     }
 
     /* ========== METHODS USED BY ALL NODES ========== */
-    @RabbitListener(queues = "${amqp.queue}")
-    public void receivedMessage(AppendEntriesRequest appendEntriesRequest) {
+
+//    @RabbitListener(queues = "${amqp.queue}")
+//    public void receivedMessage(Object message) {
+//        System.out.println(message.getClass());
+//        System.out.println(VoteRequest.class.isAssignableFrom(message.getClass()));
+//        if(message instanceof VoteRequest){
+//            handleVoteRequest((VoteRequest)message);
+//        } else if(message instanceof VoteResponse){
+//            handleVoteResponse((VoteResponse)message);
+//        } else if(message instanceof AppendEntriesRequest){
+//            handleAppendEntriesRequest((AppendEntriesRequest)message);
+//        } else if(message instanceof AppendEntriesResponse){
+//            handleAppendEntriesResponse((AppendEntriesResponse)message);
+//        } else if(message instanceof Command){
+//            handleCommand((Command)message);
+//        }
+//    }
+    @RabbitHandler
+    public void receivedMessage(final AppendEntriesRequest appendEntriesRequest) {
         System.out.println("Received " + appendEntriesRequest);
         handleAppendEntriesRequest(appendEntriesRequest);
     }
 
-    @RabbitListener(queues = "${amqp.queue}")
-    public void receivedMessage(AppendEntriesResponse appendEntriesResponse) {
+    @RabbitHandler
+    public void receivedMessage(final AppendEntriesResponse appendEntriesResponse) {
         System.out.println("Received " + appendEntriesResponse);
         handleAppendEntriesResponse(appendEntriesResponse);
     }
 
-    @RabbitListener(queues = "${amqp.queue}")
-    public void receivedMessage(VoteRequest voteRequest) {
+    @RabbitHandler
+    public void receivedMessage(final VoteRequest voteRequest) {
         System.out.println("Received " + voteRequest);
         handleVoteRequest(voteRequest);
     }
 
-    @RabbitListener(queues = "${amqp.queue}")
-    public void receivedMessage(VoteResponse voteResponse) {
+    @RabbitHandler
+    public void receivedMessage(final VoteResponse voteResponse) {
         System.out.println("Received " + voteResponse);
         handleVoteResponse(voteResponse);
     }
 
-
-//    @RabbitListener(queues = "${amqp.queue}")
-//    public void receivedMessage(Command command) {
-//        System.out.println("Received " + command);
-//        handleCommand(command);
-//    }
+    @RabbitHandler
+    public void receivedMessage(final Command command) {
+        System.out.println("Received " + command);
+        handleCommand(command);
+    }
 
     private void handleCommand(Command command) {
         if (nodeId.equals(leaderId)) {
@@ -179,6 +197,7 @@ public class Node {
     }
 
     private void handleVoteRequest(VoteRequest voteRequest) {
+        System.out.println("Received: " + voteRequest);
         VoteResponse voteResponse = new VoteResponse(currentTerm, false, voteRequest.getCandidateId(), nodeId);
         VoteResponse voteResponse2 = new VoteResponse(currentTerm, true, voteRequest.getCandidateId(), nodeId);
         if (voteRequest.getTerm() < currentTerm) {
@@ -228,7 +247,7 @@ public class Node {
         System.out.println("Becoming a leader");
         nodeState = NodeState.LEADER;
         leaderId = nodeId;
-//        heartbeatTask = heartbeatScheduler.scheduleAtFixedRate(heartbeatRunnableTask, 0, 700, TimeUnit.MILLISECONDS);
+        heartbeatTask = heartbeatScheduler.scheduleAtFixedRate(heartbeatRunnableTask, 0, 700, TimeUnit.MILLISECONDS);
 
     }
 
