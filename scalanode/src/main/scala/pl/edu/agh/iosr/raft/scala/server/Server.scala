@@ -3,18 +3,17 @@ package pl.edu.agh.iosr.raft.scala.server
 import akka.actor.{Actor, ActorLogging, ActorSystem}
 import akka.routing.{ActorRefRoutee, BroadcastRoutingLogic, Router}
 
-class Server extends Actor with ActorLogging {
-  val system = ActorSystem("iosr-raft")
+class Server(nodeCount: Int = 5) extends Actor with ActorLogging {
 
-  val broadcastRouter: Router = {
-    val nodes = Vector.tabulate(5) { i =>
-      ActorRefRoutee(system.actorOf(Node.props(this), "NODE_" + (i + 1)))
-    }
-    Router(BroadcastRoutingLogic(), nodes)
+  final val system = ActorSystem("iosr-raft")
+
+  private val nodes = Vector.tabulate(nodeCount) { i =>
+    system.actorOf(Node.props(this.self), "NODE_" + (i + 1))
   }
 
+  val broadcastRouter: Router = Router(BroadcastRoutingLogic(), nodes.map(ActorRefRoutee))
+
   override def receive: Receive = {
-    case m =>
-      broadcastRouter.route(m, sender())
+    case m => broadcastRouter.route(m, sender())
   }
 }
