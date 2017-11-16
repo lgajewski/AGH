@@ -14,6 +14,8 @@ class Server(nodeCount: Int = 5) extends Actor with ActorLogging {
   val broadcastRouter: Router = Router(BroadcastRoutingLogic(), nodes.map(ActorRefRoutee))
 
   override def receive: Receive = {
+    case AmILeader(gatheredVotes) if gatheredVotes > nodeCount / 2 => sender() ! BecomeLeader
+    case AmILeader(_) =>
     case m => broadcastRouter.route(m, sender())
   }
 }
