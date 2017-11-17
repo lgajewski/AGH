@@ -1,17 +1,27 @@
 package pl.edu.agh.iosr.raft.node.commands;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class Put implements Command {
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.io.Serializable;
+
+@JsonTypeName("put")
+public class Put implements Command, Serializable {
     private String variableName;
     private Integer value;
     private String routingKey;
     private String senderId;
+    private CommandType type;
 
-    public Put(String sendTo, String senderId){
+    public Put(){}
+
+    public Put(String sendTo, String senderId, String variableName, Integer value){
         this.routingKey = sendTo;
         this.senderId = senderId;
+        this.variableName = variableName;
+        this.value = value;
+        this.type = CommandType.PUT;
     }
 
     @Override
@@ -21,11 +31,11 @@ public class Put implements Command {
 
     @Override
     public String getVariableName(){
-        return "x";
+        return variableName;
     }
 
     public Integer getValue(){
-        return 1;
+        return value;
     }
 
     @Override
@@ -36,5 +46,19 @@ public class Put implements Command {
     @Override
     public String getSenderId() {
         return senderId;
+    }
+
+    @Override
+    public String toString() {
+        return "Put = {" +
+                "routingKey:" + routingKey +
+                ", senderId:" + senderId +
+                ", variableName:" + variableName +
+                ", value:" + value +
+                "}";
+    }
+
+    public void setType(CommandType type) {
+        this.type = type;
     }
 }

@@ -1,17 +1,21 @@
 package pl.edu.agh.iosr.raft.node.commands;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import pl.edu.agh.iosr.raft.node.Message;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class Delete implements Command, Message{
+import java.io.Serializable;
+
+@JsonTypeName("delete")
+public class Delete implements Command, Serializable {
     private String variableName;
     private String routingKey;
     private String senderId;
 
-    public Delete(String sendTo, String senderId){
+    public Delete(){}
+
+    public Delete(String sendTo, String senderId, String variableName){
         this.routingKey = sendTo;
         this.senderId = senderId;
+        this.variableName = variableName;
     }
 
     @Override
@@ -21,7 +25,7 @@ public class Delete implements Command, Message{
 
     @Override
     public String getVariableName() {
-        return "x";
+        return variableName;
     }
 
     @Override
@@ -32,5 +36,15 @@ public class Delete implements Command, Message{
     @Override
     public String getSenderId() {
         return senderId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Delete = {" +
+                "routingKey:" + routingKey +
+                ", senderId:" + senderId +
+                ", variableName:" + variableName +
+                "}";
     }
 }

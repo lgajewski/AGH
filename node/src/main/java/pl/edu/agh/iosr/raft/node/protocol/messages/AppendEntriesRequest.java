@@ -36,6 +36,10 @@ public class AppendEntriesRequest implements Message, Serializable {
         return leaderId;
     }
 
+    public String getSendTo() {
+        return sendTo;
+    }
+
     public Integer getPrevLogIndex() {
         return prevLogIndex;
     }

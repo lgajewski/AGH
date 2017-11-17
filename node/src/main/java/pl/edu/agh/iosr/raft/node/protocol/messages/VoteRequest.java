@@ -39,6 +39,10 @@ public class VoteRequest implements Message {
         return lastLogTerm;
     }
 
+    public String getSendTo() {
+        return sendTo;
+    }
+
     @Override
     public String getRoutingKey() {
         return sendTo;

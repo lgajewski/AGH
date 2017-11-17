@@ -1,16 +1,21 @@
 package pl.edu.agh.iosr.raft.node.commands;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class Increment implements Command {
+import java.io.Serializable;
+
+@JsonTypeName("increment")
+public class Increment implements Command, Serializable {
     private String variableName;
     private String routingKey;
     private String senderId;
 
-    public Increment(String sendTo, String senderId){
+    public Increment(){}
+
+    public Increment(String sendTo, String senderId, String variableName){
         this.routingKey = sendTo;
         this.senderId = senderId;
+        this.variableName = variableName;
     }
     @Override
     public CommandType getType() {
@@ -19,7 +24,7 @@ public class Increment implements Command {
 
     @Override
     public String getVariableName() {
-        return "x";
+        return variableName;
     }
 
     @Override
@@ -30,5 +35,14 @@ public class Increment implements Command {
     @Override
     public String getSenderId() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Increment = {" +
+                "routingKey:" + routingKey +
+                ", senderId:" + senderId +
+                ", variableName:" + variableName +
+                "}";
     }
 }

@@ -12,6 +12,7 @@ public class ReplicatedStateMachine {
     }
 
     public void executeCommand(Command command){
+        System.out.println("Exectuting: " + command);
         String key = command.getVariableName();
 
         if(command.getType().equals(CommandType.PUT)){
@@ -24,5 +25,6 @@ public class ReplicatedStateMachine {
         else if (command.getType().equals(CommandType.DELETE)){
             this.state.remove(key);
         }
+        this.state.forEach((entryKey, value) -> System.out.println(entryKey + ", " + value));
     }
 }

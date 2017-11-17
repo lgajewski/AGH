@@ -10,14 +10,17 @@ public class AppendEntriesResponse implements Message, Serializable {
     private Boolean success;
     private String leaderId;
     private String senderId;
+    private Integer matchIndex;
 
-    public AppendEntriesResponse(){}
+    public AppendEntriesResponse() {
+    }
 
-    public AppendEntriesResponse(int term, boolean success, String leaderId, String senderId) {
+    public AppendEntriesResponse(int term, boolean success, String leaderId, String senderId, int matchIndex) {
         this.term = term;
         this.success = success;
         this.leaderId = leaderId;
         this.senderId = senderId;
+        this.matchIndex = matchIndex;
     }
 
     public Integer getTerm() {
@@ -26,6 +29,10 @@ public class AppendEntriesResponse implements Message, Serializable {
 
     public Boolean isSuccess() {
         return success;
+    }
+
+    public String getLeaderId() {
+        return leaderId;
     }
 
     @Override
@@ -46,5 +53,9 @@ public class AppendEntriesResponse implements Message, Serializable {
                 ", leaderId:" + leaderId +
                 ", senderId:" + senderId +
                 "}";
+    }
+
+    public Integer getMatchIndex() {
+        return matchIndex;
     }
 }

@@ -30,6 +30,10 @@ public class VoteResponse implements Message, Serializable {
         return senderId;
     }
 
+    public String getCandidateId() {
+        return candidateId;
+    }
+
     public Integer getTerm() {
         return term;
     }

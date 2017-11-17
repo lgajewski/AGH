@@ -1,19 +1,18 @@
 package pl.edu.agh.iosr.raft.node.protocol;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.edu.agh.iosr.raft.node.MessageBroker;
-import pl.edu.agh.iosr.raft.node.commands.Command;
+import pl.edu.agh.iosr.raft.node.commands.*;
 import pl.edu.agh.iosr.raft.node.properties.RaftProperties;
 import pl.edu.agh.iosr.raft.node.protocol.messages.AppendEntriesRequest;
 import pl.edu.agh.iosr.raft.node.protocol.messages.AppendEntriesResponse;
 import pl.edu.agh.iosr.raft.node.protocol.messages.VoteRequest;
 import pl.edu.agh.iosr.raft.node.protocol.messages.VoteResponse;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -22,28 +21,25 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @RabbitListener(queues = "${amqp.queue}")
-public class Node {
-
+public class Node implements CommandLineRunner {
+    private static final long TIMEOUT = 3000;
     private final RaftProperties raftProperties;
 
-    //PERSISTENT STATE
     private final String nodeId;
     private final Integer nodeAmount;
     private Integer currentTerm;
     private String votedFor;
     private List<Entry> log;
 
-    //VOLATILE STATE?
     private Integer commitIndex;
     private Integer lastApplied;
 
-    //LEADER ONLY
     private Map<String, Integer> nextIndex;
     private Map<String, Integer> matchIndex;
 
+    private Map<String, Boolean> grantedVotes;
     private String leaderId;
     private ReplicatedStateMachine replicatedStateMachine;
-    private Integer grantedVotes;
     private ScheduledFuture<?> electionTask;
     private ScheduledFuture<?> heartbeatTask;
     private NodeState nodeState;
@@ -73,42 +69,30 @@ public class Node {
         raftProperties.getNodes().forEach(node -> matchIndex.put(node, 0));
         this.leaderId = null;
         this.replicatedStateMachine = new ReplicatedStateMachine();
-        this.grantedVotes = 0;
+        this.grantedVotes = new HashMap<>();
+        raftProperties.getNodes().forEach(node -> grantedVotes.put(node, false));
         this.heartbeatRunnableTask = new Runnable() {
 
             @Override
             public void run() {
-                sendHeartbeat();
+                updateCommitIndex();
+                raftProperties.getNodes().forEach(node -> sendSingleAppendEntriesRequest(node));
             }
         };
         this.electionRunnableTask = new Runnable() {
             @Override
             public void run() {
-                becomeCandidate();
+                startNewElection();
+                raftProperties.getNodes().forEach(node -> sendSingleVoteRequest(node));
             }
         };
         this.messageBroker = messageBroker;
-        this.electionTask = this.electionScheduler.schedule(this.electionRunnableTask, rand.nextInt(150) + 1150, TimeUnit.MILLISECONDS);
+        this.electionTask = this.electionScheduler.schedule(this.electionRunnableTask, rand.nextInt(150) + TIMEOUT, TimeUnit.MILLISECONDS);
+        this.heartbeatTask = heartbeatScheduler.scheduleAtFixedRate(heartbeatRunnableTask, 0, TIMEOUT / 2, TimeUnit.MILLISECONDS);
     }
 
     /* ========== METHODS USED BY ALL NODES ========== */
 
-//    @RabbitListener(queues = "${amqp.queue}")
-//    public void receivedMessage(Object message) {
-//        System.out.println(message.getClass());
-//        System.out.println(VoteRequest.class.isAssignableFrom(message.getClass()));
-//        if(message instanceof VoteRequest){
-//            handleVoteRequest((VoteRequest)message);
-//        } else if(message instanceof VoteResponse){
-//            handleVoteResponse((VoteResponse)message);
-//        } else if(message instanceof AppendEntriesRequest){
-//            handleAppendEntriesRequest((AppendEntriesRequest)message);
-//        } else if(message instanceof AppendEntriesResponse){
-//            handleAppendEntriesResponse((AppendEntriesResponse)message);
-//        } else if(message instanceof Command){
-//            handleCommand((Command)message);
-//        }
-//    }
     @RabbitHandler
     public void receivedMessage(final AppendEntriesRequest appendEntriesRequest) {
         System.out.println("Received " + appendEntriesRequest);
@@ -136,169 +120,218 @@ public class Node {
     @RabbitHandler
     public void receivedMessage(final Command command) {
         System.out.println("Received " + command);
-        handleCommand(command);
+        Command updatedCommand = null;
+        if (command.getType().equals(CommandType.PUT)) {
+            Put putCommand = (Put) command;
+            updatedCommand = new Put(leaderId, nodeId, putCommand.getVariableName(), putCommand.getValue());
+        } else if (command.getType().equals(CommandType.INCREMENT)) {
+            Increment incrementCommand = (Increment) command;
+            updatedCommand = new Increment(leaderId, nodeId, incrementCommand.getVariableName());
+        } else if (command.getType().equals(CommandType.DELETE)) {
+            Delete deleteCommand = (Delete) command;
+            updatedCommand = new Delete(leaderId, nodeId, deleteCommand.getVariableName());
+        }
+        handleCommand(updatedCommand);
     }
 
+
     private void handleCommand(Command command) {
-        if (nodeId.equals(leaderId)) {
+        if (nodeState == NodeState.LEADER) {
             log.add(new Entry(currentTerm, command));
-            sendAppendEntriesRequest();
-            //TODO respond after entry applied to state machine
+            raftProperties.getNodes().forEach(this::sendSingleAppendEntriesRequest);
         } else {
+            System.out.println("Sending: " + command);
             messageBroker.sendMessage(command);
         }
     }
 
-    private void handleAppendEntriesRequest(AppendEntriesRequest appendEntriesRequest) {
-        if (appendEntriesRequest.getTerm() < currentTerm) {
-            AppendEntriesResponse appendEntriesResponse = new AppendEntriesResponse(currentTerm, false, appendEntriesRequest.getLeaderId(), nodeId);
-            System.out.println("Sending: " + appendEntriesResponse);
-            messageBroker.sendMessage(appendEntriesResponse);
-            return;
-        }
-        Integer index = appendEntriesRequest.getPrevLogIndex();
-
-        if (log.get(index) == null || log.get(index).getTerm() != appendEntriesRequest.getPrevLogTerm()) {
-            AppendEntriesResponse appendEntriesResponse = new AppendEntriesResponse(currentTerm, false, appendEntriesRequest.getLeaderId(), nodeId);
-            System.out.println("Sending: " + appendEntriesResponse);
-            messageBroker.sendMessage(appendEntriesResponse);
-            return;
-        }
-
-        int firstBrokenIndex = -1;
-        List<Entry> newEntries = appendEntriesRequest.getEntries();
-        if (newEntries != null) {
-            for (int i = 0; i <= newEntries.size() - 1; i++) {
-                if (newEntries.get(i).getTerm() != log.get(index + i + 1).getTerm()) {
-                    firstBrokenIndex = i;
-                    break;
-                }
-            }
-            if (firstBrokenIndex > -1) {
-                for (int i = firstBrokenIndex; i < newEntries.size(); i++) {
-                    if (log.get(index + i + 1) == null) {
-                        log.add(index + i + 1, newEntries.get(i));
-                    } else {
-                        log.set(index + i + 1, newEntries.get(i));
-                    }
-                }
-            }
-        }
-        if (appendEntriesRequest.getLeaderCommit() > commitIndex) {
-            commitIndex = Math.min(appendEntriesRequest.getLeaderCommit(), log.size() - 1);
-        }
-        if (nodeState == NodeState.CANDIDATE) {
-            leaderId = appendEntriesRequest.getLeaderId();
-            becomeFollower();
-        }
-        AppendEntriesResponse appendEntriesResponse = new AppendEntriesResponse(currentTerm, true, appendEntriesRequest.getLeaderId(), nodeId);
-        System.out.println("Sending: " + appendEntriesResponse);
-        messageBroker.sendMessage(appendEntriesResponse);
-    }
-
-    private void handleVoteRequest(VoteRequest voteRequest) {
-        System.out.println("Received: " + voteRequest);
-        VoteResponse voteResponse = new VoteResponse(currentTerm, false, voteRequest.getCandidateId(), nodeId);
-        VoteResponse voteResponse2 = new VoteResponse(currentTerm, true, voteRequest.getCandidateId(), nodeId);
-        if (voteRequest.getTerm() < currentTerm) {
-            System.out.println("Sending: " + voteResponse);
-            messageBroker.sendMessage(voteResponse);
-            return;
-        }
-        if ((votedFor == null || votedFor.equals(voteRequest.getCandidateId())) &&
-                log.get(log.size() - 1).getTerm() == voteRequest.getLastLogTerm() &&
-                log.size() - 1 == voteRequest.getLastLogIndex()) {
-            System.out.println("Sending: " + voteResponse2);
-            messageBroker.sendMessage(voteResponse2);
-        }
-        System.out.println("Sending: " + voteResponse);
-        messageBroker.sendMessage(voteResponse);
-    }
 
     private void executeCommands() {
-        System.out.println("Executing commands");
-
         while (commitIndex > lastApplied) {
             lastApplied++;
+            System.out.println("Executing command " + lastApplied);
             replicatedStateMachine.executeCommand(log.get(lastApplied).getCommand());
         }
     }
 
-    private void becomeCandidate() {
-        System.out.println("Becoming a candidate");
-        if (nodeState == NodeState.LEADER) {
-            heartbeatTask.cancel(false);
-        }
-        nodeState = NodeState.CANDIDATE;
 
-        //start election
-        currentTerm++;
-        grantedVotes++;
-        votedFor = nodeId;
-        electionScheduler = Executors.newSingleThreadScheduledExecutor();
-        electionTask = electionScheduler.schedule(electionRunnableTask, rand.nextInt(150) + 1150, TimeUnit.MILLISECONDS);
-        sendVoteRequests();
+    private void startNewElection() {
+        if (nodeState == NodeState.CANDIDATE || nodeState == NodeState.FOLLOWER) {
+            System.out.println("Becoming candidate");
+            currentTerm++;
+            votedFor = nodeId;
+            nodeState = NodeState.CANDIDATE;
+            grantedVotes.forEach((node, bool) -> grantedVotes.put(node, false));
+            this.nextIndex = new HashMap<>();
+            raftProperties.getNodes().forEach(node -> nextIndex.put(node, 1));
+            this.matchIndex = new HashMap<>();
+            raftProperties.getNodes().forEach(node -> matchIndex.put(node, 0));
+            electionTask.cancel(true);
+            electionTask = electionScheduler.schedule(electionRunnableTask, rand.nextInt(150) + TIMEOUT, TimeUnit.MILLISECONDS);
+        }
     }
 
-    /* ========== METHODS USED BY CANDIDATES ========== */
-    private void becomeLeader() {
-        electionTask.cancel(true);
-//        heartbeatTask.cancel(true);
-        System.out.println("Becoming a leader");
-        nodeState = NodeState.LEADER;
-        leaderId = nodeId;
-        heartbeatTask = heartbeatScheduler.scheduleAtFixedRate(heartbeatRunnableTask, 0, 700, TimeUnit.MILLISECONDS);
-
-    }
-
-    private void becomeFollower() {
-        grantedVotes = 0;
-        electionTask.cancel(true);
-        electionTask = electionScheduler.schedule(electionRunnableTask, rand.nextInt(150) + 1500, TimeUnit.MILLISECONDS);
-        System.out.println("Becoming follower");
-        if (nodeState == NodeState.LEADER) {
-            heartbeatTask.cancel(false);
-        }
+    private void becomeFollower(int newTerm) {
         nodeState = NodeState.FOLLOWER;
+        votedFor = null;
+        currentTerm = newTerm;
+//        grantedVotes.forEach((node, bool) -> grantedVotes.put(node, false));
+
+        System.out.println("Becoming follower");
+        electionTask.cancel(true);
+        electionTask = electionScheduler.schedule(electionRunnableTask, rand.nextInt(150) + TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
-    private void sendVoteRequests() {
-        System.out.println("sendVoteRequests");
-        raftProperties.getNodes().forEach(node -> {
-            VoteRequest voteRequest = new VoteRequest(currentTerm, nodeId, log.size() - 1, log.get(log.size() - 1).getTerm(), node);
+    private void becomeLeader() {
+
+        if (nodeState == NodeState.CANDIDATE) {
+            nodeState = NodeState.LEADER;
+            raftProperties.getNodes().forEach(node -> nextIndex.replace(node, log.size()));
+            System.out.println("Becoming leader");
+            leaderId = nodeId;
+            raftProperties.getNodes().forEach(this::sendSingleAppendEntriesRequest);
+        }
+    }
+
+    private void sendSingleVoteRequest(String node) {
+        if (nodeState == NodeState.CANDIDATE) {
+            VoteRequest voteRequest = new VoteRequest(currentTerm, this.nodeId, log.size() - 1, log.get(log.size() - 1).getTerm(), node);
             System.out.println("Sending: " + voteRequest);
             messageBroker.sendMessage(voteRequest);
-        });
-    }
-
-    private void handleVoteResponse(VoteResponse voteResponse) {
-        if (voteResponse.getVoteGranted() && voteResponse.getTerm().equals(currentTerm)) {
-            grantedVotes++;
-        }
-        if (grantedVotes > nodeAmount / 2) {
-            becomeLeader();
         }
     }
 
-    /* ========== METHODS USED BY LEADER ========== */
-    private void sendHeartbeat() {
-        raftProperties.getNodes().forEach(node -> {
-            AppendEntriesRequest appendEntriesRequest = new AppendEntriesRequest(currentTerm, nodeId, nextIndex.get(node) - 1, log.get(nextIndex.get(node) - 1).getTerm(), commitIndex, node);
-            System.out.println("Sending heartbeat: " + appendEntriesRequest);
-            messageBroker.sendMessage(appendEntriesRequest);
-        });
-    }
-
-    private void sendAppendEntriesRequest() {
-        raftProperties.getNodes().forEach(node -> {
-            AppendEntriesRequest appendEntriesRequest = new AppendEntriesRequest(currentTerm, nodeId, nextIndex.get(node) - 1, log.get(nextIndex.get(node) - 1).getTerm(), commitIndex, node);
-            appendEntriesRequest.setEntries(log.subList(nextIndex.get(node), log.size() - 1));
+    private void sendSingleAppendEntriesRequest(String node) {
+        if (nodeState == NodeState.LEADER && nextIndex.get(node) <= log.size()) {
+            AppendEntriesRequest appendEntriesRequest = new AppendEntriesRequest(currentTerm, nodeId, nextIndex.get(node) - 1, log.get(nextIndex.get(node) - 1).getTerm(), Math.min(commitIndex, log.size() - 1), node);
+            if (nextIndex.get(node) < log.size()) {
+                appendEntriesRequest.setEntries(log.subList(nextIndex.get(node), log.size()));
+            }
             System.out.println("Sending: " + appendEntriesRequest);
+            log.forEach(System.out::println);
             messageBroker.sendMessage(appendEntriesRequest);
-        });
+
+        }
+
     }
 
-    private void handleAppendEntriesResponse(AppendEntriesResponse appendEntriesResponse) {
-        matchIndex.replace(appendEntriesResponse.getSenderId(), appendEntriesResponse.getTerm());
+    private void updateCommitIndex() {
+        if (nodeState == NodeState.LEADER) {
+            long N = matchIndex.values().stream().filter(value -> value >= commitIndex).count() + 1;
+            while (N > nodeAmount / 2 && (log.get(commitIndex + 1).getTerm() == currentTerm || commitIndex == 0)) {
+                commitIndex++;
+
+                N = matchIndex.values().stream().filter(value -> value >= commitIndex).count() + 1;
+            }
+        }
+    }
+
+    private void handleVoteRequest(VoteRequest request) {
+        boolean voteGranted = false;
+        if (currentTerm < request.getTerm()) {
+            becomeFollower(request.getTerm());
+        }
+
+        if (currentTerm.equals(request.getTerm()) && (votedFor == null || votedFor.equals(request.getCandidateId())) && request.getLastLogIndex() >= log.size() - 1) {
+            votedFor = request.getCandidateId();
+            voteGranted = true;
+            electionTask.cancel(true);
+            this.electionTask = this.electionScheduler.schedule(this.electionRunnableTask, rand.nextInt(150) + TIMEOUT, TimeUnit.MILLISECONDS);
+        }
+        messageBroker.sendMessage(new VoteResponse(currentTerm, voteGranted, request.getCandidateId(), nodeId));
+    }
+
+
+    private void handleVoteResponse(VoteResponse response) {
+        if (currentTerm < response.getTerm()) {
+            becomeFollower(response.getTerm());
+        }
+        if (nodeState == NodeState.CANDIDATE && currentTerm.equals(response.getTerm())) {
+            grantedVotes.put(response.getSenderId(), response.getVoteGranted());
+            if (grantedVotes.values().stream().filter(bool -> bool).count() + 1 > nodeAmount / 2) {
+                becomeLeader();
+            }
+        }
+    }
+
+    private void handleAppendEntriesRequest(AppendEntriesRequest request) {
+        boolean success = false;
+        int matchIndex = 0;
+        if (currentTerm < request.getTerm()) {
+            leaderId = request.getLeaderId();
+            becomeFollower(request.getTerm());
+        }
+        if (currentTerm.equals(request.getTerm())) {
+            leaderId = request.getLeaderId();
+            nodeState = NodeState.FOLLOWER;
+            electionTask.cancel(true);
+            electionTask = electionScheduler.schedule(electionRunnableTask, rand.nextInt(150) + TIMEOUT, TimeUnit.MILLISECONDS);
+            if (request.getPrevLogIndex() == 0 || (request.getPrevLogIndex() < log.size() && log.get(request.getPrevLogIndex()).getTerm() == request.getPrevLogTerm())) {
+                success = true;
+                int index = request.getPrevLogIndex();
+                if (request.getEntries() != null) {
+                    for (int i = 0; i < request.getEntries().size(); i++) {
+                        index++;
+                        if (log.size() > index && log.get(index).getTerm() != request.getEntries().get(i).getTerm()) {
+                            while (log.size() > index - 1) {
+                                log.remove(log.size() - 1);
+                            }
+                            log.add(request.getEntries().get(i));
+                        }
+                        if (log.size() <= index) {
+                            log.add(request.getEntries().get(i));
+                        }
+                    }
+                }
+                matchIndex = index;
+                commitIndex = Math.max(commitIndex, request.getLeaderCommit());
+            }
+            log.forEach(System.out::println);
+
+        }
+        AppendEntriesResponse appendEntriesResponse = new AppendEntriesResponse(currentTerm, success, request.getLeaderId(), nodeId, matchIndex);
+        System.out.println("Sending: " + appendEntriesResponse);
+        executeCommands();
+        messageBroker.sendMessage(appendEntriesResponse);
+    }
+
+    private void handleAppendEntriesResponse(AppendEntriesResponse response) {
+        if (currentTerm < response.getTerm()) {
+            leaderId = response.getLeaderId();
+            becomeFollower(response.getTerm());
+        }
+        if (nodeState == NodeState.LEADER && currentTerm.equals(response.getTerm())) {
+            if (response.isSuccess()) {
+                matchIndex.replace(response.getSenderId(), Math.max(matchIndex.get(response.getSenderId()), response.getMatchIndex()));
+                nextIndex.replace(response.getSenderId(), matchIndex.get(response.getSenderId()) + 1);
+            } else {
+                nextIndex.replace(response.getSenderId(), Math.max(1, nextIndex.get(response.getSenderId()) - 1));
+            }
+        }
+        executeCommands();
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        int i = 0;
+        while (i < 4) {
+            Scanner sc = new Scanner(System.in);
+            i = sc.nextInt();
+            Command cmd;
+            if (i == 1) {
+                cmd = new Put(nodeId, nodeId, "x", 1);
+                System.out.println("Sending " + cmd);
+                messageBroker.sendMessage(cmd);
+            } else if (i == 2) {
+                cmd = new Increment(nodeId, nodeId, "x");
+                System.out.println("Sending " + cmd);
+                messageBroker.sendMessage(cmd);
+            } else if (i == 3) {
+                cmd = new Delete(nodeId, nodeId, "x");
+                System.out.println("Sending " + cmd);
+                messageBroker.sendMessage(cmd);
+            }
+
+        }
     }
 }

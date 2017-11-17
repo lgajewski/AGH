@@ -6,6 +6,8 @@ public class Entry {
     private int term;
     private Command command;
 
+    public Entry(){}
+
     public Entry(int term, Command command){
         this.term = term;
         this.command = command;
@@ -17,5 +19,13 @@ public class Entry {
 
     public Command getCommand() {
         return command;
+    }
+
+    @Override
+    public String toString() {
+        return "Entry = {" +
+                "term:" + term +
+                ", command:" + command +
+                "}";
     }
 }
