@@ -1,10 +1,12 @@
 package pl.edu.agh.iosr.raft.node.protocol;
 
+import pl.edu.agh.iosr.raft.node.commands.Command;
+
 public class Entry {
     private int term;
-    private String command;
+    private Command command;
 
-    public Entry(int term, String command){
+    public Entry(int term, Command command){
         this.term = term;
         this.command = command;
     }
@@ -13,7 +15,7 @@ public class Entry {
         return term;
     }
 
-    public String getCommand() {
+    public Command getCommand() {
         return command;
     }
 }

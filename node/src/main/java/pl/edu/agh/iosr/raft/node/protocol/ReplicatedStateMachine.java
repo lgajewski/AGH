@@ -1,16 +1,28 @@
 package pl.edu.agh.iosr.raft.node.protocol;
 
-import java.util.LinkedList;
-import java.util.List;
+import pl.edu.agh.iosr.raft.node.commands.*;
+
+import java.util.HashMap;
 
 public class ReplicatedStateMachine {
-    private List<String> state;
+    private HashMap<String, Integer> state;
 
     public ReplicatedStateMachine(){
-        this.state = new LinkedList<>();
+        this.state = new HashMap<>();
     }
 
-    public void executeCommand(String command){
-        this.state.add(command);
+    public void executeCommand(Command command){
+        String key = command.getVariableName();
+
+        if(command.getType().equals(CommandType.PUT)){
+            Put putCommand = (Put)command;
+            this.state.put(putCommand.getVariableName(), putCommand.getValue());
+        }
+        else if (command.getType().equals(CommandType.INCREMENT)){
+            this.state.put(key, this.state.get(command.getVariableName()));
+        }
+        else if (command.getType().equals(CommandType.DELETE)){
+            this.state.remove(key);
+        }
     }
 }
