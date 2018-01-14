@@ -225,3 +225,84 @@ db.meta_pets.aggregate([
             {$limit: 100},
             {$out: "most_referenced_from_pets"}
 ], { allowDiskUse: true } )
+
+
+
+db.games_sentiment.aggregate([
+        {$lookup: {from: "meta_games", localField: "asin",foreignField: "asin", as: "metaGames"}},
+        {$unwind: "$metaGames"},
+        {$project: 
+            {
+            "_id": 1,
+            "category": "$metaGames.cat2",
+            "asin" :1,
+            "reviewSentiment": 1,
+            "unixReviewTime": 1
+            }
+        },
+        {
+        "$group": {
+            "_id": {
+                "date": {"$dateToString": {
+                    "format": "%Y-%m",
+                    "date": {
+                        "$add": [
+                            new Date(0), 
+                            { "$multiply": [1000, "$unixReviewTime"] }
+                        ]
+                    }
+                }
+            }, "category": "$category"
+            },
+            "reviews_count": { "$sum": 1 },
+            "avg_sentiment": { "$avg": "$reviewSentiment"}
+        }
+    },
+        {
+                $out: "games_sentiment_by_month" 
+        }
+], { allowDiskUse: true } )
+
+
+db.games_sentiment.aggregate([
+        {$lookup: {from: "meta_games", localField: "asin",foreignField: "asin", as: "metaGames"}},
+        {$unwind: "$metaGames"},
+        {$project: 
+            {
+            "_id": 1,
+            "category": "$metaGames.cat2",
+            "asin" :1,
+            "reviewSentiment": 1,
+            "unixReviewTime": 1
+            }
+        },
+        {
+        "$group": {
+            "_id": {
+                "date": {"$dateToString": {
+                    "format": "%Y-%m",
+                    "date": {
+                        "$add": [
+                            new Date(0), 
+                            { "$multiply": [1000, "$unixReviewTime"] }
+                        ]
+                    }
+                }
+            }, "category": "$category"
+            },
+            "reviews_count": { "$sum": 1 },
+            "avg_sentiment": { "$avg": "$reviewSentiment"}
+        }
+    },
+    {$project: {
+       "_id": 1,
+       "avg_sentiment": 1,
+       "reviews_count": 1,
+       "time": "$_id.date",
+       "category": "$_id.category",
+       }
+       },
+        {
+                $out: "games_sentiment_by_month" 
+        }
+], { allowDiskUse: true } )
