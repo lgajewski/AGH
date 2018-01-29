@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright © 2018 and Confidential to Pegasystems Inc. All rights reserved.
-  -->
-
 <resources>
     <color name="colorPrimary">#757575</color>
     <color name="colorPrimaryDark">#424242</color>

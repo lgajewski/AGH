@@ -1,7 +1,3 @@
-/*
- * Copyright © 2018 and Confidential to Pegasystems Inc. All rights reserved.
- */
-
 package pl.edu.agh.activityrecognition;
 
 import android.hardware.Sensor;

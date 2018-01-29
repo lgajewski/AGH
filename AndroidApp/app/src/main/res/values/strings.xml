@@ -1,7 +1,3 @@
-<!--
-  ~ Copyright © 2018 and Confidential to Pegasystems Inc. All rights reserved.
-  -->
-
 <resources>
     <string name="app_name">Activity Recognition</string>
     <string name="activity">Activity</string>

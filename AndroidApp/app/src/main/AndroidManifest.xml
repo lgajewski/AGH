@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright © 2018 and Confidential to Pegasystems Inc. All rights reserved.
-  -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pl.edu.agh.activityrecognition">
 
