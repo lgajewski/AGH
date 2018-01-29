@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright © 2018 and Confidential to Pegasystems Inc. All rights reserved.
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:background="#ededed"
+                 android:padding="22dp"
+                 tools:context="pl.edu.agh.activityrecognition.MainActivity">
+
+        <TableRow
+                android:id="@+id/title_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:textAlignment="center">
+
+            <TextView
+                    android:id="@+id/title"
+                    android:layout_weight="1"
+                    android:text="@string/activity"
+                    android:textAlignment="viewStart"
+                    android:textSize="28sp"
+                    android:textStyle="bold|italic"/>
+
+            <TextView
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:text="@string/probability"
+                    android:textAlignment="viewEnd"
+                    android:textSize="28sp"
+                    android:textStyle="bold|italic"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="44dp"
+                android:paddingRight="44dp"
+                android:textAlignment="center">
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#757575"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#757575"/>
+        </TableRow>
+
+        <TableRow
+                android:id="@+id/jogging_row"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:padding="22dp">
+
+            <TextView
+                    android:id="@+id/jogging_title"
+                    android:layout_weight="1"
+                    android:text="@string/jogging"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/jogging_prob"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="22sp"/>
+        </TableRow>
+
+        <TableRow
+                android:id="@+id/sitting_row"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:padding="22dp">
+
+            <TextView
+                    android:id="@+id/sitting_title"
+                    android:layout_weight="1"
+                    android:text="@string/sitting"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/sitting_prob"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="22sp"/>
+        </TableRow>
+
+        <TableRow
+                android:id="@+id/standing_row"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:padding="22dp">
+
+            <TextView
+                    android:id="@+id/standing_title"
+                    android:layout_weight="1"
+                    android:text="@string/standing"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/standing_prob"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="22sp"/>
+        </TableRow>
+
+        <TableRow
+                android:id="@+id/walking_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="22dp">
+
+            <TextView
+                    android:id="@+id/walking_title"
+                    android:layout_weight="1"
+                    android:text="@string/walking"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/walking_prob"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="22sp"/>
+        </TableRow>
+    </TableLayout>
+</ScrollView>
