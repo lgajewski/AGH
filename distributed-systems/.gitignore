@@ -1,0 +1,10 @@
+*.exe
+build/
+
+*.iml
+out/
+.idea/
+idea/
+target/
+tmp/
+.gradle/
