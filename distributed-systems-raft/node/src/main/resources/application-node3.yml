@@ -1,0 +1,8 @@
+spring:
+  profile: node3
+
+raft:
+  name: node3
+  nodes:
+   - node1
+   - node2

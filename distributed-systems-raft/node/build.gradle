@@ -1,0 +1,14 @@
+jar {
+    baseName = 'raft-algorithm-node'
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+    compile("org.springframework.boot:spring-boot-configuration-processor")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+// configuration-processor: to ensure that resources are processed before code is compiled
+compileJava.dependsOn(processResources)
+

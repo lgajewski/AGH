@@ -1,0 +1,62 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    group = 'pl.edu.agh'
+    version = '0.0.1'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: "jacoco"
+    apply plugin: 'pmd'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+// JaCoCo - test coverage
+    check.dependsOn jacocoTestCoverageVerification
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = 0.1
+                }
+            }
+        }
+    }
+
+// PMD - static code analysis
+    pmd {
+        ruleSets = [
+                'java-basic',
+                'java-braces',
+                'java-clone',
+                'java-codesize',
+                'java-empty',
+                'java-finalizers',
+                'java-imports',
+                'java-junit',
+                'java-migrating',
+                'java-strictexception',
+                'java-strings',
+                'java-sunsecure',
+                'java-unnecessary',
+                'java-unusedcode'
+        ]
+    }
+}
