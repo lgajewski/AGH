@@ -1,0 +1,72 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0050)http://home.agh.edu.pl/~kzajac/dydakt/mownit/lab8/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="GENERATOR" content="vi">
+<title>Metody Numeryczne</title>
+</head>
+
+<body bgcolor="papayawhip">
+
+<table width="80%" height="90%" border="0" align="CENTER">
+<tbody><tr>
+<td align="CENTER">
+<div align="left">
+
+<hr>
+<h1> Szybka Transformata Fouriera</h1>
+<hr>
+
+<h3>Zadania</h3> <ul> 
+
+
+<li> Użyc programu  (na dole strony)
+<a href="http://www.gnu.org/software/gsl/manual/html_node/Mixed_002dradix-FFT-routines-for-real-data.html#Mixed_002dradix-FFT-routines-for-real-data">
+wykorzystującego fft dla danych rzeczywistych w gsl </a> dla funkcji
+<pre>cos(10*(M_PI)*i/n)/2
+</pre>
+dla n=200.
+Narysować <b> słupkowy </b> wykres funkcji po transformacie i 
+zaobserwować 
+jej związek z 
+częstotliwością (10), jak i amplitudą (1/2) oraz liczbą punktów (n). 
+</li><li> Powtorzyć to zadanie dla funkcji będącej sumą cosinusów oraz sinusów 
+z różnymi amplitudami i częstotliwościami
+<pre>cos(10*(M_PI)*i/n)/2+ sin(20*M_PI)*i/n)
+</pre>
+</li><li> Usuwanie szumów:
+<ul>
+<li>
+Wypełniamy tablicę wartościami funkcji cosinus 
+("sygnału") zaburzonej
+niewielkim "szumem",
+  np. korzystając ze wzoru:
+  <pre>data[i]=cos(4*Pi*i/N)+((float)rand())/RAND_MAX/8.0</pre>
+</li><li>  Prosze narysować wykres zaszumionej funkcji.
+  </li><li>
+  Narysować wykres transformaty Fouriera (widmo) tego sygnału (jak 
+poprzednio).
+  </li>
+  <li>
+  Po transformacie wyzerowac w widmie wszystkie elementy, których
+wartość bezwzględna
+  jest mniejsza niz 50. W ten sposób usuwamy "szumy" z sygnału.
+  </li>
+  <li> Przeprowadzić odwrotną transformatę. Narysować wykres otrzymanej 
+funkcji. Czym różni się ona od wyjściowego sygnału?
+</li></ul>
+</li><li>Proszę nagrać własny glos i zastosować na nim trasformatę Fouriera, 
+narysować  wykres widma.
+Następnie poeksperymentować (wyciąć wybrane częstotliwości), dokonać 
+odwrotnej transformaty i odsluchać efekt. 
+
+
+</li></ul> 
+</div> </td>
+</tr>
+</tbody></table>
+
+
+
+
+</body></html>

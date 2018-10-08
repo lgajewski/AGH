@@ -1,0 +1,46 @@
+du/dt + f(u,t) = 0
+
+u(t+1)-u(t) / delta(t) + f(u,t) = 0
+
+
+u(t+1) - u(t) = -f(u,t) * delta(t)
+u(t+1) = u(t) - f(u,t) * delta(t)
+
+metoda eulera jest iteracyjna, niestabilna
+
+
+
+MOJE JEST ZADANIE 6 - sprezyna
+
+druga pochodna:
+d^2x/dt^2 + g/l sinx = 0
+
+rozbijamy na dwa równania:
+1) v = dx/dt
+2) dv/dt + g/l six = 0     - stosujemy metode eulera / gsl
+
+
+m - masa sprezyny
+k - stala sprezystosci
+
+k = 100 N/m
+m = 0.1 kg
+delta = 0.01
+
+x(0) = 0
+v(0) = 0
+
+
+
+1) v(t) = x(t+1) - x(t) / delta
+
+1) x(t+1) = v(t+1) - x(t)/delta
+2) v(t+1) = v(t) - kx * delta / m
+
+1) x(1) = v(1) - x(0)/delta
+2) v(1) = v(0) - kx(0) * delta / m
+
+3) x(2) = v(2) - x(1)/delta
+4) v(2) = v(1) - kx(1) * delta / m
+
+itd...
