@@ -1,0 +1,5 @@
+template=MyTemplate;
+name=Marek;
+surname=Nowak;
+imageFile=true;
+descriptionFile=false;

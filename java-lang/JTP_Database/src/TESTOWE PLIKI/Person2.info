@@ -1,0 +1,5 @@
+template=MyTemplate;
+name=Person2;
+surname=Person2;
+imageFile=false;
+descriptionFile=false;

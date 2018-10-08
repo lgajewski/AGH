@@ -1,0 +1,4 @@
+start=siema, Michal z tej strony
+jak_leci=mogloby byc lepiej..
+uspiony=musze zmykac, narka
+koniec=zegnam

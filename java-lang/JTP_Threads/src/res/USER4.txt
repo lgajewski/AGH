@@ -1,0 +1,4 @@
+start=witam, witam
+jak_leci=piekny dzien dzis mamy
+uspiony=nudzisz mnie, ide sobie
+koniec=zegnam!

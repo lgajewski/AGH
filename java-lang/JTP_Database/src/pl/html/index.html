@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+  <link rel="stylesheet" href="pl/html/style.css" type="text/css" />
+  <script>
+  function change(background, text, text2)
+  {
+   document.getElementById("left").style.background = 'url(' + background + ') no-repeat center center';
+   document.getElementById("name").innerHTML = text;
+   document.getElementById("description").innerHTML = text2;
+  }
+  </script>
+</head>
+<body>
+<div id="bg1">
+	<div id="bg2"></div>
+	<div id="container">
+		<div id="header">
+			<img src="pl/html/images/baner.png">
+		</div>
+		<div id="al">
+			<div id="box" style="width: 220px; margin-left: 10px; float: left; display: inline">
+				<div id="menu">
+					<ul>
+						<li><a href="index.html">Main Page</a></li>
+						<!-- MENU_BAR -->
+					</ul>
+				</div>
+			</div>
+			<div id="box" style="margin-left: 10px; float: left; display:inline">
+				<div id="left">
+						
+				</div>
+			</div>
+			<div id="box" style="margin-left: 10px; float: left; display:inline">
+					<div id="right">
+					<h1 id="name">Lorem Ipsum</h1>
+						
+					<p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies porttitor augue, id auctor sem blandit ut. Pellentesque condimentum vulputate lacus eu tincidunt. Suspendisse potenti. Integer arcu ipsum, luctus eget ultricies ut, sollicitudin sit amet nibh. Aliquam porta enim at ligula facilisis ullamcorper. Donec elit nisi, elementum ornare faucibus a, ullamcorper sed nunc. Morbi semper euismod tincidunt. Nulla egestas adipiscing tristique. Vestibulum ut nunc eu dolor sollicitudin lobortis. Quisque commodo imperdiet mattis. Nulla at sollicitudin tellus. Proin quis mauris quis augue volutpat lobortis at id nunc.</p>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div id="footer"></div>
+	<div style="clear: both"></div>
+</div>
+</body>
+</html>

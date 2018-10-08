@@ -1,0 +1,4 @@
+start=czesc, tu Agnieszka
+jak_leci=jestem zajeta, pisz o co chodzi
+uspiony=niestety juz musze leciec, paa
+koniec=paa

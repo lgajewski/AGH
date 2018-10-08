@@ -1,0 +1,4 @@
+start=czesc, Wojtka nie ma, wyszedl
+jak_leci=czekaj, zawolam Wojtka
+uspiony=nudzisz mnie..
+koniec=nie poczekasz na Wojtka?

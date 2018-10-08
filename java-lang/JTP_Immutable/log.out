@@ -1,0 +1,21 @@
+[02:17:44] INFO  [Main] : START
+[02:17:44] INFO  [Main] : Selected language: EN
+[02:17:44] INFO  [Mutability] : Comparing: 'Jan Kowalski' and 'Jan Kowalski'...
+				Are objects equal:  true
+				Are objects the same:  true
+[02:17:44] INFO  [Mutability] : Comparing: 'Maciek Szef' and 'Maciek Szef'...
+				Are objects equal:  false
+				Are objects the same:  false
+[02:17:44] INFO  [Mutability] : Comparing: 'example' and 'example'...
+				Are objects equal:  true
+				Are objects the same:  true
+[02:17:44] INFO  [Mutability] : Comparing: 'example' and 'EXAMPLE'...
+				Are objects equal:  false
+				Are objects the same:  false
+[02:17:47] INFO  [MailManagement] : Successfully sent mail to dragen12@gmail.com
+[02:17:47] INFO  [myURL] : Imported 'index.html' and 'style.css'.
+[02:17:47] INFO  [ZIP] : Created zip archive in: html.zip
+[02:17:47] INFO  [Main] : END
+
+
+
