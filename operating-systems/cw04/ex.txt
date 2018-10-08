@@ -1,0 +1,15 @@
+Zadania - Zestaw 4
+Zestaw 4. Sygnały
+Rodzaje sygnałów: SIGINT, SIGQUIT, SIGKILL, SIGTSTP, SIGSTOP, SIGTERM, SIGSEGV, SIGHUP, SIGALARM, SIGCHLD, SIGUSR1, SIGUSR2
+Sygnały czasu rzeczywistego: SIGRTMIN, SIGRTMIN+n, SIGRTMAX
+Przydatne polecenia: kill
+Przydatne funkcje systemowe: kill, raise, sigqueue, signal, sigaction, sigemptyset, sigfillset, sigaddset, sigdelset, sigismember, sigprocmask, sigpending, pause, sigsuspend
+
+Zadanie 1
+a) Napisz dwa programy - program wysyłający sygnały SIGUSR1 (przodek) i program zliczający ilość odebranych sygnałów (potomek). Ilość sygnałów SIGUSR1wysyłanych przez pierwszy program powinna być określana w parametrze wywołania tego programu. Po transmisji sygnałów SIGUSR1 proces pierwszy powinien wysłać sygnał SIGUSR2, po otrzymaniu którego potomek wysyła do przodka tyle sygnałów SIGUSR1 ile sam ich otrzymał a „transmisję” kończy wysłaniem sygnału SIGUSR2 i zakończeniem działania. Program przodka po otrzymaniu sygnału SIGUSR2 wyświetla komunikat o ilości otrzymanych sygnałówSIGUSR1 oraz o tym ile powinien ich otrzymać i kończy działanie. 
+
+Zadanie 2
+Do programów w zadaniu 1 dodaj potwierdzenie odbioru sygnału nie na końcu działania, a po każdorazowym ich odebraniu przez potomka. W tym celu, niech proces drugi wysyła do procesu pierwszego sygnał SIGUSR1 informujący o odbiorze sygnału. Proces pierwszy powinien wysłać kolejny sygnał dopiero po uzyskaniu tego potwierdzenia. Zapewnij rozwiązanie, w którym ilość sygnałów odebranych jest zgodna z ilością sygnałów wysłanych, i w którym nie dochodzi do zakleszczenia. 
+
+Zadanie 3
+Zmodyfikuj programy opisane w zadaniu 1 tak, by przesyłany sygnał był sygnałem czasu rzeczywistego (patrz man -s 7 signal). Jaka liczba sygnałów będzie teraz odebrana?

@@ -1,0 +1,17 @@
+Zadania - Zestaw 9
+Zadanie 1
+Zaimplementuj wielowątkowy program realizujący poprawne rozwiązanie problemu pięciu filozofów. Należy zastosować rozwiązanie wykorzystujące muteks i zmienne warunków (zgodne z typem rozwiązań problemu współbieżnego stosującego monitor - jeden muteks, wiele zmiennnych warunków)
+
+Zadanie 2
+Zaimplementuj z wykorzystaniem wątków poprawne, semfaorowe rozwiązanie problemu czytelników i pisarzy przy następujących założeniach:
+jest wiele wątków czytelników i wiele wątków pisarzy
+liczba czytelników jest jednak ograniczona i znana jest jej wartość (upraszcza to znacznie rozwiązanie problemu)
+do synchronizacji używane są semafory nienazwane standardu POSIX
+dane umieszczone są w globalnej tablicy liczb całkowitych
+pisarz cyklicznie modyfikuje w sposób losowy wybrane liczby w tablicy (losuje ilość liczb do modyfikacji, ich pozycje w tablicy oraz wartości tych liczb)
+czytelnik uruchamiany jest z jednym argumentem - wartością poszukiwanej w tablicy liczby i cyklicznie wykonuje operację przeszukiwania tablicy
+pisarz raportuje na standardowym wyjściu wykonanie swojej operacji (modyfikacji tablicy)
+analogiczny raport wykonuje czytelnik, dodając dodatkowo wynik operacji: ilość znalezionych liczb o szukanej wartości
+Poprawne algorytmy rozwiązań dla zadania 1 i 2 można znaleźć w książce:
+
+Weiss, T. Gruźlewski "Programowanie współbieżne i rozproszone w przykładach i zadaniach", Wydawnictwo Naukowo-Techniczne, Warszawa 1994.
