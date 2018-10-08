@@ -1,0 +1,39 @@
+int readers = 0
+int writers = 0
+semaphore readerCounterMutex(1), writerCounterMutex(1)
+semaphore readerAccessMutex(1), writerAccessMutex(1)
+
+writer() {
+	P(writerCounterMutex)
+	writers++
+	if (writers == 1) {
+		P(readerAccessMutex)
+	}
+	V(writerCounterMutex)
+	P(writerAccessMutex)
+	writeResource()
+	V(writerAccessMutex)
+	P(writerCounterMutex)
+	writers--
+	if (writers == 0) {
+		V(readerAccessMutex)
+	}
+	V(writerCounterMutex)
+}
+
+reader() {
+	P(readerAccessMutex)
+	P(readerCounterMutex)
+	readers++
+	if (readers == 1) {
+		P(writerAccessMutex)
+	}
+	V(readerCounterMutex)
+	V(readerAccessMutex)
+	readResource() 
+	P(readerCounterMutex)
+	readers--
+	if (readers == 0) {
+		V(writerAccessMutex)
+	}
+	V(readerCounterMutex)	
