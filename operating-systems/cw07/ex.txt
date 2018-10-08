@@ -1,0 +1,25 @@
+Zadania - Zestaw 7
+IPC - pamieć wspólna, semafory
+Przydatne funkcje:
+
+System V:
+
+<sys/shm.h> <sys/ipc.h> - shmget, shmclt, shmat, shmdt
+POSIX:
+
+<sys/mman.h> - shm_open, shm_close, shm_unlink, mmap, munmap
+Zadanie 1
+1.
+Wykorzystując semafory i pamięć wspólną z IPC Systemu V napisz program rozwiązujący problem producentów i konsumentów. Program przyjmuje jeden argument, określający typ procesu (producent lub konsument). Po uruchomieniu, producent cyklicznie generuje zadania do wykonania. Tworząc zadanie producent losuje dodatnią liczbę całkowitą i umieszcza ją w tablicy przechowywanej w pamięci wspólnej. Celem zadania jest sprawdzenie, czy liczba ta jest pierwsza. Po utworzeniu nowego zadania producent wypisuje na ekranie komunikat postaci:
+
+(pid timestamp) Dodałem liczbę: n. Liczba zadań oczekujących: m.
+gdzie pid to PID procesu producenta, timestamp to aktualny czas (z dokładnością do milisekund), n to wylosowana liczba (treść zadania) a m to liczba zadań w pamięci wspólnej (licząc z utworzonym zadaniem). Konsument cyklicznie pobiera zadania umieszczone w pamięci wspólnej. Po pobraniu zadania konsument sprawdza, czy dana liczba jest pierwsza i wypisuje na ekranie jeden z komunikatów:
+
+(pid timestamp) Sprawdziłem liczbę n - pierwsza. Pozostało zadań oczekujących: m
+(pid timestamp) sprawdziłem liczbę n - złożona. Pozostało zadań oczekujących: m
+gdzie pid to PID procesu konsumenta, timestamp to czas pobrania zadania (z dokładnością do milisekund), n to liczba będąca treścią zadania a m to liczba zadań które pozostały w pamięci wspólnej (po pobraniu wykonanego zadania). Można użyć dowolnego algorytmu sprawdzającego, czy liczba jest pierwsza (na przykład dzielenia przez wartości od 2 do pierwiastek z n).
+
+Zakładamy, że równocześnie pracuje wielu producentów i wielu konsumentów. Rozmiar tablicy z zadaniami (w pamięci wspólnej) jest ograniczony i ustalony na etapie kompilacji. Tablica ta indeksowana jest w sposób cykliczny - po dodaniu zadania na końcu tablicy, kolejne zadania dodawana są od indeksu 0. Korzystając w odpowiedni sposób z semaforów należy zagwarantować, że liczba oczekujących zadań nie przekroczy rozmiaru tablicy oraz że tablica nie będzie modyfikowana przez kilka procesów równocześnie. Rozmiar tablicy zadań dobierz tak, aby mogła zajść sytuacja, w której tablica jest całkowicie zapełniona. W pamięci wspólnej oprócz tablicy można przechowywać także inne dane dzielone pomiędzy procesami.
+
+Zadanie 2.
+Zaimplementuj rozwiązanie zadania 1 wykorzystując semafory i pamięci wspólną z POSIX IPC.
